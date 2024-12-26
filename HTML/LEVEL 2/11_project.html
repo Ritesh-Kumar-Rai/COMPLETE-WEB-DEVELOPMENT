@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project of level 2</title>
+    <style>
+        *{
+            font-size: 1.2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius: 5px;
+        }
+
+        html,body{
+            scroll-behavior: smooth;
+        }
+
+        header{
+            font-family: 'Courier New', Courier;
+            border: 2px solid red;
+            padding: 1.4em;
+        }
+        header > nav{
+            display: flex;
+            justify-content: space-between;
+
+        }
+        main{
+            padding: 2em;
+        }
+
+        h2{
+            font-size: 1.3em;
+        }
+        h2,h5{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        #info{
+            display: flex;
+            gap: 6em;
+        }
+
+        #skills, #projects, footer{
+            padding: 3em;
+        }
+
+        footer{
+            background-color: darkblue;
+            color: aliceblue;
+            text-align: center;
+            border: 5px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- header/navbar -->
+    <header>
+        <nav>
+            <i>RESUME</i>
+            <span>
+                <a href="#info">info</a>
+                <a href="#skills">skills</a>
+                <a href="#projects">projects</a>
+            </span>
+        </nav>
+    </header>    
+
+    <!-- main area -->
+    <main>
+        <!-- info section -->
+        <section id="info">
+            <article>
+                <h2>Information</h2>
+                <p>
+                    I'm <b><i>Ritesh Kumar Rai</i></b>, A professional Frontend Web and Cross-Platform Developer. <br>
+                    With a passion to develop a complete, robust, secure and scalable applications. And always eager to learn new technologies which help me to build an updated software. 
+                </p>
+            </article>
+            <aside>
+                <h2>Advertisement</h2>
+                <a href="https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/" target="_blank">
+                    <img src="https://wallpapercave.com/wp/wp3095079.jpg" alt="buy gta 5" width="300px">
+                </a>
+            </aside>
+        </section>
+        <hr>
+        <!-- skills section -->
+         <section id="skills">
+            <h2>Skills</h2>
+            <div>
+                <p>The key tech stack which i have, which helped me to become a professional developer/engineer. </p>
+                <h5>TECH STACKS and SKILLS:</h5>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JAVASCRIPT</li>
+                    <li>REACT JS</li>
+                    <li>SaaS</li>
+                    <li>REACT NATIVE</li>
+                    <li>EXPO</li>
+                    <li>ANDROID/iOS</li>
+                    <li>GIT/GITHUB</li>
+                    <li>TAILWIND CSS</li>
+                    <li>REST API</li>
+                    <li>RESPONSIVE DESIGN</li>
+                    <li>DSA - (DATA STRUCTURES AND ALGORITHMS)</li>
+                </ul>
+            </div>
+         </section>
+         <hr>
+         <!-- projects section -->
+          <section id="projects">
+                <h2>Projects</h2>
+                <div>
+                    <article>
+                        <div>
+                            <img src="https://reactjsexample.com/content/images/2021/05/Ecommercereact.jpg" alt="react e-commerce website" width="600px">
+                        </div>
+                        <h5>E-commerce website</h5>
+                        <p>The E-commerce frontend website which has wide variety of features like auth, cart, search, filters, email verification.</p>
+                        <p><b>Tech used:</b> REACT JS, CSS, HTML, REDUX, TAILWIND CSS, GIT/GITHUB, REST API, JWT TOKENS.</p>
+                        <a href="#">View Demo</a> &nbsp; &nbsp; &nbsp; <a href="#">Github</a>
+                    </article>
+                    <br>
+                    <hr>
+                    <br>
+                    <article>
+                        <div>
+                            <img src="https://raw.githubusercontent.com/AbdelhamidLarachi/react-native-ecommerce/master/img/thumb.png" alt="e-coomerce react native" width="600px">
+                        </div>
+                        <h5>E-commerce mobile app</h5>
+                        <p>The E-commerce frontend mobile application supports both android/ios which has wide variety of features like auth, cart, search, filters, email verification.</p>
+                        <p><b>Tech used:</b> REACT JS, REACT NATIVE, EXPO, REDUX TOOLKIT, TAILWIND CSS, REST API, JWT TOKENS, HTML, CSS.</p>
+                        <a href="#">View Demo</a> &nbsp; &nbsp; &nbsp; <a href="#">Github</a>
+                    </article>
+                </div>
+          </section>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        @RITESH KUMAR RAI
+    </footer>
+</body>
+</html>
