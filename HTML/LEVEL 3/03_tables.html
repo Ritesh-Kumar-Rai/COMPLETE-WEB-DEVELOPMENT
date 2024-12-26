@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tables in HTML</title>
+    <style>
+        table{
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <h1>basic table </h1>
+
+    <table border="1">
+        <tr>
+            <th>language</th>
+            <th>performance</th>
+            <th>experience</th>
+        </tr>
+
+        <tr>
+            <td>C</td>
+            <td>6/10</td>
+            <td>2 year</td>
+        </tr>
+        <tr>
+            <td>C#</td>
+            <td>9/10</td>
+            <td>10 year</td>
+        </tr>
+        <tr>
+            <td>JS</td>
+            <td>9/10</td>
+            <td>5 year</td>
+        </tr>
+
+        <tr>
+            <td colspan="3"><center>This is colspan</center></td>
+        </tr>
+
+    </table>
+
+    <h1>Now SEO friendly table</h1>
+
+    <table border="1">
+        <caption>This is Caption of table</caption>
+        <thead>
+            <tr>
+                <th>Game Name</th>
+                <th>Played or Not</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GTA V</td>
+                <td>Not</td>
+                <td>912</td>
+            </tr>
+            <tr>
+                <td>Watchdogs </td>
+                <td>yes</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <td>Watchdogs 2: gold edition</td>
+                <td>Not</td>
+                <td>5000</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: center;">Available right now</td>
+                </tr>
+            </tfoot>
+        </tbody>
+    </table>
+</body>
+</html>
