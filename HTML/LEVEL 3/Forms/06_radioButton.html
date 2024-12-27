@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>radio button in html</title>
+    <style>
+        label,input[type="radio"]{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Radio Button</h1>
+    <hr>
+    <form>
+        <h2>Select Payment Method</h2>
+        
+        <label for="card">Debit/Credit Card:</label>
+        <input type="radio" name="payment-method" id="card" value="debit-credit-card">
+        <br>
+        <label for="emi">EMI:</label>
+        <input type="radio" name="payment-method" id="emi" value="emi">
+        <br>
+        <label for="cash">Cash on Delivery:</label>
+        <input type="radio" name="payment-method" id="cash" value="cash-on-delivery">
+    </form>
+</body>
+</html>

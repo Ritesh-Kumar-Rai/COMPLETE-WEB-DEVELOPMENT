@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextArea in HTML</title>
+    <style>
+        textarea{
+            padding: 1em;
+            /* resize: none; */
+            transition: 400ms ease-in-out;
+        }
+        textarea:focus{
+            outline-color: #5b9dd9;
+            box-shadow: 5px 5px 5px gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>TextArea in HTML</h1>
+    <hr>
+    <form action="#">
+        <h3>Write a Story of Hanuman Ji:</h3>
+
+        <textarea name="story" id="story" rows="5" cols="50" placeholder="write your story here..."></textarea>
+
+        <br> <br>
+
+        <input type="submit" value="Submit Your Story">
+    </form>
+</body>
+</html>
