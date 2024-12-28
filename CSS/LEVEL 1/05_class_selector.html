@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Selector in CSS</title>
+    <style>
+
+        *{
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        /* class selector */
+        .container{
+            /* border: 2px solid grey; */
+            margin-block: 2em;
+            padding: 2em;
+            border-radius: 5px;
+            transition: 0.4s ease-in-out;
+            cursor: crosshair;
+        }
+        .container:hover{
+            box-shadow: 5px 5px 5px 5px grey;
+        }
+
+        h1{
+            color: green;
+        }
+
+        #p1{
+            color: red;
+        }
+        #p2{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heading 1</h1>
+        <p id="p1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit dolorum incidunt consectetur ipsa! Suscipit ullam aut repellendus, sequi harum omnis perferendis modi odit quisquam magnam, eos ratione mollitia. Non, quisquam.
+        Quod sint atque pariatur debitis culpa magnam facere laborum adipisci dolores dolor? Voluptates deleniti perferendis nulla ea inventore, esse cum, vero neque magni labore at velit eaque accusantium magnam alias!
+        </p>
+    </div>
+    <div class="container">
+        <h1>Heading 2</h1>
+        <p id="p2">Nobis, aliquid modi veritatis atque commodi eaque tenetur quas animi repudiandae nostrum neque assumenda maiores cum suscipit soluta eveniet saepe ea voluptatum inventore ducimus odit esse. Necessitatibus id veritatis nemo?
+            Provident nobis facere nostrum doloribus fugit enim dignissimos rem suscipit odit eligendi iusto sint officiis, molestias perspiciatis qui sed. Id, asperiores officiis natus veritatis nobis provident deserunt quis voluptatibus accusamus?
+            Esse pariatur est tenetur impedit harum consequuntur id modi voluptas magni, asperiores saepe, placeat iusto sunt amet earum nostrum. Aspernatur fugiat illo autem dolorum perspiciatis non quo aliquid possimus est?</p>
+    </div>
+</body>
+</html>
