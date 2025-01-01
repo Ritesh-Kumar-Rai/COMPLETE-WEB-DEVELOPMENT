@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padding in CSS Box Model</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        /* padding of box model n css */
+        .padded{
+            background-color: rosybrown;
+            width: 50px;
+            height: 50px;
+            padding: 5px 5px 5px 5px; /* top right bottom left */
+            /* padding: 10px; it will add the padding to all direction of content  */
+        
+            /* We also have padding-top, padding-right, padding-bottom, padding-left */
+
+        }
+    </style>
+</head>
+<body>
+    <div class="padded">Lorem, ipsum.</div>
+</body>
+</html>
