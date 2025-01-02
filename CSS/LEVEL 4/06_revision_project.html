@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model: Revision Project</title>
+
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            background-color: aquamarine;
+        }
+
+        #btn{
+            height: 70px;
+            width: 70px;
+            padding: 10px 15px 10px 15px; /* top right bottom left */
+            /* another shortcut */
+            padding: 10px 15px; /* vertical (x-axis) and horizontal (y-axis) */
+            cursor: pointer;
+            /* margin */
+            margin: 100px;
+            /* border */
+            border-style: dotted;
+            border-color: red;
+            border-radius: 56px;
+        }
+
+        .container{
+            height: 100px;
+            width: 100px;
+            padding: 15px;
+            background-color: gold;
+            margin: 10px;
+        }
+
+        #box1{
+            box-sizing: content-box;
+        }
+        #box2{
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Task 1 -->
+     <div class="box">Container</div>
+    
+    <!-- Task 2 -->
+     <button type="button" id="btn">I'm Button</button>
+
+    <!-- task 3 -->
+     <div class="container" id="box1">Box 1</div>
+     <div class="container" id="box2">Box 2</div>
+</body>
+</html>
