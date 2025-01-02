@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Unit: rem</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 10px;
+        }
+
+        .parent{
+            height: 300px;
+            width: 300px;
+            background-color: aqua;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        /* The relative unit: rem, rem provides dynamic size to child elements but this is not same as em, the em is relative to it's parent element size whereas the rem size is related to the root element like html/body size */
+        .child{
+            height: 50%;
+            width: 50%;
+            background-color: gold;
+            padding: 10px;
+            font-size: 0.5rem; /* half of the size of it's root element which is body's font size 10px/2  = 5px */
+        }
+    </style>
+</head>
+<body>
+    This is Body 
+    <div class="parent">This is Parent
+        <div class="child">This is child</div>
+    </div>
+</body>
+</html>

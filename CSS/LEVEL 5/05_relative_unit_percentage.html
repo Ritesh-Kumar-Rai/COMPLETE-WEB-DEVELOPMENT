@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Unit: Percentage</title>
+    <style>
+        /* Relative unit means which will adjust as per the screen size means responsive units.
+        Percentage will be used so that the child element will adjust it's size as per it's parent size. */
+
+        #parent{
+            height: 300px;
+            width: 500px;
+            color: white;
+            background-color: aqua;
+           resize: both;
+           overflow: auto;
+        }
+
+        #child{
+            background-color: red;
+            width: 50%;
+            height: 60%;
+        }
+    </style>
+</head>
+<body>
+    <p>Click and hold to the parent bottom right corner and try to <b>resize</b> the div to see the relative units behaviour. </p>
+    <div id="parent">Parent Div
+        <div id="child">Child Div</div>
+    </div>
+</body>
+</html>

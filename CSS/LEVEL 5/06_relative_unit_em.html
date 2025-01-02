@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Unit: em</title>
+    <style>
+        /* relative unit: em the em size is relative to it's parent element's font size 
+        if the parent font-size is 20px; and we applied child element css as font-size: 2em; then the font of child element is 2X Times of it's parent element which is 40px */
+        .parent{
+            height: 400px;
+            width: 500px;
+            background-color: aqua;
+            padding: 10px;
+            font-size: 20px;
+        }
+        .child{
+            height: 60%;
+            width: 50%;
+            background-color: red;
+            color: aliceblue;
+            padding: 10px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">Parent
+        <div class="child">Child</div>
+    </div>
+</body>
+</html>
