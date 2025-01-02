@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Property - Inline Block</title>
+    <style>
+
+        /* The problem has with display:inline; like we unable to apply height/width the problem is now solved with display:inline-block; */
+        .container{
+            height: 100px;
+            width: 100px;
+            padding: 15px;
+            margin: 10px;
+            background-color: slateblue;
+            color: white;
+            text-align: center;
+            display: inline-block;
+        }
+
+        p{
+            background-color: aquamarine;
+            padding: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">Container 1</div>
+    <div class="container">Container 2</div>
+
+    <p>Lorem, ipsum.</p>
+</body>
+</html>

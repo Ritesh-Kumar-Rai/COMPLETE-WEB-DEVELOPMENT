@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Property - Inline </title>
+    <style>
+        
+        /* display: inline; property which makes all element takes the only required space, but there's a catch: you will unable to apply height and width to that elements. and margin top-n-bottom. 
+        To solve this we have inline-block which will cover in next code number: 03 */
+        .container{
+            height: 100px;
+            width: 100px;
+            padding: 15px;
+            margin: 10px;
+            background-color: slateblue;
+            color: aliceblue;
+            display: inline;
+        }
+
+        p{
+            background-color: slategrey;
+            color: skyblue;
+            margin: 20px;
+            padding: 10px;
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">Container 1</div>
+    <div class="container">Container 2</div>
+    <p>Lorem, ipsum.</p>
+</body>
+</html>

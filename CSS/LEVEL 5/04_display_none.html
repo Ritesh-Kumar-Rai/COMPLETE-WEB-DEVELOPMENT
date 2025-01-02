@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Property - Display None</title>
+    <style>
+        /* display:none; The display none is used to completely remove the html element node from the html, it is not like visibility: hidden; where the element is only hide but the space taken by that element is still continue, on the other hand the display: none; property will also remove the space taken by that element*/
+
+        .container{
+            height: 100px;
+            width: 100px;
+            padding: 15px;
+            margin: 10px;
+            background-color: skyblue;
+        }
+
+        #box1{
+            visibility: hidden; /*The space is still there*/
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="box1">Container 1</div>
+    <div class="container" id="box2">Container 2</div>
+</body>
+</html>
