@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Unit: vw and vh</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* The viewport height and width is respective to the actual display of viewport: Desktop/mobile/TV/Tablet etc. whatever devices you will use when u apply vh and vw to any html element then it's width and height will applied as the actual viewport width/height */
+        article{
+            background-color: lightblue;
+            font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding: 10px;
+            height: 50vh; /* 50% of actual display height*/
+            width: 50vw; /* 50% of actual display width*/
+        }
+    </style>
+</head>
+<body>
+    <article>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, recusandae!
+    </article>
+</body>
+</html>
