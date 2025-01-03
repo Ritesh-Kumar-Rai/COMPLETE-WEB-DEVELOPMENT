@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Property in CSS</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: lightgreen;
+            padding: 10px;
+            margin: 15px;
+            border-style: solid;
+            border-color: black;
+        }
+
+        .another-boxes{
+            height: 100px;
+            width: 100px;
+            background-color: lightcoral;
+            padding: 10px;
+            margin: 15px;
+            border-style: solid;
+            border-color: black;
+        }
+
+        /* position property: static, relative, absolute and fixed */
+        #box1{
+            position: static; /* by default applied. */
+            /* top/right/bottom/left and z-index won't work */
+        }
+        #box2{
+            position: relative;
+            top: 20px;
+            left: 40px;
+        }
+        #box3{
+            position: absolute; /* positioned relative to it's viewport(root) or a parent top left side */
+            top: 20px;
+            right: 20px;
+        }
+        #box4{
+            position: fixed; /* same as absolute but it does not move while scrolling */
+            top: 20px;
+            left: 150px;
+            /* best suited for navbars */
+        }
+
+    </style>
+</head>
+<body>
+    <p>Position Property:</p>
+    <ul>
+        <li>Static</li>
+        <li>Relative</li>
+        <li>Absolute</li>
+        <li>Fixed</li>
+    </ul>
+
+    <div class="box" id="box1">Box 1 Static</div>
+    <div class="box" id="box2">Box 2 Relative</div>
+    <div class="box" id="box3">Box 3 Absolute</div>
+    <div class="box" id="box4">Box 4 Fixed</div>
+
+    <!-- The below boxes is just for scrolling the page -->
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+    <div class="another-boxes">Another Boxes for just scrolling the page</div>
+
+    <!--
+        • Static (default) : Elements follow the normal document flow. (top, right, 
+                             bottom, left, z-index would not work)
+        • Relative: Element's position adjusted from its normal position.
+        • Absolute: Positions element relative to the nearest positioned ancestor.
+        • Fixed: Element positioned relative to the viewport, does not move on scroll.
+ -->
+</body>
+</html>
