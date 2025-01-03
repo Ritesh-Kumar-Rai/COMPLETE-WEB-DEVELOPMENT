@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float in CSS</title>
+    <style>
+        .container{
+            height: 200px;
+            background-color: palevioletred;
+            border: 3px solid black;
+            padding: 2rem;
+            border-radius: 3px;
+        }
+
+        .box{
+            width: 150px;
+            height: 150px;
+            background-color: turquoise;
+            border: 2px solid black;
+            float: right;
+        }
+
+        .square{
+            width: 140px;
+            height: 140px;
+            border: 2px solid black;
+            display: inline-block;
+            margin: 1rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #box1{
+            background-color: turquoise;
+            float: right;
+        }
+        #box2{
+            background-color: red;
+        }
+        #box3{
+            background-color: lightgreen;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="square" id="box1">Square 1</div>
+        <div class="square" id="box2">Square 2</div>
+        <div class="square" id="box3">Square 3</div>
+    </div>
+</body>
+</html>
