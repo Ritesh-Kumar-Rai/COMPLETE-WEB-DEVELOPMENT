@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: flex-grow</title>
+    <style>
+        *{
+            font-family: monospace;
+        }
+
+        h1,p{
+            text-align: center;
+        }
+
+        .container{
+            height: 400px;
+            width: 900px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: lavender;
+            margin-inline: 15rem;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        /* flex-grow property */
+        .box{
+            height: 75px;
+            width: 75px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+            margin-inline: 10px;
+            flex-grow: 1;
+        }
+
+        #box1{
+            background-color: yellow;
+        }
+        #box2{
+            background-color: red;
+            flex-grow: 1;
+            flex-grow: 0.5;
+            flex-grow: 3;
+            flex-grow: 0;
+        }
+        #box3{
+            background-color: green;
+        }
+        #box4{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: flex-grow</h1>
+    <p> The "flex-grow" property in CSS specifies how much a flex item 
+        will grow relative to other items in the flex container when 
+        additional space is available.
+    </p>
+
+    <div class="container">
+        <div class="box" id="box1">Item 1</div>
+        <div class="box" id="box2">Item 2</div>
+        <div class="box" id="box3">Item 3</div>
+        <div class="box" id="box4">Item 4</div>
+    </div>
+
+</body>
+</html>
