@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: align-items</title>
+    <style>
+        *{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        h1,h3{
+            text-align: center;
+        }
+        
+        .container{
+            height: 300px;
+            background-color: lavender;
+            border: solid black;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+        }
+        /* align-items property in flexbox; */
+        #container1{
+            align-items: start;
+        }
+        #container2{
+            align-items: center;
+        }
+        #container3{
+            align-items: end;
+        }
+      
+
+        .box{
+            width: 70px;
+            height: 70px;
+            border: solid black;
+            border-radius: 5px;
+            font-size: 0.7em;
+            padding: 5px;
+            text-align: center;
+            margin-inline: 5px;
+        }
+        /* css for separate boxes */
+        .box1{
+            background-color: red;
+        }
+        .box2{
+            background-color: green;
+        }
+        .box3{
+            background-color: blueviolet;
+        }
+        .box4{
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FlexBox: align-items</h1>
+    <p>The align-items property is used to align the items inside flexbox container at vertical axis/cross-axis. whereas the justify-content is used to align the items in horizontal axis.</p>
+
+    
+    <h3>align-items: start;</h3>
+    <div id="container1" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+    </div>
+
+    <h3>align-items: center;</h3>
+    <div id="container2" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+    </div>
+
+    <h3>align-items: end;</h3>
+    <div id="container3" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+    </div>
+    
+    
+</body>
+</html>
