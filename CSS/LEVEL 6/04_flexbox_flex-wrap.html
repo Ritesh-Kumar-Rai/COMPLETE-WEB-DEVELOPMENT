@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: flex-wrap</title>
+    <style>
+        h1,h3{
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .container{
+            min-height: 200px;
+            width: 400px;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: lavender;
+            padding: 10px;
+            /* display flex */
+            display: flex;
+            margin-inline: 12rem;
+        }
+
+        /* flex-wrap property */
+        #container1{
+            flex-wrap: nowrap;
+        }
+        #container2{
+            flex-wrap: wrap;
+        }
+        #container3{
+            flex-wrap: wrap-reverse;
+        }
+
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: 5px;
+            font-size: 0.8em;
+            padding: 5px;
+        }
+        .box1{
+            background-color: aqua;
+        }
+        .box2{
+            background-color: green;
+        }
+        .box3{
+            background-color: yellow;
+        }
+        .box4{
+            background-color: red;
+        }
+        .box5{
+            background-color: coral;
+        }
+        .box6{
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: flex-wrap</h1>
+
+    <h3>1. flex-wrap: nowrap;</h3>
+    <div class="container" id="container1">
+        <div class="box box1">Item 1</div>
+        <div class="box box2">Item 2</div>
+        <div class="box box3">Item 3</div>
+        <div class="box box4">Item 4</div>
+        <div class="box box5">Item 5</div>
+        <div class="box box6">Item 6</div>
+    </div>
+
+    <p>This is by default, that all items are shrink in a flexbox and the width won't work. To solve this issue we will use flex-wrap: wrap;</p>
+
+    <h3>2. flex-wrap: wrap;</h3>
+    <div class="container" id="container2">
+        <div class="box box1">Item 1</div>
+        <div class="box box2">Item 2</div>
+        <div class="box box3">Item 3</div>
+        <div class="box box4">Item 4</div>
+        <div class="box box5">Item 5</div>
+        <div class="box box6">Item 6</div>
+    </div>
+
+    <h3>3. flex-wrap: wrap-reverse;</h3>
+    <div class="container" id="container3">
+        <div class="box box1">Item 1</div>
+        <div class="box box2">Item 2</div>
+        <div class="box box3">Item 3</div>
+        <div class="box box4">Item 4</div>
+        <div class="box box5">Item 5</div>
+        <div class="box box6">Item 6</div>
+    </div>
+
+</body>
+</html>
