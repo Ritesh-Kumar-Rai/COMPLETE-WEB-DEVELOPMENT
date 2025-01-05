@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: align-content</title>
+
+    <style>
+        *{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        h1,h3{
+            text-align: center;
+        }
+        
+        .container{
+            height: 600px;
+            width: 600px;
+            background-color: lavender;
+            border: solid black;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-inline: 7rem;
+        }
+        /* align-items property in flexbox; */
+        #container1{
+            align-content: start;
+        }
+        #container2{
+            align-content: center;
+        }
+        #container3{
+            align-content: end;
+        }
+      
+
+        .box{
+            width: 100px;
+            height: 100px;
+            border: solid black;
+            border-radius: 5px;
+            font-size: 0.7em;
+            padding: 5px;
+            text-align: center;
+            margin: 5px;
+        }
+        /* css for separate boxes */
+        .box1{
+            background-color: red;
+        }
+        .box2{
+            background-color: green;
+        }
+        .box3{
+            background-color: blueviolet;
+        }
+        .box4{
+            background-color: lightcoral;
+        }
+        .box5{
+            background-color: blue;
+        }
+        .box6{
+            background-color: pink;
+        }
+        .box7{
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: align-content</h1>
+    <p style="text-align: center;"> It is utilized to adjust the 
+        spacing between flex lines 
+        within a flex container, 
+        particularly when there is 
+        extra space along the cross
+        axis.
+        </p>
+
+    
+    <h3>align-content: start;</h3>
+    <div id="container1" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+        <div class="box box5">Flex Item 5</div>
+        <div class="box box6">Flex Item 6</div>
+        <div class="box box7">Flex Item 7</div>
+    </div>
+
+    <h3>align-content: center;</h3>
+    <div id="container2" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+        <div class="box box5">Flex Item 5</div>
+        <div class="box box6">Flex Item 6</div>
+        <div class="box box7">Flex Item 7</div>
+    </div>
+
+    <h3>align-content: end;</h3>
+    <div id="container3" class="container">
+        <div class="box box1">Flex Item 1</div>
+        <div class="box box2">Flex Item 2</div>
+        <div class="box box3">Flex Item 3</div>
+        <div class="box box4">Flex Item 4</div>
+        <div class="box box5">Flex Item 5</div>
+        <div class="box box6">Flex Item 6</div>
+        <div class="box box7">Flex Item 7</div>
+    </div>
+
+    <h3>It also supports space-around, space-between and space-evenly</h3>
+</body>
+</html>

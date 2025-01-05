@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: align-self</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .container{
+            height: 600px;
+            width: 900px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin-inline: 5rem;
+            background-color: lavender;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+        }
+        #box1{
+            background-color: green;
+        }
+        #box2{
+            background-color: violet;
+        }
+        #box3{
+            background-color: red;
+            /* self aligned in a vertical order */
+            align-self: flex-start;
+            align-self: center;
+            align-self: flex-end;
+        }
+        #box4{
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: align-self property</h1>
+    <p> Allows individual flex items to override the 
+        container's align-items property, aligning 
+        them differently along the cross-axis.
+    </p>
+
+    <div class="container">
+        <div class="box" id="box1">Item 1</div>
+        <div class="box" id="box2">Item 2</div>
+        <div class="box" id="box3">Item 3</div>
+        <div class="box" id="box4">Item 4</div>
+    </div>
+</body>
+</html>
