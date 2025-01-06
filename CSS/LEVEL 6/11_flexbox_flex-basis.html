@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox: flex-basis</title>
+    <style>
+        *{
+            font-family: monospace;
+        }
+
+        h1,p,li{
+            text-align: center;
+        }
+
+        pre{
+            background-color: lavender;
+            border: 2px solid black;
+            padding: 15px;
+            display: inline-block;
+            margin-inline: 30rem;
+            white-space: unset;
+            border-radius: 5px;
+        }
+
+        .container{
+            height: 400px;
+            width: 900px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: lavender;
+            margin-inline: 30rem;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        /* flex-grow property */
+        .box{
+            height: 75px;
+            width: 75px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+            margin-inline: 10px;
+        }
+
+        #box1{
+            background-color: yellow;
+        }
+        #box2{
+            background-color: red;
+            flex-basis: 500px; /* expanding the width of the item by 300px, not height because the container is not set as flex-direction: column; */
+        }
+        #box3{
+            background-color: green;
+        }
+        #box4{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: flex-basis</h1>
+    <p>
+        The flex-basis property is used to set the initial main size of a flex item. Its effect depends on the direction of the flex container:
+        <br>
+        <ul style="list-style-type: none;">
+            <li><b>For Horizontal (Row) Layouts:</b> flex-basis sets the width of the flex item.</li>
+            <li><b>For Vertical (Column) Layouts:</b> flex-basis sets the height of the flex item.</li>
+        </ul>
+    </p>
+        
+
+    <div class="container">
+        <div class="box" id="box1">Item 1</div>
+        <div class="box" id="box2">Item 2</div>
+        <div class="box" id="box3">Item 3</div>
+        <div class="box" id="box4">Item 4</div>
+    </div>
+
+    <h1>flex Shorthand Property:</h1>
+        <p>The flex shorthand property is a combination of three properties: flex-grow, flex-shrink, and flex-basis. It's used to define how a flex item will grow, shrink, and its base size within a flex container.
+        </p>
+        <b style="margin-inline: 30rem; font-size: 1.5em;">Syntax:</b> <br>
+        <pre>
+            .item { <br>
+               &nbsp; &nbsp; 
+               flex: &lt;flex-grow&gt; &lt;flex-shrink&gt; &lt;flex-basis&gt;;
+               <br>
+              }
+              
+        </pre>
+</body>
+</html>
