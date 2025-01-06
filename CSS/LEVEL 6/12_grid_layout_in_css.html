@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid layout in CSS</title>
+    <style>
+        *{
+            font-family: monospace;
+        }
+
+        /* display: grid in css */
+        .container{
+            margin-left: 30%;
+            width: 600px;
+            border: 2px solid black;
+            background-color: lavender;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: auto auto auto; /* 3 column of auto size */
+            column-gap: 10px;
+            row-gap: 5px;
+            /* This grid has 4 column lines and 4 row lines*/
+        }
+
+        .item{
+            border: 1px solid black;
+            padding: 10px;
+            background-color: antiquewhite;
+        }
+
+        img{
+            margin-left: 30%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Grid layout in CSS</h1>
+    
+    <div class="container">
+        <div class="item" id="item1">Grid Item 1</div>
+        <div class="item" id="item2">Grid Item 2</div>
+        <div class="item" id="item3">Grid Item 3</div>
+        <div class="item" id="item4">Grid Item 4</div>
+        <div class="item" id="item5">Grid Item 5</div>
+        <div class="item" id="item6">Grid Item 6</div>
+        <div class="item" id="item7">Grid Item 7</div>
+        <div class="item" id="item8">Grid Item 8</div>
+    </div>
+
+    <br>
+    <h1 style="text-align: center;">The above grid has 4 column lines and 4 row lines, for more understanding see the below image and link</h1>
+    <br>
+    <img src="https://www.w3schools.com/css/grid_lines.png" alt="3 column grid lines" width="400px">
+    <br>
+    <a href="https://www.w3schools.com/css/css_grid.asp">Go visit to w3schools Grid Chapter</a>
+</body>
+</html>
