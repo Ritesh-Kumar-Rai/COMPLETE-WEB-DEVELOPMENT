@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRID Column auto and Row auto</title>
+
+    <style>
+        *{font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+
+        h1,h2{
+            text-align: center;
+        }
+        p,pre{
+            margin-inline: 10vw;
+        }
+        pre{
+            border-radius: 10px;
+            background-color: gray;
+            background-color: black;
+            opacity: 0.88;
+            padding-block: 10px;
+            color: green;
+        }
+
+        .grid-container{
+            width: 70%;
+            background-color: lightgreen;
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 15%;
+
+          /* Grid and Gaps properties */
+            display: grid;
+            
+            /* columns */
+            grid-template-columns: repeat(3, 1fr);
+            /* rows  */
+            grid-template-rows: repeat(2, 250px);
+            /* gaps */
+            column-gap: 10px;
+            row-gap: 20px;
+
+            /* grid-auto-rows property in case of overflow of items in grid-container */
+            grid-auto-rows: 250px;     
+        }
+
+        .grid-item{
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        /* we can change the position of the grid-items by using some property and passing the column-line and row-line value. */
+        #item1{
+            background-color: aqua;
+            
+            /* grid-area property */
+            /* syntax: 
+            grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end */
+            grid-area: 2 / 2 / 3 / 3;
+        }
+        #item2{background-color: red;}
+        #item3{
+            background-color: teal;
+            /* let's expand the item3 to 2 column at first row */
+            grid-column: 2/4;
+            grid-row: 1/2;
+        }
+        #item4{background-color: thistle;}
+        #item5{background-color: palevioletred;}
+        #item6{background-color: lightcoral;}
+    </style>
+</head>
+<body>
+     <h1>Implicit vs Explicit Grid</h1>
+
+    <h2>Explicit Grid:</h2>
+   <p>An explicit grid is one that is defined directly by the grid properties you set in your CSS. You use properties like grid-template-columns, grid-template-rows, and grid-template-areas to create a grid layout. This grid is defined precisely, and you have complete control over the placement and size of the columns and rows.</p>
+
+   <h2>Implicit Grid:</h2>
+   <p>An implicit grid is created when the grid items are placed outside the bounds of the explicit grid, causing additional rows and/or columns to be automatically generated. The browser will create these extra tracks (rows or columns) as needed to accommodate the grid items, and they are controlled by properties like grid-auto-rows and grid-auto-columns.</p>
+
+    <div class="grid-container">
+        <div class="grid-item" id="item1">Grid Item 1</div>
+        <div class="grid-item" id="item2">Grid Item 2</div>
+        <div class="grid-item" id="item3">Grid Item 3</div>
+        <div class="grid-item" id="item4">Grid Item 4</div>
+        <div class="grid-item" id="item5">Grid Item 5</div>
+        <div class="grid-item" id="item6">Grid Item 6</div>
+    </div>
+    <br>
+    <p>As we see, when we expand the size of item3 to take 2 columns then the item6 moved to 3rd row which is not defined explicitly. <br>
+    To solve this issue we have 2 properties:</p>
+    <pre> 
+        grid-auto-columns: size;
+        grid-auto-rows: size;
+    </pre>
+    <p>In this case, we required grid-auto-rows property.</p>
+</body>
+</html>
