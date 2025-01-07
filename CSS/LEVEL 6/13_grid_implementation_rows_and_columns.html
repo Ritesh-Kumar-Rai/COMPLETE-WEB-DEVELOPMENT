@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRID Implementation | Rows and Columns</title>
+    <style>
+        *{font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+
+        h1{
+            text-align: center;
+        }
+
+        .grid-container{
+            width: 70%;
+            background-color: lightgreen;
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 15%;
+
+            /* display: grid; and related properties to organise rows and columns */
+            display: grid;
+            
+            /* column */
+            grid-template-columns: 250px 250px 250px; /* 3 column(vertical) each size is 250px in width */
+            grid-template-columns: 250px 250px 1fr; /* the last column will take the whole space which is remained to fill because of 1fr (fraction 1Xtime)*/
+            grid-template-columns: repeat(3, 1fr);/* the repeat() is used if you have multiple values with same size, then instead of type manually the same thing use repeat(no._of_times, size) in our case we have 3 columns so we passed 3 as first argument and second is size */
+
+
+            /* row */
+            grid-template-rows: 250px 250px; /* 2 rows (horizonatlly) each has 250px of height*/
+            grid-template-rows: repeat(2, 250px);
+        }
+
+        .grid-item{
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #item1{background-color: aqua;}
+        #item2{background-color: red;}
+        #item3{background-color: teal;}
+        #item4{background-color: thistle;}
+        #item5{background-color: palevioletred;}
+        #item6{background-color: lightcoral;}
+    </style>
+</head>
+<body>
+    
+    <h1>Grid Implementation | Grid Container and Grid Items | Rows and Columns</h1>
+
+    <div class="grid-container">
+        <div class="grid-item" id="item1">Grid Item 1</div>
+        <div class="grid-item" id="item2">Grid Item 2</div>
+        <div class="grid-item" id="item3">Grid Item 3</div>
+        <div class="grid-item" id="item4">Grid Item 4</div>
+        <div class="grid-item" id="item5">Grid Item 5</div>
+        <div class="grid-item" id="item6">Grid Item 6</div>
+    </div>
+
+</body>
+</html>
