@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions in GRID | GRID Lines</title>
+    <style>
+        *{font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+
+        h1,p{
+            text-align: center;
+        }
+
+        .grid-container{
+            width: 70%;
+            background-color: lightgreen;
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-left: 15%;
+
+          /* Grid and Gaps properties */
+            display: grid;
+            
+            /* columns */
+            grid-template-columns: repeat(3, 1fr);
+            /* rows  */
+            grid-template-rows: repeat(2, 250px);
+            /* gaps */
+            column-gap: 10px;
+            row-gap: 20px;
+      
+        }
+
+        .grid-item{
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        /* we can change the position of the grid-items by using some property and passing the column-line and row-line value. */
+        #item1{
+            background-color: aqua;
+            /* let's move item1 to 5th position */
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+
+            /* shortcut */
+            grid-column: 2/3;
+            grid-row: 2/3;
+
+            /* more shortcut use grid-area property */
+            /* syntax: 
+            grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end */
+            grid-area: 2 / 2 / 3 / 3;
+        }
+        #item2{background-color: red;}
+        #item3{
+            background-color: teal;
+            /* let's expand the item3 to 2 column at first row */
+            grid-column: 2/4;
+            grid-row: 1/2;
+        }
+        #item4{background-color: thistle;}
+        #item5{background-color: palevioletred;}
+        #item6{background-color: lightcoral;}
+    </style>
+</head>
+<body>
+    
+    <h1>Gaps in Grid Columns and Rows</h1>
+
+    <p>The lines between columns are called column lines.
+        <br>
+        The lines between rows are called row lines.</p>
+
+    <div class="grid-container">
+        <div class="grid-item" id="item1">Grid Item 1</div>
+        <div class="grid-item" id="item2">Grid Item 2</div>
+        <div class="grid-item" id="item3">Grid Item 3</div>
+        <div class="grid-item" id="item4">Grid Item 4</div>
+        <div class="grid-item" id="item5">Grid Item 5</div>
+        <div class="grid-item" id="item6">Grid Item 6</div>
+    </div>
+    
+</body>
+</html>
