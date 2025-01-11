@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Min and Max</title>
+    <style>
+        *{font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+
+        h1{
+            text-align: center;
+        }
+
+        .grid-container{
+            width: 60%;
+            height: auto;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #4a044e97, #1e3b8a6a);
+            margin: 100px auto;
+            padding: 10px;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 20px;
+
+            /* min-content */
+            grid-template-columns: 1fr min-content 1fr;
+            /* max-content */
+            grid-template-columns: 1fr max-content 1fr;
+            /* minmax() */
+            grid-template-columns: 1fr minmax(150px, 1fr) 1fr;
+
+            grid-template-columns: repeat(3, minmax(150px, 1fr));
+        }
+
+        .grid-item{
+            color: whitesmoke;
+            font-weight: bold;
+            background-color: lightblue;
+            border: 4px solid #4a044eb7;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #item1{background-color: #1e3b8a6a;}
+        #item2{background-color: #4a044e97;}
+        #item3{background-color: lightseagreen;}
+        #item4{background-color: thistle;}
+        #item5{background-color: slateblue;}
+        #item6{background-color: plum;}
+    </style>
+</head>
+<body>
+    <h1>GRID minmax(), min-content and max-content </h1>
+
+    <div class="grid-container">
+        <div class="grid-item" id="item1">GRID Item 1</div>
+        <div class="grid-item" id="item2">GRID Item 2, The min-content, max-content and minmax() in CSS</div>
+        <div class="grid-item" id="item3">GRID Item 3</div>
+        <div class="grid-item" id="item4">GRID Item 4</div>
+        <div class="grid-item" id="item5">GRID Item 5</div>
+        <div class="grid-item" id="item6">GRID Item 6</div>
+    </div>
+</body>
+</html>
