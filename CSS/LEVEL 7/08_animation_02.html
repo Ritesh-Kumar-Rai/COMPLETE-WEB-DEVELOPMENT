@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation 2 in CSS</title>
+    <style>
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: aqua;
+        }
+        
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: lightcoral;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+
+            position: absolute;
+        
+            animation: move 5s ease-in-out 1s ;
+        }
+
+        @keyframes move {
+            0%{
+                left: 0%;
+                top: 0%;
+            }
+            30%{
+                left: 50%;
+                
+            }
+            60%{
+                bottom: -0%;
+            }
+            80%{
+                right: -50%;
+                bottom: 0%;
+            }
+            100%{
+                top: 0%;
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">Animation Box</div>
+</body>
+</html>

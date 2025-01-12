@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation in CSS</title>
+    <style>
+        h1{text-align: center;}
+
+        .box{
+            height: 200px;
+            width: 200px;
+            border: 4px solid green;
+            border-radius: 10px;
+            background-color: lightcoral;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+            left: 10%;
+            top: 10%;
+
+            /* adding animation */
+            animation-name: move;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            /* animation-fill-mode: backwards; */
+            
+            /* shorthand */
+            animation: move 2s ease-in-out 1s 3 alternate forwards;
+        }
+        
+        @keyframes move {
+            from{left: 10%; top: 10%;}
+            to{
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Animation in CSS using @keyframes</h1>
+
+    <div class="box">Animation Box</div>
+</body>
+</html>
