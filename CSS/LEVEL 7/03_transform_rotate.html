@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform: rotate</title>
+    <style>
+        .container{
+            padding: 2rem;
+        }
+
+        .rotate{
+            width: 150px;
+            aspect-ratio: 1;
+            background-color: lightcoral;
+            color: white;
+            font-weight: 500;
+            margin-block: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 10px 10px 50px gray;
+            transition: transform 1s ease-in-out;
+        }
+
+        .rotate1:hover{transform: rotate(45deg);}
+        .rotate2:hover{transform: rotate(180deg);}
+        .rotate3:hover{transform: rotateX(45deg);}
+        .rotate4:hover{transform: rotateY(45deg);}
+        /* default rotate is rotateZ() */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="rotate rotate1">Rotate 45deg</div>
+        <div class="rotate rotate2">Rotate 180deg</div>
+        <div class="rotate rotate3">RotateX 45deg</div>
+        <div class="rotate rotate4">RotateY 45deg</div>
+    </div>
+</body>
+</html>
