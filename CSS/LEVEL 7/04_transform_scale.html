@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform: scale</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .container{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .scale{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: lightsalmon;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 10px 10px 100px black;
+
+            transition: transform 400ms ease-in-out;
+            cursor: crosshair;
+        }
+
+        section{
+            height: 10vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 2vw;
+            position: absolute;
+            bottom: 1vh;
+        }
+        section button{
+            font-size: 1.5em;
+            border-color: transparent;
+            border-radius: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            box-shadow: 5px 5px 30px black;
+            transition: all 400ms ease;
+        }
+        section button:hover{
+            background-color: rgb(219, 216, 216);
+        }
+        section button:active{
+            border-color: darkslateblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="scale">Scale</div>
+    </div>
+
+    <section>
+        <button type="button" id="scale1">Scale 2X</button>
+        <button type="button" id="scale2">Scale 4X</button>
+        <button type="button" id="scale3">ScaleX Twice</button>
+        <button type="button" id="scale4">ScaleY Twice</button>
+        <button type="button" id="scale5">Scale Half</button>
+    </section>
+</body>
+<script>
+    // handle button events using js
+    const btn = Array.from(document.getElementsByTagName("button"));
+    const element = document.getElementsByClassName("scale")[0];
+
+    function clearTransform(){
+        setTimeout(()=>{
+                    element.style.transform = "";
+                },400)
+    }
+
+    // loop through each buttons to add event listener to each
+    btn.forEach((each_btn)=>{
+        
+        // adding event listener to each btn
+        each_btn.addEventListener("click", function(e){
+        const id = (e.target.id).toString();
+        switch (id) {
+            case "scale1":
+                element.style.transform = "scale(2)";
+                clearTransform();
+                break;
+            
+            case "scale2":
+                element.style.transform = "scale(4)";
+                clearTransform();
+                break; 
+
+            case "scale3":
+                element.style.transform = "scaleX(2)";
+                clearTransform();
+                break;
+
+            case "scale4":
+                element.style.transform  = "scaleY(2)";
+                clearTransform();
+                break;
+
+            case "scale5":
+                element.style.transform  = "scale(0.5)";
+                clearTransform();
+                break;    
+
+            default:
+                console.log("The id of button is not found!");
+                break;
+        }
+            
+        });
+        
+    });
+    
+</script>
+</html>
