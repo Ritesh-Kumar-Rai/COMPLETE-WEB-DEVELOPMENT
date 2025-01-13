@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+}
+
+:root{
+    --margin-inline-value: 5vw;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.flex{display: flex;}
+.align-center{align-items: center;}
+.justify-center{justify-content: center;}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+header{
+    height: 107px;
+    width: 100%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px 2vw;
+
+    box-shadow: 10px 0px 50px grey;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+header > #codingwallah-logo{
+    width: 5vw;
+    max-width: 65px;
+    aspect-ratio: 1;
+    border-radius: 95%;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 0px 50px black;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+header > #codingwallah-logo:hover{
+    transform: scale(1.1);
+}
+
+header > #codingwallah-logo > img{
+    height: 100%;
+    width: 100%;
+    border: none;
+    /* border-radius: 50%; */
+    background-position: center;
+    background-size: contain;
+}
+
+
+header > nav{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header > nav > ul{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* gap: 50px; */
+}
+
+header > nav > ul > li{
+    list-style-type: none;
+}
+header > nav > ul > li > a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 400ms ease;
+    position: relative;
+}
+header > nav > ul > li > a:hover{
+    color: orangered;
+}
+
+header > nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    /* height: 2px; */
+    height: 3px;
+    width: 0%;
+    background-color: orangered;
+    transition: width 400ms ease;
+}
+
+header > nav a:hover::after{
+    content: "";
+    width: 100%;
+}
+
+header > .user-auth-log-container{
+    /* background-color: #000; */
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header > .user-auth-log-container > button{
+    padding: 10px 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 10px 30px grey;
+}
+header > .user-auth-log-container > button:hover{
+    border-color: purple;
+}
+
+#login-btn{
+    background-color: orangered;
+    color: white;
+}
+#login-btn:active{
+    background-color: rgba(255, 68, 0, 0.637);
+}
+#signup-btn{
+    background-color: gold;
+}
+#signup-btn:active{
+    background-color: rgba(255, 217, 0, 0.655);
+    /* color: white; */
+}
+
+/* navbar style ended here.. */
+
+/* main css */
+main{
+    /* background-color: aquamarine; */
+    margin-top: 108px;
+    margin-inline: var(--margin-inline-value);
+    padding: 0 30px;
+
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+    min-height: 90vh;
+}
+
+#page1{
+    text-align: center;
+}
+
+#page1 > .intro-container{
+    max-width: 1000px;
+    margin-inline: auto;
+    padding-top: 80px;
+    text-align: center;
+}
+
+#page1 > .intro-container h1{
+    font-size: 4vw;
+    font-weight: 500;
+    line-height: 75px;
+    margin-bottom: 30px;
+}
+
+#page1 > .intro-container > p{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+#page1 > .intro-container > button{
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ri-arrow-right-s-line{
+    font-size: 20px;
+    font-weight: bold;
+    z-index: inherit;
+}
+
+#page1 > .intro-container > button::after{
+    content: "";
+    position: absolute;
+    top: -10;
+    left: -10;
+    height: 100%;
+    width: 0%;
+    background-color: orangered;
+    border: none;
+    border-radius: 25px;
+    transition: width 400ms ease;
+    z-index: -1;
+}
+#page1 > .intro-container > button:hover::after{
+    content: "";
+    width: 100%;
+}
+
+#page1 > #hero-image{
+    margin-top: 30px;
+}
+
+/* css for page 2 */
+#page2{
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    /* border: 2px solid red; */
+}
+
+.page2-grid-container{
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid black; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    gap: 10px;
+}
+
+.page2-grid-item{
+    /* border: 2px solid gold; */
+}
+
+#page2-grid-item-1 > h4{
+    font-size: 17px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+#page2-grid-item-1 > h2{
+    font-size: 36px;
+    font-weight: 500;
+}
+
+#page2-grid-item-1 > a{
+    color: black;
+    text-decoration: none;
+    margin-top: 60px;
+}
+#page2-grid-item-1 > a > .ri-arrow-right-s-line{
+    color: orangered;
+}
+
+#page2-grid-item-2{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding-left: 130px;
+}
+#page2-grid-item-2 > p{
+    margin-bottom: 60px;
+}
+
+/* page 2 grid container 2 */
+.page2-grid-container2{
+    /* border: 2px solid black; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-auto-rows: auto;
+    /* gap: 20px; */
+    column-gap: 90px;
+    row-gap: 50px;
+}
+
+.page2-grid-container2 img{
+    margin-bottom: 20px;
+}
+.page2-grid-container2 h3{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
