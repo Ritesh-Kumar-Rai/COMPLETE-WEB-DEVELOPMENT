@@ -18,6 +18,8 @@
 .flex{display: flex;}
 .align-center{align-items: center;}
 .justify-center{justify-content: center;}
+.flex-column{flex-direction: column;}
+.gap-6{gap: 60px;}
 
 html,body{
     width: 100%;
@@ -220,7 +222,7 @@ section{
 #page1 > .intro-container > button::after{
     content: "";
     position: absolute;
-    top: -10;
+    top: 0%;
     left: -10;
     height: 100%;
     width: 0%;
@@ -232,7 +234,7 @@ section{
 }
 #page1 > .intro-container > button:hover::after{
     content: "";
-    width: 100%;
+    width: 120%;
 }
 
 #page1 > #hero-image{
@@ -311,4 +313,76 @@ section{
 .page2-grid-container2 h3{
     margin-bottom: 10px;
     font-size: 22px;
+}
+
+
+/* CSS for Page 3 */
+#page3{
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+
+.page3-banner{
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #161519;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-shadow: 20px 20px 50px black;
+    transition: transform 400ms ease, box-shadow 400ms ease-in-out !important;
+    cursor: no-drop;
+}
+
+.page3-banner[data-aos="zoom-in"]:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 20px 20px 90px black !important;
+  }
+  
+
+.page3-banner > .left-part{
+    width: 100%;
+    height: 100%;
+    padding: 3vw;
+    color: white;
+}
+
+.page3-banner > .left-part > div{
+    gap: 20px;
+}
+
+.page3-banner > .left-part h3{
+    font-size: 36px;
+    line-height: 50px;
+}
+.page3-banner > .left-part p{
+    font-size: 17px;
+}
+
+.page3-banner > .left-part span{
+    border: none;
+    border-radius: 50%;
+    height: 84px;
+    width: 84px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page3-banner > .left-part i{
+    font-size: 40px;
+    color: orangered;
+}
+
+.page3-banner > .right-part-image{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    width: 100%;
+    height: 100%;
+}
+.page3-banner > .right-part-image > img{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
 }

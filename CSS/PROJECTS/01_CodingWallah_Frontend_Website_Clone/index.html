@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/codingwallah_favicon.ico" type="image/x-icon">
     <title>CodingWallah Clone</title>
+    <!-- importing AOS CSS library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- importing remix icon  -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
     <link rel="stylesheet" href="./CSS/index.css">
@@ -34,42 +37,42 @@
      <main>
         <!-- page 1 -->
          <section id="page1">
-            <div class="intro-container">
-                <h1>Deliver top-tier, affordable coding courses</h1>
+            <div data-aos="zoom-in" class="intro-container">
+                <h1 data-aos="fade-up">Deliver top-tier, affordable coding courses</h1>
                 <p>Coding Wallah Offer high-quality, affordable courses</p>
                 <button type="button">View Courses <i class="ri-arrow-right-s-line"></i></button>
             </div>
-            <img id="hero-image" src="./assets/Images/hero-img1.500b6395.png">
+            <img id="hero-image" data-aos="fade-up" src="./assets/Images/hero-img1.500b6395.png">
             <img src="./assets/Images/border-line.png">
          </section>
 
          <!-- page 2 -->
           <section id="page2">
                 <div class="page2-grid-container">
-                    <div class="page2-grid-item" id="page2-grid-item-1">
+                    <div class="page2-grid-item" data-aos="fade-left" id="page2-grid-item-1">
                         <h4>WHAT WE DO</h4>
                         <h2>At CodingWallah, we empower success by teaching top-notch development skills.</h2>
                         <a class="uppercase flex align-center" href="#">KNOW MORE ABOUT US <i class="ri-arrow-right-s-line"></i></a>
                     </div>
                     <div class="page2-grid-item" id="page2-grid-item-2">
-                        <p>"At CodingWallah, we focus on transforming your development skills into real-world success. We combine creative teaching methods with data-driven insights to deliver high-impact coding education."</p>
+                        <p data-aos="fade-right">"At CodingWallah, we focus on transforming your development skills into real-world success. We combine creative teaching methods with data-driven insights to deliver high-impact coding education."</p>
                         <div class="page2-grid-container2">
-                            <div id="page2-container2-grid-item-1">
+                            <div data-aos="zoom-in" id="page2-container2-grid-item-1">
                                 <img src="./assets/Images/diagram.864a1599.png">
                                 <h3>Comprehensive Curriculum</h3>
                                 <p>At <strong>CodingWallah</strong>, our curriculum covers a wide range of development topics, from foundational programming to advanced frameworks. We ensure that our courses provide a deep understanding of core concepts, enabling students to excel in real-world projects.</p>
                             </div>
-                            <div id="page2-container2-grid-item-2">
+                            <div data-aos="zoom-in" id="page2-container2-grid-item-2">
                                 <img src="./assets/Images/bullhorn.4ba56987.png">
                                 <h3>Affordable Learning</h3>
                                 <p>We believe that quality education should be accessible to everyone. CodingWallah offers high-quality courses at affordable prices, making it easier for aspiring developers to gain the skills they need without breaking the bank.</p>
                             </div>
-                            <div id="page2-container2-grid-item-3">
+                            <div data-aos="zoom-in" id="page2-container2-grid-item-3">
                                 <img src="./assets/Images/auction.4bebbb3f.png">
                                 <h3>Hands-On Experience</h3>
                                 <p>Learning by doing is at the heart of our teaching philosophy. Our courses are designed to provide extensive hands-on practice, allowing students to apply what they learn through practical exercises, projects, and real-world scenarios.</p>
                             </div>
-                            <div id="page2-container2-grid-item-4">
+                            <div data-aos="zoom-in" id="page2-container2-grid-item-4">
                                 <img src="./assets/Images/speedometer.1e345a76.png">
                                 <h3>Expert Instructors</h3>
                                 <p>Our instructors are industry professionals with extensive experience in the tech world. They bring their knowledge and expertise into the classroom, offering valuable insights, mentorship, and guidance to help students succeed in their coding journey.</p>
@@ -79,6 +82,36 @@
                 </div>
           </section>
 
+          <!-- page 3 -->
+           <section id="page3">
+                <div data-aos="zoom-in" class="page3-banner">
+                    <div class="left-part flex justify-center flex-column gap-6">
+                        <div class="flex align-center">
+                            <span><i class="ri-briefcase-4-fill"></i></span>
+                            <div>
+                                <h3>8 +</h3>
+                                <p>Years of Experience</p>
+                            </div>
+                        </div>
+                        <div class="flex align-center">
+                            <span><i class="ri-graduation-cap-fill"></i></span>
+                            <div>
+                                <h3>5000 +</h3>
+                                <p>Student Enrolled</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-part-image">
+                        <img src="./assets/Images/fun-facts.3dfed224.jpg" alt="fun facts">
+                    </div>
+                </div>
+           </section>
+
      </main>
+
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script>
+       AOS.init();
+     </script>
 </body>
 </html>
