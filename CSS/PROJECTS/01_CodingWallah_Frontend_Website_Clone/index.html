@@ -37,8 +37,8 @@
      <main>
         <!-- page 1 -->
          <section id="page1">
-            <div data-aos="zoom-in" class="intro-container">
-                <h1 data-aos="fade-up">Deliver top-tier, affordable coding courses</h1>
+            <div data-aos="fade-up" class="intro-container">
+                <h1 data-aos="zoom-in">Deliver top-tier, affordable coding courses</h1>
                 <p>Coding Wallah Offer high-quality, affordable courses</p>
                 <button type="button">View Courses <i class="ri-arrow-right-s-line"></i></button>
             </div>
@@ -84,6 +84,9 @@
 
           <!-- page 3 -->
            <section id="page3">
+
+                <div class="cursor-pointer-circle"><img src="./assets/codingwallah_favicon.ico" alt=""></div>
+
                 <div data-aos="zoom-in" class="page3-banner">
                     <div class="left-part flex justify-center flex-column gap-6">
                         <div class="flex align-center">
@@ -105,13 +108,114 @@
                         <img src="./assets/Images/fun-facts.3dfed224.jpg" alt="fun facts">
                     </div>
                 </div>
+
+                <div class="icons-banner">
+                    <div class="icons-container">
+                        <div class="--icon--3"><img src="./assets/SVGs/html-5.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/css3-wordmark.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/javascript.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/react.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/java.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/nodejs-icon.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/express.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/mysql.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/spring.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/angular.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/androidstudio.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/git.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/github.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/tailwindcss.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/typescript-icon.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/server-duotone.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/vscode.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/ai.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/aws.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/axios.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/bootstrap.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/brand-react-native.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/rest-api.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/cypress.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/docker-icon.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/electron.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/epic-games.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/folder-type-light-redux-opened.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/intellij.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/kotlin.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/jest.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/language-python.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/nestjs-light.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/nextjs-icon.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/php.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/postgresql.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/prisma.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/open-ai-logo-bold.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/sass.svg" alt="icon"></div>
+                        <div class="--icon--3"><img src="./assets/SVGs/svelte.svg" alt="icon"></div>
+                    </div>
+                </div>
            </section>
+
+           <section></section>
 
      </main>
 
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script>
        AOS.init();
+
+       const page3 = document.getElementById("page3");
+       const cursor = document.querySelector(".cursor-pointer-circle");
+       const icons = document.querySelectorAll(".--icon--3");
+
+       function detectCollision(){
+
+           // check for collision with icons
+                const cursorRect = cursor.getBoundingClientRect(); 
+              icons.forEach(eachicon =>{
+                    const iconRect = eachicon.getBoundingClientRect();
+                    console.log(cursorRect, iconRect)
+                    if (cursorRect.left < iconRect.right && 
+                    cursorRect.right > iconRect.left && 
+                    cursorRect.top < iconRect.bottom && 
+                    cursorRect.bottom > iconRect.top){
+                        // collision detected, scale the icon
+                        gsap.to(eachicon, {scale: 2, duration: 0.3})
+                    }else{
+                        // No collision, reset the icon scale
+                        gsap.to(eachicon, {scale: 1, duration: 0.3});
+                    }
+                });
+       }
+
+
+       
+       page3.addEventListener("mousemove", (e)=>{
+            gsap.to(cursor, {
+                left:e.x,
+                top:e.y
+            });
+            detectCollision();
+       });
+
+       page3.addEventListener("mouseleave", (e)=>{
+            gsap.to(cursor, {
+                scale: 0.1,
+                opacity: 0
+            });
+            detectCollision();
+       });
+
+       page3.addEventListener("mouseenter", (e)=>{
+            gsap.to(cursor, {
+                scale: 1,
+                opacity: 1
+            });
+       });
+
      </script>
+
+     <!-- icons downloaded from : https://freesvgicons.com/ -->
 </body>
 </html>
+

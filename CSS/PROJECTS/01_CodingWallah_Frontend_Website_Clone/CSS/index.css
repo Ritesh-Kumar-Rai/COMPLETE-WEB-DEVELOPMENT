@@ -320,8 +320,35 @@ section{
 #page3{
     width: 100%;
     height: 100%;
-    padding-top: 100px;
+    padding-block: 100px;
+    /* background-color: orange; */
 }
+
+#page3 > .cursor-pointer-circle{
+    height: 80px;
+    width: 80px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.304);
+    backdrop-filter: blur(2px);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: fixed;
+    z-index: 9;
+}
+#page3 > .cursor-pointer-circle > img{
+    height: 100%;
+    width: 100%;
+    fill: white;
+    background-color: transparent;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
 
 .page3-banner{
     border: none;
@@ -331,14 +358,14 @@ section{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     box-shadow: 20px 20px 50px black;
-    transition: transform 400ms ease, box-shadow 400ms ease-in-out !important;
-    cursor: no-drop;
+    /* transition: transform 400ms ease, box-shadow 400ms ease-in-out !important; */
+    cursor: pointer; 
 }
 
-.page3-banner[data-aos="zoom-in"]:hover {
+/* .page3-banner[data-aos="zoom-in"]:hover {
     transform: scale(1.05) !important;
     box-shadow: 20px 20px 90px black !important;
-  }
+  } */
   
 
 .page3-banner > .left-part{
@@ -384,5 +411,43 @@ section{
 .page3-banner > .right-part-image > img{
     height: 100%;
     width: 100%;
+    background-size: cover;
+}
+
+/* Page 3 icon banner */
+.icons-banner{
+    /* background-color: red; */
+    height: auto;
+    width: 100%;
+    margin-top: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.icons-container{
+    width: 60%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 50px 20px;
+}
+
+
+.icons-banner .icons-container > div{
+    height: 50px;
+    width: 50px;
+    /* background-color: black; */
+    cursor: pointer;
+    transition: transform 400ms ease;
+}
+
+
+.icons-banner > .icons-container > div > img{
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    background-position: center;
     background-size: cover;
 }
