@@ -11,6 +11,30 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
     <link rel="stylesheet" href="./CSS/index.css">
+    <style>
+        #scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 0.5;
+}
+
+#scrollTopBtn:hover {
+    opacity: 1;
+}
+
+    </style>
 
 </head>
 <body>
@@ -155,8 +179,46 @@
                 </div>
            </section>
 
-           <section></section>
-
+           <section>
+                <div id="page4">
+                    <div class="page4-heading">
+                        <h4 data-aos="fade-up">Our Process</h4>
+                        <h2 data-aos="fade-up">Your journey to mastering coding starts here at CodingWallah!</h2>
+                    </div>
+                        <div class="process-container">
+                            <div class="process-steps">
+                                <div data-aos="fade-up" class="flex">
+                                    <div class="process-order">1</div>
+                                    <div class="process-info">
+                                        <h3>Step-by-Step Learning</h3>
+                                        <p>Begin with the basics and gradually advance to complex concepts, ensuring a solid foundation and comprehensive understanding</p>
+                                    </div>
+                                </div>
+                                <div data-aos="fade-up" class="flex">
+                                    <div class="process-order">2</div>
+                                    <div class="process-info">
+                                        <h3>Hands-On Projects</h3>
+                                        <p>Apply your knowledge in real-world projects, gaining practical experience that prepares you for industry challenges.</p>
+                                    </div>
+                                </div>
+                                <div data-aos="fade-up" class="flex">
+                                    <div class="process-order">3</div>
+                                    <div class="process-info">
+                                        <h3>Expert Guidance</h3>
+                                        <p>Learn from seasoned professionals who provide personalized support and insights to help you excel in your coding journey.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-aos="fade-up" class="process-image">
+                                <img src="./assets/Images/asset.86422cc9.png" alt="process">
+                            </div>
+                        </div>
+                </div>
+           </section>
+           <button id="scrollTopBtn" style="display: none;">
+            <i class="ri-arrow-up-s-line"></i>
+        </button>
+        
      </main>
 
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -216,6 +278,34 @@
      </script>
 
      <!-- icons downloaded from : https://freesvgicons.com/ -->
+     <script>
+         
+         document.addEventListener('DOMContentLoaded', (event) => {
+             const scrollTopBtn = document.getElementById('scrollTopBtn');
+             const sections = document.querySelectorAll("main section");
+    
+        // Intersection Observer to detect when page 2 is in view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+        }, {threshold: 0});
+    
+        sections.forEach(section => observer.observe(section));
+    
+        // Scroll to top on button click
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>    
 </body>
 </html>
 
