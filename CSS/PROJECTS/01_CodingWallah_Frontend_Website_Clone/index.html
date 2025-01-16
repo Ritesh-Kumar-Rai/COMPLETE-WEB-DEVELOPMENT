@@ -18,7 +18,7 @@
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #007bff;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 50%;
@@ -181,7 +181,7 @@
 
            <section>
                 <div id="page4">
-                    <div class="page4-heading">
+                    <div class="page-heading">
                         <h4 data-aos="fade-up">Our Process</h4>
                         <h2 data-aos="fade-up">Your journey to mastering coding starts here at CodingWallah!</h2>
                     </div>
@@ -215,6 +215,66 @@
                         </div>
                 </div>
            </section>
+
+           <!-- page 5 -->
+           <section id="page5">
+            <div class="page-heading">
+                <h4 data-aos="fade-up">Get In Touch</h4>
+                <h2 data-aos="fade-up">Your Gateway to Excellence: Contact Us and Unlock a World of Possibilities</h2>
+            </div>
+            <div class="get-in-touch-container">
+                <!-- back heading -->
+                 <h4>Contact</h4>
+                <!-- card -->
+                <div class="contact-card">
+                    <div>
+                        <div data-aos="fade-right" class="contact-card-item1">Phone Number</div>
+                        <div class="contact-card-item2">
+                            <span><i class="ri-phone-line"></i></span>
+                            +91 93108 42687
+                        </div>
+                        <div data-aos="fade-left"
+                        class="contact-card-item3">Email Us</div>
+                        <div class="contact-card-item4">
+                            <span><i class="ri-mail-fill"></i></span>
+                            admin@codingwallah.in
+                        </div>
+
+                    </div>
+                    <div><button id="contact-btn" type="button">Contact</button></div>
+                </div>
+                <!-- form -->
+                <div class="contact-us-form-container">
+                    <div><i class="ri-close-large-line"></i></div>
+                    <h4>Contact Us Form</h4>
+                    <form id="contact-us-form" action="#" method="post">
+                        <div class="input-field">
+                            <label for="name-input">Your Name</label>
+                            <input class="input-area" type="text" name="name-input" title="please fill out this form" id="name-input" placeholder="Enter your name" />
+                        </div>
+                        <div class="input-field">
+                            <label for="email-input">Your Email</label>
+                            <input class="input-area" type="email" name="email-input" title="please fill out this form" id="email-input" placeholder="Enter your email address" />
+                        </div>
+                        <div class="input-field">
+                            <label for="phone-input">Your Phone</label>
+                            <input class="input-area" type="tel" name="phone-input" title="please fill out this form" id="phone-input" placeholder="Enter your phone number" />
+                        </div>
+                        <div class="input-field">
+                            <label for="subject-input">Your Subject</label>
+                            <input class="input-area" type="text" name="subject-input" title="please fill out this form" id="subject-input" placeholder="Enter your subject" />
+                        </div>
+                        <div class="input-field">
+                            <label for="message-input">Your Message</label>
+                            <textarea class="input-area" name="message-input" id="message-input" placeholder="please fill out this form" cols="80" rows="5"></textarea>
+                        </div>
+                        <button type="submit">Submit Now  <i class="ri-arrow-right-s-line"></i></button>
+                    </form>
+                </div>
+            </div>
+           </section>
+
+
            <button id="scrollTopBtn" style="display: none;">
             <i class="ri-arrow-up-s-line"></i>
         </button>
@@ -306,6 +366,47 @@
         });
     });
 </script>    
+
+<script>
+    const contact_btn = document.getElementById("contact-btn");
+    const contact_card = document.getElementsByClassName("contact-card")[0];
+    const contact_form_container = document.getElementsByClassName("contact-us-form-container")[0];
+    const contact_closeBtn = document.querySelector(".ri-close-large-line");
+
+    contact_btn.addEventListener("click", ()=>{
+
+        const tl = gsap.timeline();
+        tl.to(contact_card, {
+            z: -10,
+            scale: 0.5,
+            opacity: 0,
+            onComplete: ()=>{
+                contact_card.style.display = "none";
+                contact_form_container.style.display = "block";
+            }
+        });
+        tl.fromTo(contact_form_container, {z: -10, scale: 0.5, opacity: 0, delay: 1}, {z: 10, scale: 1, opacity: 1});
+
+    });
+
+    contact_closeBtn.addEventListener("click", ()=>{
+        const tl = gsap.timeline();
+        tl.to(contact_form_container, {
+            z: -10,
+            scale: 0.5,
+            opacity: 0,
+            onComplete: ()=>{
+                contact_form_container.style.display = "none";
+                contact_card.style.display = "block";
+            }
+        });
+        tl.to(contact_card, {
+            z: 10,
+            scale: 1,
+            opacity: 1
+        });
+    });
+</script>
 </body>
 </html>
 
