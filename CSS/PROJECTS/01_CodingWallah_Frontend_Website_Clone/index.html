@@ -13,26 +13,26 @@
     <link rel="stylesheet" href="./CSS/index.css">
     <style>
         #scrollTopBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    opacity: 0.5;
-}
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            opacity: 0.5;
+        }
 
-#scrollTopBtn:hover {
-    opacity: 1;
-}
+        #scrollTopBtn:hover {
+            opacity: 1;
+        }
 
     </style>
 
@@ -279,134 +279,76 @@
             <i class="ri-arrow-up-s-line"></i>
         </button>
         
-     </main>
+
+        <footer>
+            <div class="navigations">
+                <div class="footer-navigations-grid-item1">
+                    <h3>Solutions</h3>
+                    <ul>
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div class="footer-navigations-grid-item2">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li>Our Courses</li>
+                        <li>JavaFullStack Development</li>
+                        <li>Java DSA</li>
+                    </ul>
+                </div>
+                <div class="footer-navigations-grid-item3">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li>Development</li>
+                        <li>SEO</li>
+                        <li>Testing</li>
+                        <li>Artificial Intelligence</li>
+                    </ul>
+                </div>
+                <div class="footer-navigations-grid-item4">
+                    <h3>Signup Newsletter</h3>
+                    <form id="newsletter-form" action="#" method="post">
+                        <input type="email" name="newsletter-form-email" id="newsletter-form-email" placeholder="Email Address">
+                        <button type="submit">signup now <i class="ri-arrow-right-s-line"></i></button>
+                    </form>
+                    <ul>
+                        <li><i class="ri-youtube-fill"></i></li>
+                        <li><i class="ri-linkedin-fill"></i></li>
+                        <li><i class="ri-twitter-fill"></i></li>
+                        <li><i class="ri-instagram-line"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>This website is cloned from the original &copy; CodingWallah.</span>
+                <span>Cloned and Development By | <strong>Ritesh Kumar Rai</strong></span>
+            </div>
+        </footer>
+    </main>
+
 
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script src="https://unpkg.com/lenis@1.1.19/dist/lenis.min.js"></script> 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script>
        AOS.init();
-
-       const page3 = document.getElementById("page3");
-       const cursor = document.querySelector(".cursor-pointer-circle");
-       const icons = document.querySelectorAll(".--icon--3");
-
-       function detectCollision(){
-
-           // check for collision with icons
-                const cursorRect = cursor.getBoundingClientRect(); 
-              icons.forEach(eachicon =>{
-                    const iconRect = eachicon.getBoundingClientRect();
-                    console.log(cursorRect, iconRect)
-                    if (cursorRect.left < iconRect.right && 
-                    cursorRect.right > iconRect.left && 
-                    cursorRect.top < iconRect.bottom && 
-                    cursorRect.bottom > iconRect.top){
-                        // collision detected, scale the icon
-                        gsap.to(eachicon, {scale: 2, duration: 0.3})
-                    }else{
-                        // No collision, reset the icon scale
-                        gsap.to(eachicon, {scale: 1, duration: 0.3});
-                    }
-                });
-       }
-
-
-       
-       page3.addEventListener("mousemove", (e)=>{
-            gsap.to(cursor, {
-                left:e.x,
-                top:e.y
-            });
-            detectCollision();
-       });
-
-       page3.addEventListener("mouseleave", (e)=>{
-            gsap.to(cursor, {
-                scale: 0.1,
-                opacity: 0
-            });
-            detectCollision();
-       });
-
-       page3.addEventListener("mouseenter", (e)=>{
-            gsap.to(cursor, {
-                scale: 1,
-                opacity: 1
-            });
-       });
-
      </script>
 
      <!-- icons downloaded from : https://freesvgicons.com/ -->
-     <script>
-         
-         document.addEventListener('DOMContentLoaded', (event) => {
-             const scrollTopBtn = document.getElementById('scrollTopBtn');
-             const sections = document.querySelectorAll("main section");
-    
-        // Intersection Observer to detect when page 2 is in view
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    scrollTopBtn.style.display = 'flex';
-                } else {
-                    scrollTopBtn.style.display = 'none';
-                }
-            });
-        }, {threshold: 0});
-    
-        sections.forEach(section => observer.observe(section));
-    
-        // Scroll to top on button click
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>    
-
 <script>
-    const contact_btn = document.getElementById("contact-btn");
-    const contact_card = document.getElementsByClassName("contact-card")[0];
-    const contact_form_container = document.getElementsByClassName("contact-us-form-container")[0];
-    const contact_closeBtn = document.querySelector(".ri-close-large-line");
+    // Initialize Lenis
+    const lenis = new Lenis();
 
-    contact_btn.addEventListener("click", ()=>{
+    // Use requestAnimationFrame to continuously update the scroll
+    function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+    }
 
-        const tl = gsap.timeline();
-        tl.to(contact_card, {
-            z: -10,
-            scale: 0.5,
-            opacity: 0,
-            onComplete: ()=>{
-                contact_card.style.display = "none";
-                contact_form_container.style.display = "block";
-            }
-        });
-        tl.fromTo(contact_form_container, {z: -10, scale: 0.5, opacity: 0, delay: 1}, {z: 10, scale: 1, opacity: 1});
-
-    });
-
-    contact_closeBtn.addEventListener("click", ()=>{
-        const tl = gsap.timeline();
-        tl.to(contact_form_container, {
-            z: -10,
-            scale: 0.5,
-            opacity: 0,
-            onComplete: ()=>{
-                contact_form_container.style.display = "none";
-                contact_card.style.display = "block";
-            }
-        });
-        tl.to(contact_card, {
-            z: 10,
-            scale: 1,
-            opacity: 1
-        });
-    });
+    requestAnimationFrame(raf);
 </script>
+<script src="./script.js"></script>
 </body>
 </html>
 
