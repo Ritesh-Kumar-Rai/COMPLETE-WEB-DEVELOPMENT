@@ -1,0 +1,128 @@
+header{
+    height: 107px;
+    width: 100%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px 2vw;
+
+    box-shadow: 10px 0px 50px grey;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+header > #codingwallah-logo{
+    width: 5vw;
+    max-width: 65px;
+    aspect-ratio: 1;
+    border-radius: 95%;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 0px 50px black;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+header > #codingwallah-logo:hover{
+    transform: scale(1.1);
+}
+
+header > #codingwallah-logo > img{
+    height: 100%;
+    width: 100%;
+    border: none;
+    /* border-radius: 50%; */
+    background-position: center;
+    background-size: contain;
+}
+
+
+header > nav{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header > nav > ul{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* gap: 50px; */
+}
+
+header > nav > ul > li{
+    list-style-type: none;
+}
+header > nav > ul > li > a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 400ms ease;
+    position: relative;
+}
+header > nav > ul > li > a:hover{
+    color: orangered;
+}
+
+header > nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    /* height: 2px; */
+    height: 3px;
+    width: 0%;
+    background-color: orangered;
+    transition: width 400ms ease;
+}
+
+header > nav a:hover::after{
+    content: "";
+    width: 100%;
+}
+
+header > .user-auth-log-container{
+    /* background-color: #000; */
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header > .user-auth-log-container > button{
+    padding: 10px 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 10px 30px grey;
+}
+header > .user-auth-log-container > button:hover{
+    border-color: purple;
+}
+
+#login-btn{
+    background-color: orangered;
+    color: white;
+}
+#login-btn:active{
+    background-color: rgba(255, 68, 0, 0.637);
+}
+#signup-btn{
+    background-color: gold;
+}
+#signup-btn:active{
+    background-color: rgba(255, 217, 0, 0.655);
+    /* color: white; */
+}
+
+/* navbar style ended here.. */
