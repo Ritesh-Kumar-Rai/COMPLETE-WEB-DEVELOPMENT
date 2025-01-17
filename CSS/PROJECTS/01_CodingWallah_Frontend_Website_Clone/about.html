@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | CodingWallah Clone</title>
+    <!-- importing external css file -->
+     <link rel="stylesheet" href="./CSS/starter.css">
+     <link rel="stylesheet" href="./CSS/navbar-style.css">
+     <link rel="stylesheet" href="./CSS/about-style.css">
+</head>
+<body>
+    <header>
+        <div id="codingwallah-logo">
+            <img src="./assets/codingwallah_favicon.ico" alt="codingWallah company logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="user-auth-log-container">
+            <button type="button" id="login-btn">Log In</button>
+            <button type="button" id="signup-btn">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- main contents -->
+     <main>
+        <section id="about-us-page">
+            <div class="texto about-text">
+                <h2>About Us</h2>
+            </div>
+            <div class="texto meet-text">
+                <h2>Meet</h2>
+            </div>
+            <div class="texto mantor-name-text">
+                <h2>Shivam Sharma</h2>
+            </div>
+            <div class="about-last-container">
+            <div class="about-container">
+                <div class="about-image-container">
+                    <img src="./assets/codingwallah_favicon.ico" alt="coding wallah">
+                    <img src="./assets/Images/shivamSir_photo.png" alt="shivam sir cover">
+                </div>
+                <div class="about-info-container">
+                <div class="about-info">
+                    <p>Hi 👋🏻, I am Shivam Sharma, founder of coding wallah. With over 8 years in the IT industry, I've guided many students to become skilled developers. I’m passionate about simplifying complex concepts and empowering others to reach their coding goals through practical, innovative teaching.</p>
+                </div>
+                <div class="awards-showcase">
+                    <img src="./assets/Images/adword1.0426b95f.png">
+                    <img src="./assets/Images/adword2.2fcf53f7.png">
+                    <img src="./assets/Images/adword3.4a30c483.png">
+                    <img src="./assets/Images/adword4.c5affa46.png">
+                    <img src="./assets/Images/adword5.7e896513.png">
+                </div>
+                </div>
+            </div>
+            </div>
+
+        </section>
+     </main>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+     <script>
+            gsap.to(".about-text", {
+                scale: 0.7,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: ".about-text",
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    scrub: true,
+                }
+            });
+
+            gsap.to(".meet-text", {
+                scale: 0.7,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: ".meet-text",
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    scrub: true
+                }
+            });
+            
+       
+           /* gsap.to(".mantor-name-text",{
+                position: "relative",
+                // top: "50%",
+                left: "50%",
+                x: "-50%",
+                y: "-50%",
+                z: -1,
+                scrollTrigger:{
+                    trigger: ".mantor-name-text",
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    scrub: true 
+                }
+            });*/ 
+            gsap.to(".mantor-name-text > h2",{
+                position: "relative",
+                y: "-50%",
+                z: -1,
+                scrollTrigger:{
+                    trigger: ".mantor-name-text > h2",
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    markers: true,
+                    scrub: true,
+                },
+                
+            });
+
+     </script>
+</body>
+</html>
