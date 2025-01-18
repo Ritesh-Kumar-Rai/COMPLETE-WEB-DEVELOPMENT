@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/codingwallah_favicon.ico" type="image/x-icon">
+    <title>Contact | CodingWallah Clone</title>
+
+    <!-- importing AOS CSS library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- importing remix icon  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+
+    <!-- importing external css file -->
+     <link rel="stylesheet" href="./CSS/starter.css">
+     <link rel="stylesheet" href="./CSS/navbar-style.css">
+     <link rel="stylesheet" href="./CSS/contact-page-style.css">
+     <link rel="stylesheet" href="./CSS/contact-form-style.css">
+     <link rel="stylesheet" href="./CSS/footer-style.css">
+</head>
+<body>
+    <header>
+        <div id="codingwallah-logo">
+            <img src="./assets/codingwallah_favicon.ico" alt="codingWallah company logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="user-auth-log-container">
+            <button type="button" id="login-btn">Log In</button>
+            <button type="button" id="signup-btn">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- main contents -->
+     <main>
+        
+        <!-- page 1 -->
+        <section id="page1">
+            <div class="contactUs-banner">
+                <div data-aos="fade-right" class="left-part">
+                    <h4>Contact Us</h4>
+                    <h2>Your Bridge to Success: Contact Us and Embark on a Transformative Experience</h2>
+                    <p>Have questions or need assistance? We're here to help! Whether you’re interested in our courses, have feedback, or just want to learn more about CodingWallah, feel free to reach out.</p>
+                </div>
+                <div data-aos="fade-left" class="right-part">
+                    <img src="./assets/Images/page-banner4.1a9b0bcc.png">
+                </div>
+            </div>
+        </section>
+
+        <!-- contact us page -->
+        <section id="page2">
+            <div class="page-heading">
+                <h4 data-aos="fade-up">Get In Touch</h4>
+                <h2 data-aos="fade-up">Your Gateway to Excellence: Contact Us and Unlock a World of Possibilities</h2>
+            </div>
+            <div class="get-in-touch-container">
+                <!-- back heading -->
+                 <h4>Contact</h4>
+                <!-- card -->
+                <div class="contact-card">
+                    <div>
+                        <div data-aos="fade-right" class="contact-card-item1">Phone Number</div>
+                        <div class="contact-card-item2">
+                            <span><i class="ri-phone-line"></i></span>
+                            +91 93108 42687
+                        </div>
+                        <div data-aos="fade-left"
+                        class="contact-card-item3">Email Us</div>
+                        <div class="contact-card-item4">
+                            <span><i class="ri-mail-fill"></i></span>
+                            admin@codingwallah.in
+                        </div>
+
+                    </div>
+                    <div><button id="contact-btn" type="button">Contact</button></div>
+                </div>
+                <!-- form -->
+                <div class="contact-us-form-container">
+                    <div><i class="ri-close-large-line"></i></div>
+                    <h4>Contact Us Form</h4>
+                    <form id="contact-us-form" action="#" method="post">
+                        <div class="input-field">
+                            <label for="name-input">Your Name</label>
+                            <input class="input-area" type="text" name="name-input" title="please fill out this form" id="name-input" placeholder="Enter your name" />
+                        </div>
+                        <div class="input-field">
+                            <label for="email-input">Your Email</label>
+                            <input class="input-area" type="email" name="email-input" title="please fill out this form" id="email-input" placeholder="Enter your email address" />
+                        </div>
+                        <div class="input-field">
+                            <label for="phone-input">Your Phone</label>
+                            <input class="input-area" type="tel" name="phone-input" title="please fill out this form" id="phone-input" placeholder="Enter your phone number" />
+                        </div>
+                        <div class="input-field">
+                            <label for="subject-input">Your Subject</label>
+                            <input class="input-area" type="text" name="subject-input" title="please fill out this form" id="subject-input" placeholder="Enter your subject" />
+                        </div>
+                        <div class="input-field">
+                            <label for="message-input">Your Message</label>
+                            <textarea class="input-area" name="message-input" id="message-input" placeholder="please fill out this form" cols="80" rows="5"></textarea>
+                        </div>
+                        <button type="submit">Submit Now  <i class="ri-arrow-right-s-line"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div class="navigations">
+                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="900" class="footer-navigations-grid-item1">
+                    <h3>Solutions</h3>
+                    <ul>
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="900" class="footer-navigations-grid-item2">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li>Our Courses</li>
+                        <li>JavaFullStack Development</li>
+                        <li>Java DSA</li>
+                    </ul>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="900" class="footer-navigations-grid-item3">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li>Development</li>
+                        <li>SEO</li>
+                        <li>Testing</li>
+                        <li>Artificial Intelligence</li>
+                    </ul>
+                </div>
+                <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="900" class="footer-navigations-grid-item4">
+                    <h3>Signup Newsletter</h3>
+                    <form id="newsletter-form" action="#" method="post">
+                        <input type="email" name="newsletter-form-email" id="newsletter-form-email" placeholder="Email Address">
+                        <button type="submit">signup now <i class="ri-arrow-right-s-line"></i></button>
+                    </form>
+                    <ul>
+                        <li><i class="ri-youtube-fill"></i></li>
+                        <li><i class="ri-linkedin-fill"></i></li>
+                        <li><i class="ri-twitter-fill"></i></li>
+                        <li><i class="ri-instagram-line"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>This website is cloned from the original &copy; CodingWallah.</span>
+                <span>Cloned and Development By | <strong>Ritesh Kumar Rai</strong></span>
+            </div>
+        </footer>
+     </main>
+
+     
+     <script src="https://unpkg.com/lenis@1.1.19/dist/lenis.min.js"></script> 
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   
+    <script>
+
+        AOS.init();
+
+        // Initialize Lenis
+        const lenis = new Lenis();
+
+        // Use requestAnimationFrame to continuously update the scroll
+        function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+   
+     <script src="./contact_form_script.js"></script>
+     <script>
+        document.querySelector(".get-in-touch-container > .contact-us-form-container").style.background = "radial-gradient(white, transparent, grey)";
+        document.querySelectorAll(".input-area").forEach(each_input => each_input.style.backgroundColor = "#F2F2F8");
+     </script>
+</body>
+</html>
