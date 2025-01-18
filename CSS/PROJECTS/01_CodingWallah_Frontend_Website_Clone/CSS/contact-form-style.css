@@ -236,7 +236,7 @@
     border-radius: 15px;
     padding: 15px 15px;
     font-size: 16px;
-    background-color: #F2F2F8;
+    /* background-color: #F2F2F8; */
     background-color: #f2f2f870;
     transition-property: box-shadow, outline-color;
     transition-duration: 0.4s;
