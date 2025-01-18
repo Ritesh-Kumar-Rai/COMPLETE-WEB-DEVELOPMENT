@@ -38,3 +38,25 @@ section{
     width: 100%;
     min-height: 90vh;
 }
+
+.page-heading{
+    margin-bottom: 5vw;
+    max-width: 648px;
+    margin-inline: auto;
+}
+
+.page-heading > h4{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3vw;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.page-heading > h2{
+    text-align: center;
+    font-weight: 500;
+    font-size: 2vw;
+    line-height: 3.2rem;
+}
+

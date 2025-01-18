@@ -1,0 +1,57 @@
+
+.page3-banner{
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #161519;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-shadow: 20px 20px 50px black;
+    cursor: pointer; 
+}
+
+.page3-banner > .left-part{
+    width: 100%;
+    height: 100%;
+    padding: 3vw;
+    color: white;
+}
+
+.page3-banner > .left-part > div{
+    gap: 20px;
+}
+
+.page3-banner > .left-part h3{
+    font-size: 36px;
+    line-height: 50px;
+}
+.page3-banner > .left-part p{
+    font-size: 17px;
+}
+
+.page3-banner > .left-part span{
+    border: none;
+    border-radius: 50%;
+    height: 84px;
+    width: 84px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page3-banner > .left-part i{
+    font-size: 40px;
+    color: orangered;
+}
+
+.page3-banner > .right-part-image{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    width: 100%;
+    height: 100%;
+}
+.page3-banner > .right-part-image > img{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
