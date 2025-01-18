@@ -42,33 +42,55 @@
                 <h2>Shivam Sharma</h2>
             </div>
             <div class="about-last-container">
-            <div class="about-container">
-                <div class="about-image-container">
-                    <img src="./assets/codingwallah_favicon.ico" alt="coding wallah">
-                    <img src="./assets/Images/shivamSir_photo.png" alt="shivam sir cover">
+                <div class="about-container">
+                    <div class="about-image-container">
+                        <div class="disc">
+                            <img src="./assets/codingwallah_favicon.ico" alt="coding wallah">
+                        </div>
+                        <img src="./assets/Images/shivamSir_photo.png" alt="shivam sir cover">
+                    </div>
+                    <div class="about-info-container">
+                        <div class="about-info">
+                            <p>Hi 👋🏻, I am Shivam Sharma, founder of coding wallah. With over 8 years in the IT industry, I've guided many students to become skilled developers. I’m passionate about simplifying complex concepts and empowering others to reach their coding goals through practical, innovative teaching.</p>
+                        </div>
+                        <div class="awards-showcase">
+                            <img src="./assets/Images/adword1.0426b95f.png">
+                            <img src="./assets/Images/adword2.2fcf53f7.png">
+                            <img src="./assets/Images/adword3.4a30c483.png">
+                            <img src="./assets/Images/adword4.c5affa46.png">
+                            <img src="./assets/Images/adword5.7e896513.png">
+                        </div>
+                        <span id="about-info-line"></span>
+                    </div>
                 </div>
-                <div class="about-info-container">
-                <div class="about-info">
-                    <p>Hi 👋🏻, I am Shivam Sharma, founder of coding wallah. With over 8 years in the IT industry, I've guided many students to become skilled developers. I’m passionate about simplifying complex concepts and empowering others to reach their coding goals through practical, innovative teaching.</p>
-                </div>
-                <div class="awards-showcase">
-                    <img src="./assets/Images/adword1.0426b95f.png">
-                    <img src="./assets/Images/adword2.2fcf53f7.png">
-                    <img src="./assets/Images/adword3.4a30c483.png">
-                    <img src="./assets/Images/adword4.c5affa46.png">
-                    <img src="./assets/Images/adword5.7e896513.png">
-                </div>
-                </div>
-            </div>
             </div>
 
         </section>
      </main>
 
+     
+     <script src="https://unpkg.com/lenis@1.1.19/dist/lenis.min.js"></script> 
+
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+   
+    <script>
+        // Initialize Lenis
+        const lenis = new Lenis();
+
+        // Use requestAnimationFrame to continuously update the scroll
+        function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+   
+
      <script>
+
             gsap.to(".about-text", {
                 scale: 0.7,
                 opacity: 0,
@@ -90,36 +112,50 @@
                     scrub: true
                 }
             });
-            
-       
-           /* gsap.to(".mantor-name-text",{
-                position: "relative",
-                // top: "50%",
-                left: "50%",
-                x: "-50%",
-                y: "-50%",
-                z: -1,
-                scrollTrigger:{
-                    trigger: ".mantor-name-text",
-                    start: "top 50%",
-                    end: "bottom 50%",
-                    scrub: true 
+
+            gsap.to(".disc", {
+                rotate: 360,
+                // repeat: -1,
+                scrollTrigger: {
+                    trigger: ".about-last-container",
+                    start: "top 70%",
+                    end : "top top",
+                    scrub: true
                 }
-            });*/ 
-            gsap.to(".mantor-name-text > h2",{
-                position: "relative",
-                y: "-50%",
-                z: -1,
-                scrollTrigger:{
-                    trigger: ".mantor-name-text > h2",
-                    start: "top 50%",
-                    end: "bottom 50%",
-                    markers: true,
-                    scrub: true,
-                },
-                
             });
 
+            gsap.to("#about-info-line", {
+                width: "100%",
+                duration: 2,
+                scrollTrigger: {
+                    trigger: ".about-last-container",
+                    start: "top 45%",
+                    end : "top 10%",
+                    scrub: true
+                }
+            });
+
+            function gsapForImage(each_img ,isOver = true){
+                if(!each_img){
+                    console.error("image dom element is never passed!");
+                    return false;
+                }
+                gsap.to(each_img, {
+                    scale: 1.1,
+                    boxShadow: `${isOver ? "20px 20px 90px black" : "10px 10px 50px black"} `,
+                    x: `${isOver ? 10 : -10}`,
+                    y: `${isOver ? 10 : -10}`
+                });
+            }
+
+            document.querySelectorAll(".awards-showcase img").forEach((each_img)=>{
+                each_img.addEventListener("mouseover", ()=>{
+                    gsapForImage(each_img, true);
+                });
+                each_img.addEventListener("mouseleave", ()=>{
+                    gsapForImage(each_img, false);
+                });
+            })
      </script>
 </body>
 </html>
