@@ -29,9 +29,11 @@ html,body{
 /* css for main tag */
 main{
     margin-top: 108px;
-    margin-inline: var(--margin-inline-value);
+    /* margin-inline: var(--margin-inline-value); */
     padding: 0 30px;
+    padding-inline: var(--margin-inline-value);
     color: #020817;
+    overflow: hidden;
 }
 
 section{
