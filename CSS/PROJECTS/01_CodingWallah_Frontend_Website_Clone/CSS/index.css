@@ -70,6 +70,12 @@
     margin-top: 30px;
 }
 
+#page1 > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* css for page 2 */
 #page2{
     width: 100%;
@@ -87,10 +93,6 @@
     grid-template-rows: auto;
     grid-auto-rows: auto;
     gap: 10px;
-}
-
-.page2-grid-item{
-    /* border: 2px solid gold; */
 }
 
 #page2-grid-item-1 > h4{
@@ -262,7 +264,7 @@
 #page4 > .process-container > .process-image > img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 
