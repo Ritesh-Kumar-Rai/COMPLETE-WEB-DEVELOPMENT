@@ -194,7 +194,7 @@
 }
 
 .icons-container{
-    width: 60%;
+    min-width: 60%;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
