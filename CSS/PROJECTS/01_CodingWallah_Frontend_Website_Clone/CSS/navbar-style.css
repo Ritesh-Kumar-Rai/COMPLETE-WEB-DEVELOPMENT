@@ -125,4 +125,126 @@ header > .user-auth-log-container > button:hover{
     /* color: white; */
 }
 
+
+/* --CSS for navbar animation stuff-- */
+
+header::after{
+    content: "";
+    position: inherit;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0vh;
+    background-color: #141412;
+}
+
+header > .company-name{
+    display: none;
+    font-weight: bold;
+    overflow: hidden;
+    position: absolute;
+    left: 5%;
+}
+header > .company-name > .company-name-word{
+   opacity: 0;
+}
+
+header > .toggleBtn{
+    display: none;
+    justify-content: flex-end;
+}
+
+header > .toggleBtn > #burger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75em 2em 1.5em 2em;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    width: 28px;
+    height: 20px;
+    transition: all 250ms ease-out;
+    position: relative;
+    cursor: pointer;
+    /* mix-blend-mode: difference; */
+}
+
+#burger::before,
+#burger::after{
+    content: "";
+    width: 32px;
+    height: 2px;
+    background-color: #141412;
+    position: absolute;
+    transition: transform 400ms ease;
+    will-change: transform;
+}
+#burger::before{
+    transform: translateY(-3px);
+}
+#burger::after{
+    transform: translateY(3px);
+}
+
+.active#burger::before{
+    transform: translateY(0) rotate(45deg);
+}
+.active#burger::after{
+    transform: translateY(0) rotate(-45deg);
+}
+
 /* navbar style ended here.. */
+
+
+/* ---responsive navbar style starts from here--- */
+
+@media screen and (max-width: 1024px) {
+
+   header{
+    justify-content: space-between;
+   }
+
+   header > #codingwallah-logo{
+    width: 15vw;
+   }
+
+   header > .toggleBtn{
+    display: flex;
+   }
+
+   header > nav{
+    position: absolute;
+    top: 107px;
+    right: -100vw;
+    height: 60vh;
+    width: 100vw;
+    background-color: #141412;
+    z-index: 99;
+   }
+
+   header > nav > ul{
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 10vw;
+   }
+   header > nav > ul > li > a{
+    color: white;
+    opacity: 0;
+   }
+
+   header > nav > ul > li > a:active{
+    color: orangered;
+}
+
+   header > .user-auth-log-container{
+    position: absolute;
+    top: 70vh;
+    right: -100vw;
+    height: 40vh;
+    width: 100vw;
+    z-index: 99;
+    justify-content: center;
+   }
+}

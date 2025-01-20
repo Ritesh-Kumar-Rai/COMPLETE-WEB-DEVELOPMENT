@@ -49,6 +49,20 @@
         <div id="codingwallah-logo">
             <img src="./assets/codingwallah_favicon.ico" alt="codingWallah company logo">
         </div>
+        <div class="company-name">
+            <span class="company-name-word">C</span>
+            <span class="company-name-word">O</span>
+            <span class="company-name-word">D</span>
+            <span class="company-name-word">I</span>
+            <span class="company-name-word">N</span>
+            <span class="company-name-word">G</span>
+            <span class="company-name-word">W</span>
+            <span class="company-name-word">A</span>
+            <span class="company-name-word">L</span>
+            <span class="company-name-word">L</span>
+            <span class="company-name-word">A</span>
+            <span class="company-name-word">H</span>
+        </div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -61,6 +75,9 @@
         <div class="user-auth-log-container">
             <button type="button" id="login-btn">Log In</button>
             <button type="button" id="signup-btn">Sign Up</button>
+        </div>
+        <div class="toggleBtn">
+            <button id="burger"></button>
         </div>
     </header>
 
@@ -338,6 +355,8 @@
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
      <script src="https://unpkg.com/lenis@1.1.19/dist/lenis.min.js"></script> 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CSSRulePlugin.min.js" integrity="sha512-IxxYrSNXnt/RJlxNX40+7BQL88FLqvdpVpuV9AuvpNH/NFP0L8xA8WLxWTXx6PYExB5R/ktQisp6tIrnLn8xvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
      <script>
        AOS.init();
      </script>
@@ -357,6 +376,79 @@
 </script>
 <script src="./script.js"></script>
 <script src="./contact_form_script.js"></script>
+
+<!-- script for navigation bar animation -->
+<script>
+
+
+   document.addEventListener("DOMContentLoaded",function(){
+
+       let isOpen = false;
+       const burgerBefore = CSSRulePlugin.getRule("#burger::before");
+       const burgerAfter = CSSRulePlugin.getRule("#burger::after");
+
+                // Register the plugin 
+                gsap.registerPlugin(CSSRulePlugin);
+                // Get the CSS rule for the ::after pseudo-element 
+                const afterRule = CSSRulePlugin.getRule("header::after");
+
+                const tl = gsap.timeline({paused: true});
+
+                gsap.set([burgerBefore, burgerAfter], {background: "#141412"});
+                gsap.set(".company-name",{display: "none"});
+
+                tl.to(afterRule, {
+                    duration: 5,
+                    height: "100vh",
+                    zIndex: "90",
+                    ease: "power4.inOut"
+                })
+        
+                tl.to(".toggleBtn",{
+                    zIndex: 99
+                }, "<1");
+                
+                tl.to([burgerBefore,burgerAfter],{
+                    background: "white"
+                },"<1");
+
+                tl.to("header > nav",{
+                    right: 0
+                });
+
+                tl.to("header > nav > ul > li > a",{
+                    opacity: 1,
+                    stagger: 0.1
+                });
+
+                tl.to("header > .user-auth-log-container",{
+                    right: 0
+                });
+                tl.to(".company-name",{
+                    zIndex: 99,
+                    display: "inline-block"
+                })
+                tl.to(".company-name-word",{
+                    zIndex: 99,
+                    opacity: 1,
+                    color: "white",
+                    stagger: 0.05
+                });
+       
+       const burger_btn = document.querySelector("#burger");
+       
+       burger_btn.onclick = function(){
+
+           burger_btn.classList.toggle("active");
+           if(isOpen){
+               tl.reverse();
+                }else{
+                    tl.play();
+                }
+               isOpen = !isOpen;
+       };
+    });
+</script>
 </body>
 </html>
 
