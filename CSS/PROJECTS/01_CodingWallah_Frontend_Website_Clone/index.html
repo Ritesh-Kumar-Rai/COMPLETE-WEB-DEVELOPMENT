@@ -398,7 +398,7 @@
                 gsap.set(".company-name",{display: "none"});
 
                 tl.to(afterRule, {
-                    duration: 5,
+                    duration: 2,
                     height: "100vh",
                     zIndex: "90",
                     ease: "power4.inOut"
@@ -406,11 +406,11 @@
         
                 tl.to(".toggleBtn",{
                     zIndex: 99
-                }, "<1");
+                }, "<0.5");
                 
                 tl.to([burgerBefore,burgerAfter],{
                     background: "white"
-                },"<1");
+                },"<0.5");
 
                 tl.to("header > nav",{
                     right: 0

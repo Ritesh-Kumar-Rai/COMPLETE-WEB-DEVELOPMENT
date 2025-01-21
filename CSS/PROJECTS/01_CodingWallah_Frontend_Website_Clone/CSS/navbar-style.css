@@ -247,4 +247,8 @@ header > .toggleBtn > #burger{
     z-index: 99;
     justify-content: center;
    }
+
+   header > .user-auth-log-container > button{
+    box-shadow: 0px 0px 10px black;
+   }
 }
