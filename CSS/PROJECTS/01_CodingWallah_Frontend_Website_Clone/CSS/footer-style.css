@@ -116,3 +116,11 @@ footer .foot-bottom{
     align-items: center;
     justify-content: space-between;
 }
+
+
+/* Responsive CSS starts from here */
+@media screen and (max-width: 1024px) {
+    .navigations{
+        padding: 50px;
+    }
+}

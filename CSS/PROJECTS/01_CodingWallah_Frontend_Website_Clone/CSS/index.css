@@ -274,3 +274,32 @@
     width: 100%;
     height: 100%;
 }
+
+/* Responsive CSS starts from here */
+
+@media screen and (max-width: 1024px) {
+    #page2-grid-item-1{
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    #page2-grid-item-2{
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        padding-left: 0;
+    }
+
+    #page4 > .process-container > .process-steps{
+        width: 50%;
+    }
+
+    #page4 > .process-container > .process-image{
+        width: 50%;
+    }
+
+
+}

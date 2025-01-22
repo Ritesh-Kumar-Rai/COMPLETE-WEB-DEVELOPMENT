@@ -228,6 +228,7 @@ header > .toggleBtn > #burger{
     flex-direction: column;
     justify-content: space-between;
     font-size: 10vw;
+    font-size: 2em;
    }
    header > nav > ul > li > a{
     color: white;
@@ -252,3 +253,4 @@ header > .toggleBtn > #burger{
     box-shadow: 0px 0px 10px black;
    }
 }
+

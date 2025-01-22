@@ -17,7 +17,7 @@ function contact_form_visuality(){
                 contact_form_container.style.display = "block";
             }
         });
-        tl.fromTo(contact_form_container, {z: -10, scale: 0.5, opacity: 0, delay: 1}, {z: 10, scale: 1, opacity: 1});
+        tl.fromTo(contact_form_container, {z: -10, scale: 0.5, opacity: 0, delay: 1}, {z: 10, scale: 1, opacity: 1, clearProps: "transform"});
 
     });
 
