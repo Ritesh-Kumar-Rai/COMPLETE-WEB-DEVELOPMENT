@@ -124,3 +124,13 @@ footer .foot-bottom{
         padding: 50px;
     }
 }
+
+
+@media screen and (max-width: 860px) {
+    .navigations{
+        grid-template-columns: repeat(2, 1fr);
+    }   
+    footer .foot-bottom span{
+        width: 40%;
+    }
+}

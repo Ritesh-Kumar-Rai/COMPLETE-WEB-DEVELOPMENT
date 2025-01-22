@@ -301,6 +301,13 @@
     }
 }
 
+@media screen and (max-width: 750px) {
+    .get-in-touch-container > .contact-us-form-container{
+        width: 90%;
+    }
+}
+
+
 @media screen and (max-height: 600px) {
     .get-in-touch-container{
         margin-block: 10vw;

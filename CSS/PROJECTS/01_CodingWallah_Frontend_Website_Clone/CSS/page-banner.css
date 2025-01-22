@@ -55,3 +55,21 @@
     width: 100%;
     background-size: cover;
 }
+
+
+@media screen and (max-width: 900px) {
+    .page3-banner > .left-part h3{
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .page3-banner{
+        grid-template-columns: 1fr;
+    }
+
+    .page3-banner > .right-part-image{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+}
