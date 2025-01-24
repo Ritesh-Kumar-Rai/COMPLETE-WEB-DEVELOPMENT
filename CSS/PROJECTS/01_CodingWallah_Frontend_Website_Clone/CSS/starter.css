@@ -76,4 +76,15 @@ section{
     section{
         min-height: auto;
     }
+
+    .page-heading{
+        margin-block: 15vw;
+    }
+
+    .page-heading > h4{
+        font-size: 4vw;
+    }
+    .page-heading > h2{
+        font-size: 8vw;
+    }
 }

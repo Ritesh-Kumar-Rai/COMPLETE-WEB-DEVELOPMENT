@@ -33,6 +33,7 @@
     border: 2px solid rgba(0, 0, 0, 0.637);
     border-radius: 30px;
     overflow: hidden;
+    will-change: transform;
 }
 
 /* contact card grid container */
@@ -193,6 +194,7 @@
     border-radius: 30px;
     overflow: hidden;
     display: none;
+    will-change: transform;
 }
 
 .get-in-touch-container > .contact-us-form-container > div{
@@ -312,4 +314,35 @@
     .get-in-touch-container{
         margin-block: 10vw;
     }
+}
+
+@media screen and (max-width: 524px) {
+    .get-in-touch-container > .contact-card{
+        width: 90vw;
+        height: auto;
+    }
+
+    .get-in-touch-container .contact-card > div:first-child{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .contact-card .contact-card-item3{
+        grid-column-start: auto;
+        grid-column-end: auto;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .contact-card .contact-card-item4{
+        grid-row-start: 4;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .get-in-touch-container > .contact-us-form-container{
+        width: 100%;
+    }
+
 }

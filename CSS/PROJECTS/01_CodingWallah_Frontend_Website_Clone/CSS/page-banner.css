@@ -68,6 +68,10 @@
         grid-template-columns: 1fr;
     }
 
+    .page3-banner > .left-part{
+        padding: 6vw;
+    }
+
     .page3-banner > .right-part-image{
         grid-column-start: 1;
         grid-column-end: 2;

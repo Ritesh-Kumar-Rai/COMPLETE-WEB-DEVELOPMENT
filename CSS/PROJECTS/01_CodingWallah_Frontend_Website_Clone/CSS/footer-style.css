@@ -134,3 +134,22 @@ footer .foot-bottom{
         width: 40%;
     }
 }
+
+@media screen and (max-width: 640px) {
+    .navigations{
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    .navigations > div{
+        margin-block: 1.5rem;
+    }
+
+    footer .foot-bottom{
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+    footer .foot-bottom span{
+        width: 100%;
+        text-align: center;
+    }
+}
