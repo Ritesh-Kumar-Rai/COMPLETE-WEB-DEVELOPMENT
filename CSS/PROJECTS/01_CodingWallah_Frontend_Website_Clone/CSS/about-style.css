@@ -141,3 +141,54 @@ main{
     width: 100%;
     height: 100%;
 }
+
+/* Responsive CSS starts from here */
+@media screen and (max-width: 1500px) {
+    
+    .about-container > .about-info-container > .about-info{
+        width: 90%;
+    }
+    .about-container > .about-info-container > .awards-showcase{
+        width: 90%;
+    }
+
+    .about-container > .about-info-container > .awards-showcase img{
+        width: 60px;
+        aspect-ratio: 1;
+    }
+    
+}
+
+@media screen and (max-width: 1024px) {
+    
+    .about-container > .about-info-container > .about-info{
+        width: 100%;
+    }
+
+    .about-container > .about-info-container > .awards-showcase{
+        width: 100%;
+    }
+
+    .about-container > .about-info-container > .awards-showcase img{
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 740px){
+    .about-container{
+        grid-template-columns: 1fr;
+    }
+
+    .about-container > .about-info-container > .awards-showcase img{
+        width: 10vw;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+    .about-container{
+        position: relative;
+        margin-block: 100px;
+    }
+
+}
