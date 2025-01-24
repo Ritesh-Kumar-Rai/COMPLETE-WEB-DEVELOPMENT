@@ -241,9 +241,8 @@ header > .toggleBtn > #burger{
 
    header > .user-auth-log-container{
     position: absolute;
-    top: 70vh;
+    top: 80vh;
     right: -100vw;
-    height: 40vh;
     width: 100vw;
     z-index: 99;
     justify-content: center;
