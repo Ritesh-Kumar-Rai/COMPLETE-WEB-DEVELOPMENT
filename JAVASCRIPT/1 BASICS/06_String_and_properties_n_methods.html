@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Methods and Properties</title>
+    <script>
+        let str = "Hare Krsna";
+
+        console.log(str[5]);
+        
+        console.log("length of str: "+str.length);
+
+        console.log("UpperCase: "+ str.toUpperCase());
+
+        console.log("LowerCase: "+ str.toLowerCase());
+
+        let bekar_message = "     Namaste, I am Ritesh Kumar Rai      ";
+
+        console.log(bekar_message.trim());
+        console.log(bekar_message.trimStart());
+        console.log(bekar_message.trimEnd());
+
+        console.log(bekar_message.includes("I am"));
+        console.log(bekar_message.includes("Ritesh Rai"));
+
+        console.log(str.indexOf("s"));
+        console.log(str.indexOf("rsna")); // 6
+        console.log(str.indexOf("ram")); // -1
+
+        console.log(bekar_message.replace("I am", "My name is"));
+        console.log(bekar_message.replaceAll(" ", "-"));
+        
+        console.log(str.concat(", ",bekar_message.trim().replace("Namaste, ","")));
+
+        // padStart and padEnd(): sometimes, you see like account number or aadhar card number where last 4 digits only visible remains are hidden by special characters like #, X, *; same here we can do.
+        const account_last_four_digit_number = '4567';
+        console.log(account_last_four_digit_number.padStart(16, "#")); 
+        console.log(account_last_four_digit_number.padEnd(16, "#")); 
+        // Note: the padStart() or padEnd() only works on string and these does not hide the value instead it add's new character before and after string based on the final length of the string.
+
+        console.log(str.charAt(3)); // returns character which is present at provided index
+
+        console.log(str.charCodeAt(2)); // returns ASCII code of value which is at provided index number - r
+
+        console.log(str.split(""));
+        console.log(str.split());
+        console.log(bekar_message.trim().split(" "));
+
+        // Template Literal or String Interpolation
+        let str2 = `${str} ${bekar_message.trim().replace("Namaste,", "")}  my account number is ${account_last_four_digit_number.padStart(16,"X")}`;
+
+        console.log(str2); // template literal introduced in 2015 as ECMA script 6 (ES6) version
+        
+        
+
+        
+        
+        
+    </script>
+  </head>
+  <body style="font-family: cursive">
+    <h1>String Methods and Properties</h1>
+    <p>
+      Before starting string methods and properties we need know that strings
+      are indexed. So basically we can access any single character of a string
+      by doing something like this.
+    </p>
+    <p>Expression: <code>'Hare Krsna'[1]</code></p>
+    <p>Result: <code>'a'</code></p>
+    <p>There is only one property that exists.</p>
+    <h2>Property</h2>
+    <ul>
+      <li><code>length</code></li>
+    </ul>
+    <h2>Methods (Without Argument)</h2>
+    <ul>
+      <li><code>toUpperCase()</code></li>
+      <li><code>toLowerCase()</code></li>
+      <li><code>trim()</code></li>
+      <li><code>trimStart()</code></li>
+      <li><code>trimEnd()</code></li>
+    </ul>
+    <h2>Methods (With Argument)</h2>
+    <ul>
+      <li><code>includes()</code></li>
+      <li><code>indexOf()</code></li>
+      <li><code>replace()</code></li>
+      <li><code>replaceAll()</code></li>
+      <li><code>concat()</code></li>
+      <li><code>padStart()</code></li>
+      <li><code>padEnd()</code></li>
+      <li><code>charAt()</code></li>
+      <li><code>charCodeAt()</code></li>
+      <li><code>split()</code></li>
+    </ul>
+    <p>
+      <a
+        href="https://www.w3schools.com/jsref/jsref_obj_string.asp"
+        target="_blank"
+        >Learn More...</a
+      >
+    </p>
+  </body>
+</html>
