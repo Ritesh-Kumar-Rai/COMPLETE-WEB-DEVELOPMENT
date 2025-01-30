@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Practice Exercise</title>
+    <style>
+        *{
+            font-family: cursive; 
+            background-color: darkslategrey; 
+            color: aliceblue; 
+        }
+        h1,h4{
+            text-align: center;
+        }
+        div{
+            margin-top: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+   <h1>Practice Exercise</h1> 
+ <h4>Numbers, Strings & Operators</h4>
+
+ <div>
+     1. At a restaurant you ate: 1 Dal ₹ 100, 2 Roti ₹10 
+     each, 1 Ice Cream ₹30, calculate and display the 
+     final bill amount. <br>
+     2. Calculate 18% GST on iPhone15 ₹79,990 and 2 
+     Air pods Pro ₹24990 each. <br>
+     3. Create strings using all 3 methods. <br>
+     4. Concatenate String with Strings, and String with 
+     numbers. <br>
+     5. Create Order Summary String for our Myntra Cart. <br>
+     6. Display order summary in a popup
+ </div>
+
+ <script>
+    // 1. Answer
+    const final_bill_of_restaurant = `Your Final Bill of Restaurant: ₹${(1 * 100) + (2 * 10) + (1 * 30)}`;
+    console.log(final_bill_of_restaurant);
+    
+    // 2. Answer Calculation of GST amount
+    const gst = 18;
+    const apple_store_summary = `Your Final GST amount: ₹${(79990 + (2 * 24990)) * gst/100}`;
+    console.log(apple_store_summary);
+
+    // 3. Create string using 3 methods:
+    const str1 = "String 1";
+    const str2 = 'String 2';
+    const str3 = `String 3`;
+
+    // 4. Concatenate string with string & string with number
+    const naam1 = "Hare";
+    const naam2 = "Krsna";
+    const chant = naam1+" "+naam2;
+    console.log(chant);
+    const times = 108;
+    console.log('chant '+chant +" "+ times +" times");
+    
+    // 5. Order Summary of Cart from program1 Arithmetic operator
+    /*
+    1. Item PS4 Carry Bag
+        - Initial Price = ₹2499
+        - On Sale = 41% Off
+        - Coupon Discount = ₹29
+    
+    2. Item PS4 pro 1TB
+        - Initial Price = ₹15599  
+        - On Sale = 10% Off
+        - Coupon Discount = ₹272
+        
+    Other Charges:
+        - Gift Wrap Charges = ₹25
+        - Convenience Fee = ₹20
+        - GST Tax = 18% */ 
+
+     const CART_SUMMARY = (2499 - (2499 * 41/100) - 29) + (15599 - (15599 * 10/100) - 272) + 25 + 20;
+     const final_cart_summary = `Your Final Cart Summary: ₹${Math.round(CART_SUMMARY * 118/100)}`;
+     console.log(final_cart_summary);
+     
+     setTimeout(()=>{
+         alert(final_cart_summary);
+     }, 5000);   
+ </script>
+</body>
+</html>
