@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Practice Exercise 3</title>
+    <style>
+        *{
+            font-family: cursive; 
+            background-color: darkslategrey; 
+            color: aliceblue; 
+        }
+        h1,h4{
+            text-align: center;
+        }
+        div{
+            margin-top: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+   <h1>Practice Exercise</h1> 
+ <h4>Of Variables</h4>
+
+ <div>
+    1. Save your name in a variable inside script tag <br> 
+    2. Display name from the variable on the page <br>
+    3. Calculate the cost of Myntra Bag and keep it in a 
+  variable <br>
+    4. Show it to console <br>
+    5. Keep GST percentage as constant <br>
+    6. Use eval method from math to convert string 
+  calculation into result
+ 
+ </div>
+
+ <div id="display-name"></div>
+ <script>
+      
+      // 1. Store and Display name 
+      const name = "Ritesh Kumar Rai";
+      console.log(name);
+      
+      // 2. Display name on document
+      document.getElementById("display-name").textContent = name;
+
+      // 3, 4 and 5 answer
+
+      const GST = 18;
+
+     const CART_SUMMARY = (2499 - (2499 * 41/100) - 29) + (15599 - (15599 * 10/100) - 272) + 25 + 20;
+     const final_cart_summary = `Your Final Cart Summary: ₹${Math.round(CART_SUMMARY * (100 + GST)/100)}`;
+     console.log(final_cart_summary);
+
+    //  6. use eval() to convert string numeric value to number type and calculate expression.
+    const evalResult = eval("(5+5) * 5 - 10");
+    console.log(evalResult); // 40
+    
+       
+ </script>
+</body>
+</html>
