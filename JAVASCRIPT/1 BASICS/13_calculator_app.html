@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator App</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html,body{ height: 100%; width: 100%;}
+    body{
+            font-family: cursive; 
+            /* background-color: darkslategrey;  */
+            /* background: url(https://images.unsplash.com/photo-1636033503567-a59bff19d79a?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);*/
+            /* background: url(https://plus.unsplash.com/premium_photo-1676999224287-69f01133eca7?q=80&w=2554&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
+
+            background: linear-gradient(to bottom, #1c1f2e, #2a3959, #1f2833);
+            color: aliceblue; 
+           
+      }
+      h1{
+          margin-top: 50px;
+          text-align: center;
+      }
+      section{
+          margin-top: 10vh;
+          background: linear-gradient(rgba(255, 255, 255, 0.21), #1f28337d, rgba(173, 216, 230, 0.42));
+          background-color: rgba(255, 255, 255, 0.168);
+          backdrop-filter: blur(100px);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          margin: auto;
+          display: inline-block;
+          width: 300px;
+          height: 550px;
+          border: none;
+          overflow: hidden;
+          border-radius: 20px;
+      }
+
+      #result-box{
+        display: flex;
+        flex-direction: column;
+        height: 20%;
+        border-radius: inherit;
+        width: 100%;
+        padding: 5px;
+      }
+      textarea,input[type='text']{
+        height: 100%;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        padding: 5px;
+        text-align: right;
+      }
+      #total-expression{
+        font-size: 20px;
+        resize: none;
+      }
+      #result-input{
+        font-size: 2em;
+      }
+
+      .buttons-container{
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        gap: 10px;
+        height: 80%;
+        width: 100%;
+      }
+     
+      .buttons-container > .left-part{
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 10px;
+      }
+      .buttons-container > .right-part{
+        grid-column-start: 4;
+        grid-column-end: 5;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        gap: 10px;
+      }
+      .btn-0{
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .btn-plus{
+        grid-row: 3 / span 2;
+      }
+      .btn-eq{
+        grid-row: 5 / span 1;
+      }
+      button{
+        border-radius: 15px;
+        border: none;
+        font-size: 1.5em;
+        background-color: rgba(255, 255, 255, 0.429);
+        /* backdrop-filter: blur(50px); */
+        cursor: pointer;
+      }
+      button:active{
+        background-color: rgba(106, 104, 104, 0.744);
+      }
+  </style>
+</head>
+<body>
+
+  <h1>Calculator App</h1>
+
+  <section>
+      <div id="result-box">
+        <textarea title="total result" id="total-expression" rows="5" cols="auto" readonly></textarea>
+        <input type="text" title="result box" id="result-input" readonly>
+      </div>
+      <div class="buttons-container">
+        <div class="left-part">
+          <button type="button" value="ac" class="cal-btn">Ac</button>
+          <button type="button" value="delete" class="cal-btn"><i class="ri-delete-back-2-line"></i></button>
+          <button type="button" value="/" class="cal-btn">/</button>
+          <button type="button" value="7" class="cal-btn">7</button>
+          <button type="button" value="8" class="cal-btn">8</button>
+          <button type="button" value="9" class="cal-btn">9</button>
+          <button type="button" value="4" class="cal-btn">4</button>
+          <button type="button" value="5" class="cal-btn">5</button>
+          <button type="button" value="6" class="cal-btn">6</button>
+          <button type="button" value="1" class="cal-btn">1</button>
+          <button type="button" value="2" class="cal-btn">2</button>
+          <button type="button" value="3" class="cal-btn">3</button>
+          <button type="button" value="0" class="cal-btn btn-0">0</button>
+          <button type="button" value="." class="cal-btn">.</button>
+        </div>
+        <div class="right-part">
+          <button type="button" value="X" class="cal-btn">X</button> 
+          <button type="button" value="-" class="cal-btn">-</button> 
+          <button type="button" value="+" class="cal-btn btn-plus">+</button> 
+          <button type="button" value="=" class="cal-btn btn-eq">=</button> 
+        </div>
+
+      </div>
+  </section>
+
+  <!-- JAVASCRIPT Code -->
+   <script>
+      const cal_btns = document.querySelectorAll(".cal-btn");
+      const history_element = document.getElementById("total-expression");
+      const total_input = document.getElementById("result-input");
+
+      let history = "";
+      let total = "";
+
+      cal_btns.forEach(function(each_btn){
+        each_btn.addEventListener("click",(e)=>{
+              try {
+                if(e.target.tagName == "I" || e.target.value == "delete"){
+                  console.error(e.target.parentNode.value);
+                  (history.length > 0) ? history = history.slice(0, -1) : false;
+                }else if(e.target.value == "ac"){
+                  history = "";
+                  total_input.value = "";
+                }else if(e.target.value == "="){
+                  total_input.value = `=${eval(history)}`;
+                }else if(e.target.value == "X"){
+                    history+= "*";
+                }else{
+                  history+= String(e.target.value);
+                }
+
+              } catch (error) {
+                console.error(error);
+              }finally{
+                history_element.value = history;
+              }
+        });
+      });
+   </script>
+</body>
+</html>
