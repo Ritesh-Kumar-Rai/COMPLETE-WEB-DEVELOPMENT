@@ -55,8 +55,61 @@
         
         
 
+        // Escape Character in String
+        let text = "Learn the all new \"JavaScript\" Course \n Available on Earth.";
         
+        console.log(text);
+
+        // lastIndexOf()
+        console.log(bekar_message.lastIndexOf("a")); // returns last index
         
+        // search() - It supports Regular Expression
+        console.log(text.search("javascript")); // -1
+        console.log(text.search(/javascript/i)); // 19 [i for case-insensitive]
+        console.log(text.search(/a/g)); // g for global
+        
+        // match() returns an array of the matched values or null if no match is found
+        let text2 = text + "All new JavaScript with ES6";
+        console.log(text2.match("javascript")); // null
+        console.log(text2.match(/JavaScript/)); // array
+        console.log(text2.match(/JavaScript/g)); // g is global returns ["JavaScript", "JavaScript"]
+        console.log(text2.match(/javascript/gi)); // i for case-insensitive returns same 
+        
+        // matchAll() adds g in regex and returns iterator and empty iterator if the value not matched
+        const matched = text2.matchAll("JavaScript");
+        console.log(matched);
+        
+        for (const item of matched) {
+          console.log(item);
+          console.log(item[0]);
+          
+        } // we can only access it's data by looping 
+        
+
+        // startsWith() method returns true if a string begins with a specified value. Otherwise it returns false:
+        console.log(text.startsWith("JavaScript")); // false
+        console.log(text.startsWith("Learn")); // true
+        
+        // endsWith() method returns true if a string ends with a specified value. Otherwise it returns false:
+        console.log(text.endsWith("Learn")); // false
+        console.log(text.endsWith("Earth.")); // true
+        
+        // slice(start, end) extracts a part of a string and returns the extracted part in a new string.
+        // 1. JS counts position from zero and slice() extracts up to but not including indexEnd.
+        console.log(text.slice(10)); // string starts with All
+        console.log(text.slice(10,29));
+        
+        // substring() is also same as slice but the difference is when you provide negative index. The slice() will start from end of string -1, -2, -3. wheareas the substring() will return whole string.
+
+        // at(position) allow programmer to get a value by passing negative indexes which starts with -1 from last of string to n at start of string
+        console.log(str.at(-1)); // a
+
+        // String.fromCharCode() returns the string from code
+        const a = "A";
+        const codeOfA = a.charCodeAt(0);
+        console.log(codeOfA);
+        const charFromCode = String.fromCharCode(codeOfA);
+        console.log(charFromCode);
         
     </script>
   </head>
@@ -94,6 +147,14 @@
       <li><code>charAt()</code></li>
       <li><code>charCodeAt()</code></li>
       <li><code>split()</code></li>
+      <li><code>lastIndexOf()</code></li>
+      <li><code>search()</code></li>
+      <li><code>match()</code></li>
+      <li><code>matchAll()</code></li>
+      <li><code>startsWith() and endsWith()</code></li>
+      <li><code>slice()</code></li>
+      <li><code>at()</code></li>
+      <li><code>String.fromCharCode()</code></li>
     </ul>
     <p>
       <a
