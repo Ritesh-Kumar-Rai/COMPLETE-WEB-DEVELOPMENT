@@ -6,6 +6,14 @@ const arr2 = new Array(1,2,3,4,5);
 console.log(arr, arr2);
 console.log(typeof arr, typeof arr2);
 console.log(arr[1], arr2[1]);
+console.log(arr[-1]); //undefined because you can't access array with negative indexes
+// but in case you want then we have one method called .at() which again used to access the array using index number; but you can also access by negative indexes like :
+console.log("using .at() method: "+arr.at(-1));// 5
+//  In negative indexes starts from -1 and go upto n; and negative indexes starts from backward direction 
+// means assume we have array with a length 5 then arr[0] in negative is -5 and arr[4] in negative is -1
+// Example:
+console.log(`arr[0] : ${arr.at(0)} is arr[-5] : ${arr.at(-5)}`);
+console.log(`arr[4] : ${arr.at(4)} is arr[-1] : ${arr.at(-1)}`);
 
 // modifying array
 let fruits = ["banana", "apple", "grapes", "strawberry"];
@@ -110,14 +118,57 @@ console.log(fruits);
 
 // Searching in a Array
 
+const numbers = [10,20,30,60,40,50,60,70];
+
 // 1. indexOf() Method: The indexOf method returns the first index at which a given element can be found in the array, or -1 if it is not present.
 // Syntax: indexOf(searchElement, fromIndex);
+console.log('--------indexOf()-------');
+console.log(numbers.indexOf(60)); // 3
+console.log(numbers.indexOf(60,4));// find 60 starts searching from index 4 answer will be : 6
+console.log(numbers.indexOf(30,4)); //find 30 starts searching from index 4 answer will be : -1
+
 
 // 2. Includes() Method: The includes method checks whether an array includes a certain element returning true or false.
 // Syntax: includes(searchElement, fromIndex)
+console.log("-----includes()------");
+console.log(numbers.includes(50)); // true
+console.log(numbers.includes(5)); // false
 
 // 3. lastIndexOf() Method: The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backward, starting at fromIndex.
 // Syntax: lastIndexOf(searchElement, fromIndex)
+console.log('--------lastIndexOf()---------');
+console.log(numbers.lastIndexOf(60)); // 6
+console.log(numbers.lastIndexOf(60,5)); // 3 bacause it searching to backward direction
+console.log(numbers.lastIndexOf(60,7)); // 6
+
+console.log(numbers.lastIndexOf(20)); // 1
+console.log(numbers.lastIndexOf(80)); // -1
+
+
+// Challenge Time
+console.log("------Challenge Time-------");
+const months = ["Jan", "march", "April", "June", "July"];
+console.log(months);
+// 1. Add Dec at the end of an array?
+months.splice(months.length, 0, "Dec");
+// other way is months.push("Dec");
+console.log(months);
+
+// 2. What is the return value of splice method?
+// -> empty array []
+console.log("splice() return value : ",months.splice());
+
+// 3. Update march to March (update)?
+const index_to_update = months.indexOf("march");
+months.splice(index_to_update, 1, "March");
+console.log(months);
+// another way
+// const existing_value = months[index_to_update];
+// months[index_to_update] = "March";
+
+// 4. Delete June from an array?
+ months.splice(months.indexOf("June"), 1);
+ console.log(months);
  
 
 
