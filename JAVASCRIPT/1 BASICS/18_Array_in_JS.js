@@ -169,7 +169,190 @@ console.log(months);
 // 4. Delete June from an array?
  months.splice(months.indexOf("June"), 1);
  console.log(months);
+
+
+// Filtering and Searching in a Array 
+
+//1. find Method: The find method is used to find the first element in an array that satisfies a provided testing function. It returns the first matching element or undefined if no element is found.
+console.log("---------find method---------");
+
+const find_result = months.find((currItem) => currItem === "July");
+const find_result2 = months.find((currItem) => currItem === "June");
+console.log(find_result, find_result2);
+const find_result3 = numbers.find((item, index)=>{
+    return item > 40
+});
  
+console.log(find_result3);
+
+//2. findIndex Method: The findIndex() method of TypedArray instances returns the index of the first element in a typed array that satisfies the provided testing function. If no elements satisfy the testing function, -1 is returned.
+console.log("-------findIndex--------");
+
+const findIndex_result = months.findIndex(currItem => currItem === "July");
+const findIndex_result2 = months.findIndex(currItem => currItem === "June");
+console.log(findIndex_result, findIndex_result2);
 
 
+// 3. filter Method: The filter method creates a new array with all elements that pass the test implemented by the provided functiion.
+console.log("---------filter method--------");
+
+const filter_result = numbers.filter((item)=>{
+  return item > 30;
+});
+console.log(filter_result);
+
+// USECASE: In E-commerce website we will use filter to remove or delete cart products
+const CART = [122,128,78,132,67,106,2]; // CART contains id's of product which are added to cart
+console.log('CART: ', CART);
+
+const delete_product_id = 132;
+const filtered_cart = CART.filter(product_id => product_id !== delete_product_id);
+console.log(filtered_cart);
+
+
+// Practice Time
+console.log("-----Practice Time------");
+
+// 1: Filtering Products by Price
+const products = [
+  { name: "Laptop", price: 1200 },
+  { name: "Phone", price: 800 },
+  { name: "Tablet", price: 300 },
+  { name: "Smartwatch", price: 150 },
+]; // Filter products with a price less than or equal to 500
+
+products.filter((product)=>{
+  if(product.price <= 500){
+      console.log(product);   
+  }
+});
+
+// 2: Filter unique values
+const numbers2 = [...numbers, 30,20,30] // spread operator
+console.log("Repeated numbers: "+numbers2);
+
+// way 1
+const unique_nums = numbers2.filter((num, index, arr)=>{
+    const index2 = arr.indexOf(num);
+    return (index2 === index);
+});
+console.log("1. Unique numbers: "+unique_nums);
+
+// way 2
+let temp_storage_arr = new Array();
+
+const unique_nums2 = numbers2.filter((num)=>{
+  if(!temp_storage_arr.includes(num)){
+      temp_storage_arr.push(num);
+      return num;
+  }
+});
+console.log("2. Unique numbers: "+unique_nums2);
+
+//* =========================================
+//*  How to Sort and Compare an Array
+//* =========================================
+//? How to Sort and Compare an Array
+//? Sorting an Array: The sort method sorts the elements of an array in place and returns the sorted array. By default, it sorts elements as strings.
+console.log(fruits.sort());
+console.log(numbers2.sort())
+
+
+//? compare callback function
+// syntax
+// const sortedNumbers = numbers2.sort((a, b) => a - b);
+// if(a>b) return 1  => switch the order
+//  if(b>a) return -1  => keep the order
+
+
+// For ascending order
+// const sortedNumbers = numbers.sort((a, b) => {
+//   if (a > b) {
+//     return 1;
+//   } else if (b > a) {
+//     return -1;
+//   }
+// });
+
+// for Descending Order
+const sortedNumbers = numbers2.sort(function(a,b){
+  if(a > b){
+    return -1;
+  }else if(b > a){
+    return 1;
+  }
+});
+console.log(sortedNumbers);
+
+//* =========================================
+//*  Very Important Array Methods
+//* =========================================
+
+//? Map(), Filter(), Reduce(),
+// map() creates a new array from calling a function for every array element.
+// map() does not execute the function for empty elements.
+// map() does not change the original array.
+
+// Practice Questions:
+
+// 1. Using map to square each number and create a new array
+const square_ans1 = numbers.map(num => num*num);
+console.log(square_ans1);
+
+// 2. Using the map method, write a function that takes an array of strings and returns a new array where each string is capitalized.
+const capitalizedStr = fruits.map((each_str)=>{
+  const arr_str = Array.from(each_str);
+  arr_str.splice(0,1, arr_str[0].toUpperCase());
+  return arr_str.join("");
+  
+});
+console.log(capitalizedStr);
+
+// 3: Using the map method, write a function that takes an array of numbers and returns a new array where each number is squared, but only if it's an even number.
+const square_ans2 = [1,2,3,4,5].map((num)=>{
+  if(num % 2 === 0){
+    return (num * num); 
+  }
+}).filter((each_val) => each_val !== undefined); // chained methods
+console.log(square_ans2);
+
+
+// 4: Using the map method, write a function that takes an array of names and returns a new array where each name is prefixed with "Hare ".
+const incomplete_mantra = ["Krsna", "Ram"];
+const complete_mantra = incomplete_mantra.map((word)=>{
+    const add = "Hare ";
+    return (add+word);
+});
+console.log(incomplete_mantra, complete_mantra);
+
+// Reduce method
+// The reduce method in JavaScript is used to accumulate or reduce an array to a single value. It iterates over the elements of an array and applies a callback function to each element, updating an accumulator value with the result. The reduce method takes a callback function as its first argument and an optional initial value for the accumulator as the second argument.
+// syntax
+// array.reduce(function callback(accumulator, currentValue, index, array) {
+//   // Your logic here
+//   // Return the updated accumulator value
+// }, initialValue);
+
+// callback: A function that is called once for each element in the array.
+// accumulator: The accumulated result of the previous iterations.
+// currentValue: The current element being processed in the array.
+// index (optional): The index of the current element being processed.
+// array (optional): The array reduce was called upon.
+// initialValue (optional): An initial value for the accumulator. If not provided, the first element of the array is used as the initial accumulator value.
+
+const productPrices = [15990, 2560, 1200, 780, 200];
+const total = productPrices.reduce((accumulator, value)=>{
+  return accumulator+value;
+},0);
+console.log('₹'+total);
+
+const productsCART = [
+  {id: 123, product_name: "Samsung S25 Ultra", price: 115000},
+  {id: 103, product_name: "Apple Iphone 16 Ultra Max", price: 175000},
+  {id: 123, product_name: "Sony PS5 Pro", price: 55000}
+];
+
+// calculate total amount to pay
+const sum = productsCART.reduce((acc, product)=> acc + product.price,0);
+console.log("TOTAL AMOUNT TO BE PAID: ₹"+sum);
 
