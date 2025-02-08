@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background-Attachment in CSS</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: cursive;
+      font-style: italic;
+    }
+    html,body{width: 100%; height: 100%;scroll-behavior: smooth;}
+
+    section{
+      width: 100%;
+      height: 100vh;
+      background: rgb(63,61,62);
+      background: linear-gradient(90deg, rgba(63,61,62,1) 0%, rgba(31,66,108,1) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    h1{
+      font-size: 4em;
+      font-weight: bolder;
+      margin-block: 2rem;
+    }
+    p{
+      font-size: 2em;
+      font-weight: 500;
+      /* color: palevioletred; */
+    }
+    .section1{
+      background-image: url(https://images.unsplash.com/photo-1733702868662-3c96ce5844b3?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      background-attachment: fixed;
+    }
+    .section2{
+      background-image: url(https://images.unsplash.com/photo-1737804719156-ecef28aaec3e?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      background-attachment: fixed;
+    }
+    .section3{
+      background-image: url(https://images.unsplash.com/photo-1651741304929-71bcb4d17c92?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+  <section class="section1">
+    <div>
+      <h1>Parallax Effect</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nihil?</p>
+    </div>
+  </section>
+  <section class="section2">
+    <div>
+      <h1>Parallax Effect</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nihil?</p>
+    </div>
+  </section>
+  <section class="section3">
+    <div>
+      <h1>Parallax Effect</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nihil?</p>
+    </div>
+  </section>
+</body>
+</html>
