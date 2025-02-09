@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM CRUD TODO APP</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      color: white;
+      padding: 1rem;
+      font-family: cursive;
+      font-style: oblique;
+      display: flex;
+      justify-content: center;
+    }
+    h1{
+      text-align: center; 
+      font-size: 3em;
+      margin-block: 2rem;
+    }
+    section{
+      width: 50%;
+    }
+    input{
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      outline-color: red;
+      width: 80%;
+      font-size: 1.5em;
+    }
+    button{
+      padding: 10px 15px;
+      font-size: 1.5em;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      background-color: darkcyan;
+      color: aliceblue;
+      cursor: pointer;
+    }
+    button:active{
+      background-color: darkgreen;
+    }
+
+    .todos-list{
+      margin-top: 2rem;
+      font-size: 2em;
+    }
+    p{cursor: pointer;}
+  </style>
+</head>
+<body>
+  <!-- just for practice this todo app was built by implementation of DOM CRUD-->
+  
+  <section>
+     <h1>Simple TODO App</h1>
+
+     <input type="text" title="todo name" id="todo-input">
+     <button type="button" id="btn">Add Todo</button>
+     
+     <!-- Here's all todos are listed -->
+     <div class="todos-list"></div>
+    </section>
+     
+   <!-- script logics are written below -->
+    <script type="text/javascript">
+        console.log("Hare Krsna..");
+
+        const todoInput = document.getElementById("todo-input");
+        const btn = document.getElementById("btn");
+        const todos = document.querySelector(".todos-list");
+
+        btn.addEventListener("click", function(){
+          if(todoInput.value.length > 0){
+            const elem = document.createElement("p");
+            const textNode = document.createTextNode(todoInput.value);
+            elem.appendChild(textNode);
+            todos.append(elem);
+            todoInput.value = "";
+          }
+        });
+
+        todos.addEventListener("click", function(e){
+          e.target.remove();
+        });
+    </script>
+</body>
+</html>
