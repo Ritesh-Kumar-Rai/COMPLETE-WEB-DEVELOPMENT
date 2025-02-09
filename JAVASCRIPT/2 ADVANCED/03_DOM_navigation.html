@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Navigation</title>
+</head>
+<body>
+  <h1>Lorem</h1>
+  <hr>
+  <p>Lorem ipsum dolor sit amet.</p>
+  <!-- Let's see DOM Navigation -->
+   <script>
+    let parent = document;
+    let bodyHead = document.head;
+    let bodyElement = document.body;
+    console.log(parent);
+    console.log(bodyHead);
+    console.log(bodyElement);
+    
+    // access children
+    const bodyChildNodes = bodyElement.childNodes;
+    const bodyChildren = bodyElement.children;
+    // console.log(bodyChildNodes);
+    console.log(bodyChildren);
+    
+    // access first child node
+    const bodyFirstChildElem = bodyElement.firstElementChild;
+    const bodyFirstChildNode = bodyElement.firstChild;
+    // console.log(bodyFirstChildElem)
+    console.log(bodyFirstChildNode);
+
+    // access last child node
+    const bodyLastChildElem = bodyElement.lastElementChild;
+    const bodyLastChildNode = bodyElement.lastChild;
+    // console.log(bodyLastChildElem);
+    console.log(bodyLastChildNode);
+
+    // access next sibling
+    const nextSibling = bodyFirstChildElem.nextElementSibling;
+    const nextSibling2 = bodyFirstChildElem.nextSibling;
+    console.log(nextSibling)
+    // console.log(nextSibling2);
+    
+    // access previous sibling
+    const previousSibling = nextSibling.previousElementSibling;
+    const previousSibling2 = nextSibling.previousSibling;
+    console.log(previousSibling);
+    console.log(previousSibling2);
+    
+    // access parent Element/Node
+    const parentElement = previousSibling.parentElement;
+    const parentNode = previousSibling.parentNode;
+    console.log(parentElement);
+    console.log(parentNode);
+    console.log(bodyElement.parentElement);
+    
+   </script>
+</body>
+</html>
