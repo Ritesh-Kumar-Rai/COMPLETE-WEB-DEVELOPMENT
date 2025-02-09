@@ -1,0 +1,103 @@
+<!-- * ======================
+*   Searching:
+* ======================== -->
+
+<!--? By ID, Class, and Tag: 
+getElementById(id) 
+getElementsByClassName(className)
+getElementsByTagName(tagName) 
+querySelector(selector)
+querySelectorAll(selector) -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      button,
+      input {
+        font-family: "Urbanist", sans-serif;
+      }
+    </style>
+  </head>
+  <!-- it's a comment node  -->
+  <body>
+    <div>
+      <h1 id="heading">DOM API</h1>
+      <ul class="list-of--nodes">
+        <li>1 node</li>
+        <li style="color: red;">2 node</li>
+        <li>3 node</li>
+        <!-- <li>4th node </li> -->
+        <li>4 node</li>
+        <li style="display: none">5 node</li>
+      </ul>
+    </div>
+    <div>
+      <h1>DOM API 2</h1>
+      <input type="text" />
+      <button>click me</button>
+      <div class="value"></div>
+    </div>
+
+    <script>
+      // get element by id
+      const getHeading = document.getElementById("heading");
+      console.log(getHeading.innerHTML);
+      
+      // get element by classname
+      const getClass = document.getElementsByClassName('list-of--nodes'); // will return HTMLCollections which is iterable
+      console.log(getClass);
+      // access 
+      console.log(getClass[0]); // 1st way
+      console.log(...getClass); // 2nd way
+      // 3rd way is loop
+      for (const element of getClass) {
+        // console.log(element.innerHTML)
+      }
+
+      // get data of selected elements
+      console.log(getClass[0].innerHTML);
+      console.log(getClass[0].innerText)
+      console.log(getClass[0].textContent)
+      // innerHTML: yeh content return karta hai with all html tags, attributes and values/texts
+      // innerText: yeh bus value/text return karta hai considering styles, attributes and tags excluding hidden texts in our case li 2 pe style laga tha but isne text return kiya because woh text hidden nahi tha wheareas li 5 or li 4 jo comment the or hidden the jese display:none; ya visbility: hidden; woh return nahi hue
+      // textContent: yeh bhi bus text hi return karta hai but doesn't matter woh text hidden hai ya nahi
+      
+      
+      // get element by tagname
+      const getLi = document.getElementsByTagName("li"); // returns HTMLCollection which is iterable
+      const getScriptTag = document.getElementsByTagName("script")[0]; // get first element from HTMLCollection 
+      // console.log(getScriptTag);
+      
+      for (const element of getLi) {
+        console.log(element)
+      }
+
+      // Note: HTMLCollection is Array like structure that's why it is iterable and easily convertable to array by using Array.from();
+
+      // querySelector()
+      const getHeadingQS = document.querySelector("#heading"); // # for id, . for classname
+      // console.log(getHeadingQS.innerText = "Hare Krsna");
+
+      const allLis = document.querySelectorAll("li");
+      console.log(allLis); // it returns Nodelist
+      
+      for (const key in allLis) {
+        if (Object.prototype.hasOwnProperty.call(allLis, key)) {
+          console.log(key);
+          console.log(allLis[key])
+        }
+      }
+      // allLis.forEach(elm => console.log(elm))
+      
+    </script>
+
+  </body>
+</html>
