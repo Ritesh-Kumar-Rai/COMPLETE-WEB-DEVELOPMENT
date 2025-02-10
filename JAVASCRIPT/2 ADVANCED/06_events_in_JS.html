@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events in JS</title>
+  <style>
+    section{
+      height: 100vh;
+      width: 100%;
+      background-color: aqua;
+      padding: 2rem;
+      box-sizing: border-box;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .red{
+      background-color: red;
+    }
+    .dark{
+      background-color: darkslategrey;
+      color: white;
+    }
+
+    h1{font-size: 2em;}
+
+    button{
+      font-size: 1em;
+      font-weight: 500;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background-color: yellow;
+      margin-inline: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <section class="dark">
+        <h1>JS Inline Event</h1>
+        <button onclick="alert('Clicked')">Click Me</button>
+        <button onmouseover="alert('Hovered')">Hover</button>
+        <button ondblclick="alert('Double Clicked')">Double Click </button>
+
+        <h1>JavaScript DOM Event Handler</h1>
+        <button id="btn-click">Click Again</button> 
+        <button id="btn-hover">Hover Again</button>
+
+        <h1>JavaScript addEventListener Event Handler</h1>
+        <button id="btn-click2">Click 3</button>
+        <button id="btn-doubleTap">Double Click Again</button>
+
+  </section>
+</body>
+<script>
+  // DOM event handler
+  document.querySelector("#btn-click").onclick = function(){
+    alert("Clicked! Detected through DOM event handler");
+  };
+  document.querySelector("#btn-hover").onmouseover = function(){
+    alert("Hovered! Detected through DOM event handler");
+  };
+
+  // attach event listener
+  document.querySelector("#btn-click2")
+  .addEventListener("click", ()=>{
+    alert("event listener started working! Clicked");
+  });
+
+  document.getElementById("btn-doubleTap")
+  .addEventListener("dblclick", function(){
+    alert("Double Clicked! Event listener is awesome");
+  });
+</script>
+</html>
