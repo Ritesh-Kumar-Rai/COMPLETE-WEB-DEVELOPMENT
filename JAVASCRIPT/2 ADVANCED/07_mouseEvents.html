@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Events in JS</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    html,body{
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .rectangle{
+      width: 300px;
+      aspect-ratio: 1;
+      background-color: gold;
+      margin-bottom: 2rem;
+      transition: all 400ms ease-in-out;
+      will-change: translate;
+      position: relative;
+    }
+    #btn{
+      justify-self: center;
+      margin: auto;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 15px;
+      background-color: gold;
+      font-weight: 500;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    .transition1{
+      border-radius: 50px;
+      background-color: aqua;
+    }
+
+    .transition2{
+      translate: 100% 0;
+    }
+
+    .transition3{
+      border-radius: 50%;
+      background-color: lightpink;
+    }
+
+    .transition4{
+      translate: 0 0;
+      background-color: lightcoral;
+    }
+
+    .transition5{
+      border-radius: 50px;
+      background-color: gold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rectangle"></div>
+    <button type="button" id="btn">Click Me</button>
+  </div>
+
+
+  <script>
+    const btn = document.querySelector("#btn");
+    const rect = document.querySelector(".rectangle");
+
+    function transitionClass(){
+      rect.classList.add("transition1");
+    }
+    function transitionClass2(){
+      rect.classList.add("transition2");
+    }
+
+    function transitionClass3(){
+      rect.classList.add("transition3");
+    }
+
+    function transitionClass4(){
+      rect.classList.add("transition4");
+    }
+
+    function transitionClass5(){
+      rect.classList.add("transition5");
+    }
+
+    btn.addEventListener("click", transitionClass);
+    rect.addEventListener("mouseover", transitionClass2);
+    rect.addEventListener("mouseout", transitionClass3);
+    rect.addEventListener("click", transitionClass4);
+    rect.addEventListener("dblclick", transitionClass5);
+  </script>
+</body>
+</html>
