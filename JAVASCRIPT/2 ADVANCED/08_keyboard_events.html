@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Events in JS</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      color: gold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: cursive;
+    }
+
+    .container{
+      width: 400px;
+      aspect-ratio: 1;
+      background-color: darkslategray;
+      border-radius: 10px;
+      border-left: 5px solid white;
+      padding: 1rem;
+    }
+    input[type=text]{
+      width: 100%;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 6px;
+      outline-color: darkblue;
+      padding: 5px 10px;
+    }
+    p{
+      font-size: 1.5em;
+      margin-block: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="input-box">
+    <p id="key">Key pressed:</p>
+    <p id="key-code">Key code:</p>
+    <p id="char-code">Char code:</p>
+    <p id="key-type">Key type:</p>
+  </div>
+
+  <script>
+    const input = document.getElementById("input-box");
+    const key = document.getElementById("key");
+    const keyCode = document.getElementById("key-code");
+    const charCode = document.getElementById("char-code");
+    const keyType = document.getElementById("key-type");
+
+    input.addEventListener("keydown", function(event){
+      
+      key.textContent = "Key pressed: "+event.key;
+      keyCode.textContent = "Key code: "+event.keyCode;
+      charCode.textContent = "Char code: "+event.key.charCodeAt(0);
+      keyType.textContent = "Key type: "+event.type;
+    });
+  </script>
+</body>
+</html>
