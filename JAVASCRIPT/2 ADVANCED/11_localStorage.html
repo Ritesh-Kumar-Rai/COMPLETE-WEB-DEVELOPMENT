@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>local Storage in JS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: cursive;
+    }
+
+    html,
+    body {
+      background-color: rgba(28, 24, 55, 0.833);
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      margin-inline: 2rem;
+      font-size: large;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    #saveBtn {
+      background-color: gold;
+    }
+
+    #getBtn {
+      background-color: lightgreen;
+    }
+
+    #deleteBtn {
+      background-color: crimson;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <button type="button" id="saveBtn">Add Data to localStorage</button>
+  <button type="button" id="getBtn">Get Data from localStorage</button>
+  <button type="button" id="deleteBtn">Delete Data from localStorage</button>
+
+  <script>
+    alert("Open a console and see the output..");
+
+    // getting dom reference
+    const saveBtn = document.getElementById("saveBtn");
+    const getBtn = document.getElementById("getBtn");
+    const deleteBtn = document.getElementById("deleteBtn");
+
+    // json data for localstorage
+    const watchdogs2Data = {
+      game: "Watch Dogs 2",
+      developer: "Ubisoft",
+      release_date: "2016-11-15",
+      platforms: ["PC", "PS4", "Xbox One"],
+      genre: "Action-adventure",
+      main_character: {
+        name: "Marcus Holloway",
+        affiliation: "DedSec",
+        skills: ["Hacking", "Parkour", "Combat"]
+      },
+      locations: [
+        {
+          name: "San Francisco",
+          description: "A vibrant city with diverse neighborhoods and landmarks."
+        },
+        {
+          name: "Oakland",
+          description: "A gritty area with a strong sense of community."
+        },
+        {
+          name: "Silicon Valley",
+          description: "The tech hub of the world, home to many startups and tech giants."
+        }
+      ],
+      missions: [
+        {
+          name: "CyberDriver",
+          objective: "Steal a car from a movie set and use it to promote DedSec."
+        },
+        {
+          name: "False Profits",
+          objective: "Expose a fraudulent religious leader and his cult."
+        },
+        {
+          name: "Haum Sweet Haum",
+          objective: "Infiltrate a smart home company and gather evidence of their unethical practices."
+        }
+      ]
+    }
+
+    // functions for each operations
+    function addData() { 
+      //  let's save data to localStorage
+      const jsonStringData = JSON.stringify(watchdogs2Data);
+      localStorage.setItem("wd2gameData", jsonStringData);
+      console.warn("Data successfully saved to localStorage.");
+    }
+
+    function getData() { 
+      // let's get data from localStorage
+      const jsonData = JSON.parse(localStorage.getItem("wd2gameData"));
+      if(jsonData){
+        console.log("Data successfully retrieved from localStorage.");
+        console.log(jsonData);
+      }else{
+        console.warn("Oops! data does not found in localStorage..");
+      }
+    }
+
+    function removeData() {
+      // let's remove data from localStorage
+      localStorage.removeItem("wd2gameData");
+      console.error("game data successfully removed from localStorage");
+    }
+
+    // attaching event listeners to each button
+    saveBtn.addEventListener("click", addData);
+    getBtn.addEventListener("click", getData);
+    deleteBtn.addEventListener("click", removeData);
+  </script>
+</body>
+
+</html>
