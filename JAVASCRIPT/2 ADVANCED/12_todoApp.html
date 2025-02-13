@@ -142,19 +142,8 @@
     </div>
 
     <div class="todos-list">
-
       <!-- your todos will list here -->
-      <div class="todo-box">
-        <li>Chant a mantra.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi non fugit ratione laboriosam unde quae?</li>
-        <button type="button" class="deleteBtn"><i class="ri-delete-bin-6-fill"></i></button>
-      </div>
-      <div class="todo-box">
-        <li>Chant a mantra.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi non fugit ratione laboriosam unde quae?</li>
-        <button type="button" class="deleteBtn"><i class="ri-delete-bin-6-fill"></i></button>
-      </div>
-
       <!-- else empty msg box will be placed -->
-
     </div>
   </section>
 
@@ -223,6 +212,7 @@
           todosData.push(todo_value);
           const setArray = new Set(todosData);
           todosData = [...setArray];
+          inputElem.value = ""; // resets the input tag value to empty
           renderTodos();
           save_data_to_localStorage();
         }
@@ -233,8 +223,23 @@
       const todo_value = inputElem.value.trim();
       if(todo_value.length > 0){
           saveTodo(todo_value);
+      }  
+    }
+
+    // function for todo removal
+    function removeTodo(todo_to_remove){
+      // filtering the todos
+      // todosData = todosData.filter((eachTodo)=> eachTodo !== todo_to_remove);
+
+      // delete the specific data from array of todos
+      if(todosData.includes(todo_to_remove)){
+        const index_of_todo = todosData.indexOf(todo_to_remove);
+        console.log('index of todo is '+index_of_todo);
+        todosData.splice(index_of_todo,1); // 1st param is index, 2nd param is 1 means delete 1 value from passed index number
+        return {removedTodo: todo_to_remove, index_of_todo: index_of_todo, isDeleted: true};
       }
       
+      throw new Error("Oops! the parameter value is not available in todosData array!");
     }
 
     // attaching event listeners to each DOM elements
@@ -248,7 +253,12 @@
           // console.log("button typed clicked!");
           const parentElement = e.target.parentElement;
           if(parentElement.getAttribute("class") === "todo-box"){
-              console.info(e.target.previousElementSibling);
+              const txtToRemove = e.target.previousElementSibling.innerText;
+              try{
+                const res = removeTodo(txtToRemove);
+                console.info(res);
+                save_data_to_localStorage();
+              }catch(err){console.error(err)};
               parentElement.remove();
           }
       }else if(e.target.tagName === "I" && e.target.getAttribute("class") === "ri-delete-bin-6-fill"){
@@ -259,11 +269,19 @@
             // console.warn("grand parent: ");
             // console.log(grandParent)
             if(grandParent.getAttribute('class') === "todo-box"){
-              console.info(parentElement.previousElementSibling);
+              const txtToRemove = parentElement.previousElementSibling.innerText;
+              try{
+                const res = removeTodo(txtToRemove);
+                console.info(res);
+                save_data_to_localStorage();
+              }catch(err){console.error(err)};
               grandParent.remove();
             }
           }
       }
+
+      // "yeh toh chale ga hi"
+      if(todosData.length < 1 && todosData.length === 0) renderTodos(); 
       
     });
 
