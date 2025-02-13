@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box; font-family: cursive; font-style: italic;}
+
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: slateblue;
+      color: whitesmoke;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    section{
+      width: 500px;
+      min-height: 600px;
+      border-left: 2px solid white;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.422);
+      box-shadow: 0px 0px 50px black;
+      padding: 0.6rem;
+      overflow: hidden;
+    }
+
+    /* css for input box */
+    .inputBox{
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 10px;
+    }
+
+    .inputBox > #input-field{
+      width: 80%;
+      height: 100%;
+      border: none;
+      border-radius: inherit;
+      outline-color: darkblue;
+      padding: 10px 15px;
+      font-size: 1.5em;
+    }
+    .inputBox > #addBtn{
+      width: calc(20% - 15px);
+      height: 100%;
+      border: none;
+      border-radius: inherit;
+      cursor: pointer;
+      background-color: seagreen;
+      color: white;
+      font-weight: bold;
+      outline: 2px solid transparent;
+    }
+    .inputBox > #addBtn:active{
+      outline-color: slateblue;
+      background-color: green;
+    }
+
+    /* css for todo lists */
+    .todos-list{
+      margin-top: 1rem;
+      height: calc(600px - 40px);
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.756);
+      border-radius: inherit;
+      border-right: 2px solid white;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding: 0.8rem;
+    }
+    /* changed the width of scrollbar to 0 */
+    .todos-list::-webkit-scrollbar{
+      width: 0;
+    }
+
+    /* css for empty todo list container */
+
+    .do-flex-for-empty-list{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .empty-msg-box{
+      text-align: center;
+    }
+    .empty-msg-box > p{
+      font-weight: bold;
+      font-size: 1.5em;
+      color: gray;
+    }
+
+    /* css for each todo box */
+    .todo-box{
+      background-color: slateblue;
+      margin: auto;
+      margin-bottom: 10px;
+      border-radius: inherit;
+      display: grid;
+      grid-template-columns: 90% 10%;
+      padding: 10px;
+    }
+    li{
+      list-style-type: none;
+    }
+    .deleteBtn{
+      width: 100%;
+      height: auto;
+      margin: auto; 
+      font-size: 1.5em; 
+      color: crimson;
+      padding: 10px;
+      border: none;
+      border-radius: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: 2px solid transparent;
+      cursor: pointer;
+      transition: all 200ms ease-in-out;
+    }
+    .deleteBtn:active{
+      background-color: rgba(255, 255, 255, 0.744);
+    }
+    .deleteBtn:hover{
+      outline-color: black;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="inputBox">
+      <input type="text" id="input-field" placeholder="write your todo...">
+      <button type="button" id="addBtn">Add Task</button>
+    </div>
+
+    <div class="todos-list">
+
+      <!-- your todos will list here -->
+      <div class="todo-box">
+        <li>Chant a mantra.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi non fugit ratione laboriosam unde quae?</li>
+        <button type="button" class="deleteBtn"><i class="ri-delete-bin-6-fill"></i></button>
+      </div>
+      <div class="todo-box">
+        <li>Chant a mantra.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi non fugit ratione laboriosam unde quae?</li>
+        <button type="button" class="deleteBtn"><i class="ri-delete-bin-6-fill"></i></button>
+      </div>
+
+      <!-- else empty msg box will be placed -->
+
+    </div>
+  </section>
+
+
+  <script>
+    setTimeout(()=>{
+      console.clear();
+      console.warn("Hare Krsna..");
+    }, 4000);
+    
+    // selecting html elements and getting reference
+    const inputElem = document.getElementById("input-field");
+    const addBtn = document.getElementById("addBtn");
+    const todosListContainer = document.querySelector(".todos-list");
+
+    // function to save todos data to localStorage
+    const save_data_to_localStorage = () =>{
+      console.log("localStorage save func. is called!");
+      localStorage.setItem("riteshTodoData", JSON.stringify(todosData));
+      console.log("data saved to localStorage");
+    }
+
+    // function to get todos from localStorage
+    const getTodos_from_localStorage = () =>{
+        return JSON.parse(localStorage.getItem("riteshTodoData"));
+    }
+
+    // global variables
+    let todosData = getTodos_from_localStorage() || new Array();
+
+    // function to render the todos to HTML DOM
+    function renderTodos(){
+      console.log('render func. called')
+      if(todosData.length > 0){
+        // Clear the container before rendering new todos and clear the specific className
+        todosListContainer.innerHTML = '';
+        todosListContainer.classList.remove("do-flex-for-empty-list");
+
+        // run a loop and print the todos 
+          for(let i=0; i < todosData.length; i++){
+            // create a new dom element and append it to HTML element
+            const divElem = document.createElement("div");
+            divElem.setAttribute('class', 'todo-box');
+            divElem.innerHTML = `
+            <li>${todosData[i]}</li>
+            <button type="button" title="remove todo button" class="deleteBtn"><i class="ri-delete-bin-6-fill"></i></button>`;
+            todosListContainer.appendChild(divElem);
+          }
+          return;
+      }
+
+      // if todosData has 0 todo then render empty msg elements
+      todosListContainer.classList.add("do-flex-for-empty-list");
+      todosListContainer.innerHTML = `
+      <div class="empty-msg-box">
+        <img src="https://img.icons8.com/?size=100&id=DaS2a9JEdrjj&format=png&color=000000" alt="empty todo list">
+        <p>Add your first task.</p>
+      </div>
+      `;
+    }
+
+    // function to add a todo to global variable
+    function saveTodo(todo_value = ""){
+        if(todo_value.length > 0 && !todosData.includes(todo_value)){
+          console.warn("saved data.")
+          todosData.push(todo_value);
+          const setArray = new Set(todosData);
+          todosData = [...setArray];
+          renderTodos();
+          save_data_to_localStorage();
+        }
+        return false;
+    }
+    // function to handle addBtn click
+    function addTodo(){
+      const todo_value = inputElem.value.trim();
+      if(todo_value.length > 0){
+          saveTodo(todo_value);
+      }
+      
+    }
+
+    // attaching event listeners to each DOM elements
+    addBtn.addEventListener("click", addTodo);
+    todosListContainer.addEventListener("click", (e)=>{
+      // console.log(e.target)
+      // console.log(e.target.tagName);
+      // console.log(e.target.getAttribute('class'));
+      // console.log(e.target.parentElement.getAttribute('class'))
+      if(e.target.tagName === "BUTTON" && e.target.getAttribute("class") === "deleteBtn"){
+          // console.log("button typed clicked!");
+          const parentElement = e.target.parentElement;
+          if(parentElement.getAttribute("class") === "todo-box"){
+              console.info(e.target.previousElementSibling);
+              parentElement.remove();
+          }
+      }else if(e.target.tagName === "I" && e.target.getAttribute("class") === "ri-delete-bin-6-fill"){
+          console.log("icon typed clicked!");
+          const parentElement = e.target.parentElement;
+          if(parentElement.getAttribute("class") === "deleteBtn"){
+            const grandParent = parentElement.parentElement;
+            // console.warn("grand parent: ");
+            // console.log(grandParent)
+            if(grandParent.getAttribute('class') === "todo-box"){
+              console.info(parentElement.previousElementSibling);
+              grandParent.remove();
+            }
+          }
+      }
+      
+    });
+
+
+    // Initial Rendering of Todo Data's if stored in localStorage
+    document.addEventListener("DOMContentLoaded", ()=>{
+      renderTodos();
+    });
+  </script>
+</body>
+</html>
