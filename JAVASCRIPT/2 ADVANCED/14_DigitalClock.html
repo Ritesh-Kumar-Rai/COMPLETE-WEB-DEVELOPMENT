@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box; font-family: monospace;}
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.733);
+      color: whitesmoke;
+    }
+
+    .digital-clock{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      width: 70%;
+      height: 50vh;
+      border: 4px solid gold;
+      border-radius: 10px;
+      background-color: #1b252a;
+      display: flex;
+    }
+    .digital-clock::after{
+      content: "";
+      height: 15px;
+      width: 70%; /* 70% of digital-clock */
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      background-color: gold;
+      border-radius: inherit;
+    }
+    .digital-clock::before{
+      content: " ";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110%;
+      height: 5px;
+      background-color: goldenrod;
+      filter: blur(8px);
+      border-radius: 3px 3px 8px 8px;
+      box-shadow: 0px 0px 50px gold;
+    }
+    .time-options{
+      width: 10%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      font-size: 2.5em;
+    }
+
+    .clock-holder{
+      width: 90%;
+      height: 100%;
+      /* background-color: slateblue; */
+      border: 4px solid transparent;
+      border-radius: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10em;
+      text-transform: uppercase;
+      color: hotpink;
+    }
+    
+  </style>
+</head>
+<body>
+  
+  <div class="digital-clock">
+      <div class="time-options">
+        <i class="ri-time-fill"></i>
+        <i class="ri-timer-fill"></i>
+        <i class="ri-time-line"></i>
+      </div>
+      <div class="clock-holder"></div>
+  </div>
+
+
+  <script>
+   const clockElem = document.querySelector(".clock-holder");
+   function renderTime(){
+     clockElem.innerText = new Date().toLocaleTimeString();
+   }
+   setInterval(renderTime,1000);
+  </script>
+</body>
+</html>
