@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop Watch Project</title>
+  <script>
+    setTimeout(()=> {
+      console.clear();
+      console.warn("Hare Krsna");
+    }, 5000);
+  </script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: cursive;
+      font-style: italic;
+    }
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: rgb(20, 20, 36);
+      color: crimson;
+    }
+    section{
+      width: 300px;
+      height: 60%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgb(15, 18, 23);
+      border-left: 2px solid gold;
+      border-right: 2px solid gold;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .counter-value{
+      width: 100%;
+      height: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5em;
+      font-style: normal;
+    }
+    .buttons{
+      width: 100%;
+      height: 20%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 5px;
+      margin: auto;
+      padding: 10px;
+    }
+    button{
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      outline-color: red;
+    }
+    button:active{
+      background-color: gray;
+    }
+    .clear-history-btn{
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+    .stop-history{
+      padding: 10px;
+      text-align: center;
+      height: calc(100% - 61%);
+      overflow-y: scroll;
+    }
+    .stop-history::-webkit-scrollbar{
+      width: 5px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="counter-value">0</div>
+    <div class="buttons">
+      <button type="button" class="start-btn">Start</button>
+      <button type="button" class="reset-btn">Reset</button>
+      <button type="button" class="stop-btn">Stop</button>
+      <button type="button" class="get-time-btn">getTime</button>
+      <button type="button" class="clear-history-btn">clearHistory</button>
+    </div>
+    <div class="stop-history"></div>
+  </section>
+
+
+  <script>
+    // getting reference of DOM Elements
+    const counterElem = document.querySelector(".counter-value");
+    const historyElem = document.querySelector(".stop-history");
+    let counter = 0; // global variable
+    let timerID;
+    // start timer function
+    const startTimer = () =>{
+        timerID = setInterval(()=>{
+          counterElem.innerText = counter++;
+        }, 1000);
+    }
+
+    // stop timer function
+    const stopTimer = () =>{
+      clearInterval(timerID);
+    }
+
+    // reset timer function
+    const resetTimer = () =>{
+        counter = 0;
+        stopTimer();
+        counterElem.innerText = counter;
+    }
+
+    // get time function
+    const getTime = () =>{
+      const pTag = document.createElement('p');
+      const textNode = document.createTextNode(`The stop time is: ${(counter === 0)? counter : counter-1}`);
+      pTag.appendChild(textNode);
+      historyElem.append(pTag);
+    }
+
+    // clear history function
+    const clearHistory = () =>{
+      historyElem.innerHTML = "";
+    }
+
+    document.querySelector(".start-btn").addEventListener("click", startTimer)
+    document.querySelector(".stop-btn").addEventListener("click", stopTimer)
+    document.querySelector(".reset-btn").addEventListener("click", resetTimer)
+    document.querySelector(".get-time-btn").addEventListener("click", getTime)
+    document.querySelector(".clear-history-btn").addEventListener("click", clearHistory)
+  </script>
+</body>
+</html>
