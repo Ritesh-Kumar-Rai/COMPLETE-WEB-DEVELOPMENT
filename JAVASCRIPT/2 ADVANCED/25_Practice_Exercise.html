@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>25 Practice Exercise</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet" />
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: cursive;
+    }
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(#12100E, #2B4162);
+      color: darkslateblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container{
+      width: 500px;
+      aspect-ratio: 1;
+      /* background-color: darkslategray; */
+      padding: 2rem;
+      border-radius: 50px;  
+      text-align: center;
+    }
+    input{
+      width: 100%;
+      border: none;
+      border-radius: 15px;
+      font-size: 2em;
+      background-color: #2B4162;
+      color: wheat;
+      padding: 10px;
+      margin-bottom: 4rem;
+    }
+
+    p{
+      font-size: 2em;
+      margin-bottom: 3rem;
+    }
+    span{
+      color: white;
+    }
+    button{
+      font-size: 2em;
+      border: none;
+      border-radius: 15px;
+      padding: 10px;
+      background-color: slateblue;
+      color: white;
+      cursor: pointer;
+      transition: scale 200ms ease-in-out;
+    }
+    button:active{
+      scale: 0.95;
+    }
+    .modal{
+      position: relative;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -10%) scale(0.5);
+      width: 500px;
+      height: 200px;
+      border-radius: 20px;
+      outline-color: steelblue;
+      backdrop-filter: blur(10px);
+      background-color: rgba(240, 248, 255, 0.68);
+      /* style for animation */
+      opacity: 0;
+      transition-property: transform, opacity;
+      transition-duration: 400ms;
+      transition-timing-function: ease-in-out;
+      will-change: transform;
+    }
+
+    .modal::backdrop{
+      background: rgba(40, 81, 120, 0.253);
+      backdrop-filter: blur(5px);
+    }
+   
+
+    .modal > .header{
+      width: 100%;
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+    
+    .modal > .header > i{
+      font-size: 2em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal > .header > i:active{
+      color: red;
+    }
+    .modal > .modal-body{
+      width: 100%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 1.5em;
+      color: rgb(167, 113, 51);
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <input type="text" id="username" title="your name" placeholder="type your name here..." aria-autocomplete="none">
+    
+    <p>Counter Clicked: <span>0</span> Times</p>
+
+    <button type="button" id="count-btn">Button Clicked: 0</button>
+  </div>
+
+  <!-- modal -->
+  <dialog class="modal">
+    <div class="header">
+      <i class="ri-close-large-line"></i>
+    </div>
+    <div class="modal-body"></div>
+  </dialog>
+
+
+  <script>
+    // 1. Display good morning, afternoon and night based on current hour.
+    // • Add the name to the output too.
+    const input = document.getElementById("username");
+    const btn = document.getElementById("count-btn");
+    const spanElem = document.getElementsByTagName('span')[0];
+    const modal = document.getElementsByClassName("modal")[0];
+    const modalBody = document.querySelector(".modal-body");
+    const closeBtn = document.querySelector(".ri-close-large-line");
+
+    function greet(){
+      const date = new Date();
+      const hours = date.getHours();
+      let timePeriod = "";
+
+      if(hours>=6 && hours<12){
+        timePeriod = "Morning";
+      }else if(hours>=12 && hours<18){
+        timePeriod = "Afternoon";
+      }else if(hours>=18 && hours<21){
+        timePeriod = "Evening";
+      }else{
+        timePeriod = "Night";
+      }
+      const username = input.value;
+      if(username.length<2) return;
+
+      modal.showModal();
+      modal.style.transform = "translate(-50%, -10%) scale(1)";
+      modal.style.opacity = "1";
+      modalBody.innerText = `Good ${timePeriod}, ${username} Welcome to JS.`;
+    }
+
+    input.addEventListener("change", greet);
+    closeBtn.addEventListener("click", ()=> {
+      modal.style.transform = "translate(-50%, -10%) scale(0.5)";
+      modal.style.opacity = "0"
+      setTimeout(()=> modal.close(), 400);
+    });
+
+
+    //  2. Create a Button which shows the number how many times it has been pressed. 
+    // • Also, it has different colors for when it has been pressed odd or even times.
+    // • The click count should also survive browser refresh.
+    let counter = Number(sessionStorage.getItem("JSCounterAppData")) || 0;
+    counter>0 ? renderCounter() : null;
+
+    function incrementCounter(){
+      counter++;
+      renderCounter();
+    }
+
+    function renderCounter(){
+
+      btn.style.backgroundColor = (counter%2 ===0)? "slateblue" : "teal"; 
+      btn.innerText = `Button Clicked: ${counter}`;
+      spanElem.innerText = counter;
+      sessionStorage.setItem("JSCounterAppData", counter);
+    }
+
+    btn.addEventListener("click", incrementCounter);
+  </script>
+</body>
+</html>
