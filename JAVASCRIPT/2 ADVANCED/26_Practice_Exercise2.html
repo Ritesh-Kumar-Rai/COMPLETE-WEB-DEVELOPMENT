@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>26 Practice Exercise 2</title>
+  <style>
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button{
+      font-family: cursive;
+      padding: 10px 15px;
+      font-size: 2em;
+      font-weight: bold;
+      border: 5px solid black;
+      border-radius: 15px;
+      cursor: pointer;
+      outline: 2px solid transparent;
+      transition: transform 400ms ease-in-out;
+      will-change: transform;
+    }
+    button:active{
+      outline-color:skyblue;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn">Click Me</button>
+</body>
+<script>
+  /*
+    1. Create a variable multiply and assign a function to this 
+  variable that multiplies two numbers. Call this method from 
+  the variable.
+
+  2. Create a function runTwice that takes a function as a 
+  parameter and then runs that method twice.
+
+  3. Create a button which should grow double in size on 
+  clicking after 2 seconds. 
+
+  4. In the above exercise add the behavior using an event 
+  listener instead of onclick.
+
+  5. Create a function that sums an array of numbers. Do this 
+  using a for-each loop.
+
+  6. Create a function that takes an array of numbers and 
+  return their squares using map function.
+*/ 
+// 1. Solution
+const multiply = (num1=0,num2=0) => num1*num2;
+console.log(multiply(4,5));
+
+// 2. Solution
+function runTwice(callBack){
+  callBack(2000,1);
+  callBack(5000,2);
+}
+
+function exec(time,count){
+  setTimeout(()=>{
+    console.clear();
+    console.warn("Hare Krsna"+" "+count+" Time");
+  },time);
+}
+
+runTwice(exec);
+
+// 3 and 4. Solution
+const btn = document.getElementById("btn");
+const scaleBtn = () => setTimeout(()=>btn.style.transform = "scale(2)",2000) ;
+btn.addEventListener("click", scaleBtn);
+
+// 5. Solution
+const nums = [10,20,30,40,50];
+let accumulator = 0;
+nums.forEach((num)=>{
+  accumulator = accumulator + num;
+});
+setTimeout(()=>console.info("sum of array is: "+accumulator),5000);
+
+// 6. Solution
+
+function squareOfArray(arr){
+  const squaredArray = arr.map((num)=> num*num);
+  return squaredArray;
+}
+const newArray = squareOfArray(nums);
+setTimeout(()=> console.log(newArray), 6000);
+
+</script>
+</html>
