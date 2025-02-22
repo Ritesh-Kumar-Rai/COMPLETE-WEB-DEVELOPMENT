@@ -3,4 +3,4 @@
  - HTML
  - CSS
  - JAVASCRIPT
- -REACT JS
+ - REACT JS
