@@ -1,0 +1,155 @@
+<!--* =================================== 
+<!--*  Event Propagation: 
+<!-- * =================================== 
+
+<!--* Event propagation refers to the process of how events propagate or travel through the DOM (Document Object Model) hierarchy. 
+ <!--? In JavaScript, there are two phases of event  propagation: capturing phase and bubbling phase. Understanding event propagation is crucial for managing and handling events in complex web applications. 
+ 
+<!--* =================================== 
+<!--*  Phases of Event Propagation: 
+<!--* ===================================
+<!-- 
+? Capturing Phase:
+The event starts from the root of the DOM and goes down to the target element.
+Handlers registered for the capturing phase are executed.
+
+? Target Phase:
+The event reaches the target element.
+The handler registered for the target phase is executed.
+
+? Bubbling Phase:
+The event starts from the target element and bubbles up to the root of the DOM.
+Handlers registered for the bubbling phase are executed. -->
+
+<!--?  event.stopPropagation() -->
+<!-- The stopPropagation() method of the Event interface prevents further propagation of the current event in the capturing and bubbling phases. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>27 Event Propagation in JS</title>
+  <script>
+    setTimeout(()=>{
+      console.clear();
+      console.warn("Hare Krsna");
+    },1000);
+  </script>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box; font-family: cursive;}
+    html,body{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+    }
+    section{
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: gray;
+    }
+
+    div{
+      padding: 6rem 10rem;
+      border: 3px solid black;
+      text-transform: uppercase;
+      box-shadow: 8px 8px 50px black;
+      cursor: pointer;
+      background-color: #c7c8cc;
+    }
+    #outer:hover{
+      position: relative;
+      background-color: greenyellow;
+      z-index: 1;
+    }
+    #middle:hover{
+      position: relative;
+      background-color: steelblue;
+      z-index: 2;
+    }
+    #inner:hover{
+      position: relative;
+      background-color: teal;
+      z-index: 3;
+    }
+
+  </style>
+</head>
+<body>
+  <section>
+    <div id="outer">
+      Outer 
+      <div id="middle">
+        Middle
+        <div id="inner">Inner</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- JS code -->
+   <script>
+    const innerFunc = () =>{
+      console.table([{
+        Description: "I'm a Inner Div",
+        Target: event.target,
+        currentTarget: event.currentTarget,
+      },]);
+      event.stopPropagation();
+    };
+
+    const middleFunc = (event) =>{
+      console.table([{
+        Description: "I'm a Middle Div",
+        Target: event.target,
+        currentTarget: event.currentTarget,
+      },]);
+    };
+
+    const outerFunc = () =>{
+      console.table([{
+        Description: "I'm a Outer Div",
+        Target: event.target,
+        currentTarget: event.currentTarget,
+      },]);
+      // event.stopImmediatePropagation();
+    };
+
+    // Bubbling Phase: From target to Top DOM element target->parent->body->html->window 
+    
+ /*   document.getElementById("inner")
+    .addEventListener("click", innerFunc);
+
+    document.getElementById("middle")
+    .addEventListener("click", middleFunc);
+
+    document.getElementById("outer")
+    .addEventListener("click", outerFunc);
+ */ 
+
+    // Capturing Phase: From Top Element to Target window->html->parent->target
+    document.getElementById("inner")
+    .addEventListener("click", innerFunc,true);
+
+    document.getElementById("middle")
+    .addEventListener("click", middleFunc,true);
+
+    document.getElementById("outer")
+    .addEventListener("click", outerFunc,true);
+
+    // Here e.stopPropagation() stop's bubbling to parent; wheareas e.stopImmediatePropagation() stop's bubbling and also stops the other functions which is also set to target to not get executed..
+
+    // + e.stopPropagation() in bubbling phase stops target child function to not go to it's parent or root event listeners to execute. But in Capturing mode; when you have been applied to parent function then it stops it's child function to stop exec./trigger;
+
+    // e.stopPropagation() in Bubbling Phase:
+    //   -> Stops target to not propagate to it's ❌-> parent -> body -> html -> window 
+
+    // e.stopPropagation() in Capturing Phase:
+    //    -> Stops parent function to not propagate it's child functions like 
+    // window ❌-> html -> body -> parent -> target
+   </script>
+</body>
+</html>
