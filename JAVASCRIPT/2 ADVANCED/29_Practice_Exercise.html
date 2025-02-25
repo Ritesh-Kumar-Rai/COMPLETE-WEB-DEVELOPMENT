@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>29 BookmyShow SeatSelection using Event Delegation</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif;}
+    html,body{
+      width: 100%;
+      height: 100vh;
+      padding: 2rem;
+    }
+    h1{
+      text-align: center;
+      color: crimson;
+    }
+
+    section{
+      width: 100%;
+      height: 80vh;
+      margin-top: 2rem;
+      background-color: aliceblue;
+      padding: 1rem;
+      border-radius: 15px;
+    }
+    .screen-layout{
+      width: 100%;
+      height: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 10px;
+      color: gray;
+      font-weight: 500;
+    }
+    .screen-layout > .screen2D{
+      width: 300px;
+      height: 100px;
+      border: 5px solid transparent;
+      border-top-color: skyblue;
+      border-radius: 30%;
+    }
+
+    .seats-layout{
+      height: 90%;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      align-items: center;
+      justify-items: center;
+      padding: 1rem;
+      /* background-color: azure; */
+      border-top: 4px solid azure;
+      border-radius: inherit;
+    }
+    .seats-layout .seat{
+      border: 2px solid gray;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 2px 8px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(4px 4px 10px black);
+      scale: 0.5;
+      opacity: 0;
+      transition-property: scale, opacity;  
+      transition-duration: 900ms;
+      transition-timing-function: ease;
+      will-change: scale, opacity;
+    }    
+    .seats-layout .seat:hover{
+      border-color: crimson;
+    }
+    .seats-layout .seat > i{
+      font-size: 2em;
+    }
+
+    .seats-layout .green{border-color: green; scale: 1.2;}
+    .seats-layout .gold{color: goldenrod;}
+   
+  </style>
+</head>
+<body>
+  <h1>BookmyShow Seat Selection using Event Delegation</h1>
+  <section class="cinema-hall">
+    <div class="screen-layout">
+      <span id="screen-txt">All eyes this way please!</span>
+      <div class="screen2D"></div>
+    </div>
+
+    <div class="seats-layout">
+
+      <!-- <div class="seat">
+        <i class="ri-sofa-fill"></i>
+        <span class="seat-number">A1</span>
+      </div> -->
+
+    </div>
+  </section>
+
+  <script>
+    const api_row = ["A","B","C","D","E"];
+
+    const seatsElem = document.querySelector(".seats-layout");
+    const user_anw = prompt("How Many Seats you want to Select?");
+    const seatsSelectionQuantity = Number(user_anw) ?? 1;
+    const seatsSelected = [];
+
+    const sleep = (sec) =>{
+      return new Promise((resolve, reject)=>{
+        setTimeout(()=>{resolve(true)},sec);
+      });
+    }
+
+    const applyCSSEffect = (elem, sec) =>{
+      return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+          elem.style.scale = "1";
+          elem.style.opacity = "1";
+          resolve(true);
+        },sec);
+      });
+    }
+
+    // render seats function
+    const renderSeats = async () =>{
+
+      const time_for_promise = 30;
+
+      for(let i=0; i<api_row.length; i++){
+      for(let j=1; j<=10; j++){
+          const seatDiv = document.createElement('div');
+          seatDiv.setAttribute("class", "seat");
+          seatDiv.setAttribute("seat-section", api_row[i]);
+          seatDiv.setAttribute("seat-number", j);
+          
+          const sofaIcon = document.createElement('i');
+          sofaIcon.setAttribute("class", "ri-sofa-fill");
+
+          const spanTag = document.createElement('span');
+          spanTag.setAttribute("class", "seat-number");
+
+          const textNode = document.createTextNode(api_row[i]+j);
+
+          spanTag.appendChild(textNode);
+          seatDiv.appendChild(sofaIcon);
+          seatDiv.appendChild(spanTag);
+          // console.log(j+""+api_row[i]);
+          await sleep(time_for_promise);
+          seatsElem.append(seatDiv);
+          await applyCSSEffect(seatDiv, time_for_promise);
+        }
+      }
+    }
+
+    // manageClick function
+    const manageClick = (e) =>{
+      console.error(e.target);
+      const targetClassName = e.target.className;
+      let isSelected = Boolean(false);
+
+      // checking is the selected seat is already selected or not
+      if(true){
+
+      }
+
+
+      // logic to select the seats as per what user wants plus+ removing classNames from others seats and removing them from array to allow users to select another seats
+      if(seatsSelected.length >= seatsSelectionQuantity){
+        seatsSelected.forEach((seatID, index) =>{
+          const seatElem = document.querySelector(`.seat[seat-section='${seatID[0]}'][seat-number='${seatID[1]}']`);
+          seatElem.classList.remove("green");
+          seatElem.firstElementChild.classList.remove("gold");
+          seatsSelected.splice(index, 1);
+        });
+        // seatsSelected.length = 0;
+        
+      }
+      let seatSection;
+      let seatNumber;
+      switch(targetClassName){
+          case "seat": 
+              seatSection = e.target.getAttribute("seat-section");
+              seatNumber = e.target.getAttribute("seat-number");
+              // alert("You have selected a "+seatSection+seatNumber+" seat.");
+              isSelected = true;
+              seatsSelected.push(seatSection+seatNumber);
+              e.target.classList.add("green");
+              e.target.firstElementChild.classList.add("gold");
+              break;
+          case "ri-sofa-fill":
+              seatSection = e.target.parentElement.getAttribute("seat-section");
+              seatNumber = e.target.parentElement.getAttribute("seat-number");
+              isSelected = true;
+              console.log('icon cliekd')
+              seatsSelected.push(seatSection+seatNumber);
+              console.log('done');
+              e.target.parentElement.classList.add('green');
+              e.target.classList.add('gold');
+              break;
+          case "seat-number":
+              seatsSelected.push(e.target.innerText);
+              isSelected = true;
+              e.target.parentElement.classList.add('green');
+              e.target.previousElementSibling.classList.add('gold');
+              break;         
+          default: 
+              isSelected = false;
+      }
+      
+      console.log(seatsSelected);
+      alert("User has selected: "+seatsSelected+" seats.");
+    }
+
+    // adding event listener to seats layout
+    seatsElem.addEventListener("click", manageClick);
+
+    // appending seats to seats-layout after dom loaded
+    document.addEventListener("DOMContentLoaded", renderSeats);
+  </script>
+</body>
+</html>
