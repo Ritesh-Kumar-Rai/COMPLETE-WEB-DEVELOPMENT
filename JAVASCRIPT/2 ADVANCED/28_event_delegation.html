@@ -69,6 +69,11 @@
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      transition: all 400ms ease-in-out;
+    }
+    .product-card:hover{
+      scale: 1.05;
+      box-shadow: 0px 0px 10px rgb(32, 31, 31);
     }
     .product-card .image-box{
       width: 100%;
@@ -101,6 +106,9 @@
     .product-card button:active{
       outline-color: steelblue;
     }
+    .container{
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -120,7 +128,7 @@
       <div class="product-body">
         <span>Nike XBOX 7 Series</span>
         <span>$679</span>
-        <button type="button">Add to Cart</button>
+        <button class="cart-btn" type="button">Add to Cart</button>
       </div>
     </div>
 
@@ -129,9 +137,9 @@
         <img class="object-cover" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="product image" />
       </div>
       <div class="product-body">
-        <span>Nike XBOX 7 Series</span>
-        <span>$679</span>
-        <button type="button">Add to Cart</button>
+        <span>Nike Analomy Red Shoes</span>
+        <span>$821</span>
+        <button class="cart-btn" type="button">Add to Cart</button>
       </div>
     </div>
 
@@ -140,9 +148,9 @@
         <img class="object-cover" src="https://images.unsplash.com/flagged/photo-1580234820596-0876d136e6d5?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="product image" />
       </div>
       <div class="product-body">
-        <span>Nike XBOX 7 Series</span>
-        <span>$679</span>
-        <button type="button">Add to Cart</button>
+        <span>Sony PS4 Dual Shock 4 controller</span>
+        <span>$179</span>
+        <button class="cart-btn" type="button">Add to Cart</button>
       </div>
     </div>
     
@@ -156,12 +164,32 @@
 
   const parentElem = document.getElementById("products-list");
   const msgElem = document.querySelector('.container');
+  const cartCount = document.getElementById("cart-count");
 
   const manageProductClick = (e) =>{
-    console.log(e.target.className)
-    if(e.target.className == "product-card"){
-      console.warn(e.target.nextChild);
-      msgElem.textContent = "You have clicked on ${}";
+    console.log(e.target.className);
+    const targetElem = e.target.className;
+    if(targetElem == "product-card"){
+      const productName = (e.target.firstElementChild.nextElementSibling.firstElementChild.innerText);
+      msgElem.innerHTML = `You have clicked on <b style='color:gold;'>${productName}</b> product Card`;
+    }else if(targetElem == "image-box"){
+      const productName = e.target.nextElementSibling.firstElementChild.innerText;
+      msgElem.innerHTML = `You have clicked on <b style='color:gold;'>${productName}</b> product Image`;
+    }else if( targetElem == "object-cover"){
+      const productName = e.target.parentElement.nextElementSibling.firstElementChild.innerText;
+      msgElem.innerHTML = `You have clicked on <b style='color:gold;'>${productName}</b> product Image`;
+    }else if(targetElem == "product-body"){
+      const productName = e.target.firstElementChild.innerText;
+      msgElem.innerHTML = `You have clicked on <b style='color:gold;'>${productName}</b> product body`;
+    }else if(e.target.tagName === "SPAN"){
+      const productName = e.target.parentElement.firstElementChild.innerText;
+      const productPrice = e.target.parentElement.firstElementChild.nextElementSibling.innerText;
+      msgElem.innerHTML = `You have clicked on <b style='color:gold;'>${productName}</b> which has price <b style="color: red;">${productPrice}</b>`;
+    }else if(targetElem == "cart-btn"){
+      const productName = e.target.previousElementSibling.previousElementSibling.innerText;
+      const productId = e.target.parentElement.parentElement.getAttribute('product-id');
+      msgElem.innerHTML = `Your product: <b style='color:gold;'>${productName}</b> which has <b style='color:red;'>id:</b>${productId} has been added to Cart</b>`;
+      cartCount.innerText++;
     }
   }
 
