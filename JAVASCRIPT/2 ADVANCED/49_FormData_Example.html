@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>49 FormData Example</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: cursive;
+    }
+    html,body{
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: aliceblue;
+    }
+
+    section{
+      width: 500px;
+      height: 700px;
+      background-color: rgba(105, 90, 205, 0.774);
+      filter: drop-shadow(0px 0px 20px black);
+      border: none;
+      border-radius: 15px;
+      padding: 2rem;
+    }
+    h1{
+      text-align: center;
+    }
+
+    form{
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border: none;
+      border-radius: inherit;
+      margin-top: 10%;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.521);
+      text-align: center;
+    }
+    .form-control{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+    .form-control > input[type='email'], input[type='text'], input[type='password']{
+      width: 100%;
+      padding: 5px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 10px;
+      outline-color: purple;
+    }
+    .form-control > input[type='file']{
+      font-size: 1.2em;
+      padding-block: 15px;
+      border: 2px solid rgba(0, 0, 0, 0.562);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .form-control > input[type='file']::-webkit-file-upload-button{
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      box-shadow: 0px 0px 20px black;
+      margin: 10px;
+      cursor: grab;
+      transition: scale 200ms ease-in-out;
+    }
+    .form-control > input[type='file']::-webkit-file-upload-button:active{
+      scale: 0.9;
+    }
+
+    form > #submit-btn{
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 10px;
+      box-shadow: 0px 0px 20px rgba(53, 45, 107, 0.774);
+      font-weight: bold;
+      transition: scale 200ms ease;
+      cursor: pointer;
+    }
+    form > #submit-btn:active{
+      scale: 1.1;
+    }
+  </style>
+</head>
+<body>
+    <section class="form-container">
+        <h1>FormData</h1>
+        <form action="#" method="post">
+            <div class="form-control">
+              <label for="username">Name:</label>
+              <input type="text" name="username" id="username" title="username" autocomplete="false"/>
+            </div>
+            <div class="form-control">
+              <label for="email">Email:</label>
+              <input type="email" name="email" id="email" title="email" autocomplete="false"/>
+            </div>
+            <div class="form-control">
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password" title="password" autocomplete="false"/>
+            </div>
+            <div class="form-control">
+              <label for="profile-picture">Profile Picture:</label>
+              <input type="file" name="profile-picture-file" accept="image/*" id="profile-picture"/>
+            </div>
+
+            <input type="submit" value="Save Profile" id="submit-btn" title="save profile">
+
+        </form>
+    </section>
+
+    <script>
+      const formElem = document.querySelector("form");
+      formElem.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const submitter = document.querySelector("#submit-btn");
+        
+        const form_data = new FormData(formElem,submitter);
+        
+        form_data.forEach((value,key) =>{
+          console.log(`${key} -> ${value}`);
+          if(key === "profile-picture-file"){
+            console.warn(value);
+          }
+        });
+
+        // tried to change the profile-picture-name to somewhat 
+        const fileImage = form_data.get("profile-picture-file");
+        form_data.set("profile-picture", fileImage, "profile image");
+        form_data.delete("profile-picture-file");
+
+        setTimeout(()=>{
+          const imageFile = form_data.get("profile-picture");
+          console.log(`fileName -> ${imageFile.name}`);
+          console.log(`fileSize -> ${imageFile.size}`);
+          console.log(`size in KB -> ${(imageFile.size/1024).toFixed(2)}KB`);
+          console.log(`size in MB -> ${(imageFile.size/(1024 * 1024)).toFixed(2)}MB`);
+          console.log(`fileType -> ${imageFile.type}`);
+        },2000);
+        formElem.reset();
+      });
+
+    </script>
+</body>
+</html>
