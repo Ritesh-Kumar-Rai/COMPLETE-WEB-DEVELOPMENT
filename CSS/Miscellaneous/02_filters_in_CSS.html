@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Filter property in CSS</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    html,body{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    section{
+      width: 50%;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      filter: drop-shadow(0 0 20px black); /*Adds a shadow to the element*/
+      transition: scale 400ms ease;
+      will-change: scale; /*this will optimise the css property scale*/
+      cursor: crosshair;
+    }
+    section:hover{
+      scale: 1.1;
+    }
+    section > img{
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+      /* filter property is used to set some graphical effects to container or image */
+      
+      /* filter: blur(5px); */
+      /* filter: brightness(50%); */
+      /* filter: contrast(150%); */
+      /* filter: grayscale(0.8); */
+      /* filter: hue-rotate(70deg); */
+      /* filter: invert(90%); */
+      /* filter: sepia(70%); */
+      /* filter: opacity(0.5); */
+      filter: saturate(150%);
+    }
+  </style>
+</head>
+<body>
+    <section>
+      <img src="https://images.unsplash.com/photo-1687627045984-82ec8a4d2697?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="vrindavan krsna image" />
+    </section>
+</body>
+</html>
