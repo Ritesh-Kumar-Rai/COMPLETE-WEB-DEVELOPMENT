@@ -58,6 +58,12 @@ CSS filters are a set of graphical effects that can be applied to HTML elements 
   filter: sepia(0.7); /* 70% sepia effect */ 
   ```
 
+  ### 10. ``drop-shadow(offset-x offset-y blur-radius color)``: Adds a shadow to the element.
+
+  ```css 
+  filter: drop-shadow(10px 20px 50px violet);
+  ```
+
 
 ## IMPORTANT TIPS - FILTERS - CSS3:
 
