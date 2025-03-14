@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Modal using JS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: auto;
+      background-color: turquoise;
+      color: aliceblue;
+      font-family: cursive;
+    }
+
+    section {
+      width: 100%;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 50%;
+      height: 600px;
+      border: 2px solid gray;
+      border-radius: 20px;
+      background-color: sandybrown;
+      margin-left: 10%;
+      margin-block: 4rem;
+    }
+
+    #ctn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+
+    dialog {
+      width: 500px;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      padding: 2rem;
+      border-radius: 20px;
+      border-color: gray;
+      opacity: 0;
+      scale: 0;
+      transition: opacity 400ms ease, scale 400ms ease;
+    }
+
+    dialog.opening{
+      opacity: 1;
+      scale: 1;
+    }
+    dialog.closing{
+      opacity: 0;
+      scale: 0;
+    }
+
+    dialog>h3,
+    p {
+      margin-block: 1rem;
+    }
+
+    dialog>button {
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 15px;
+      font-size: 1.2em;
+      border: 2px solid black;
+      outline: none;
+      /* shorthand for border-color: transparent */
+      border-radius: 10px;
+      background-color: rgb(216, 109, 130);
+      color: aliceblue;
+      cursor: pointer;
+      transition: border-color 200ms ease, transform 200ms ease;
+      /* combined shorthand */
+      will-change: transform;
+    }
+
+    dialog>button:active {
+      border-color: crimson;
+      transform: translateX(-50%) scale(1.05);
+      /* Both centering and scaling preserved */
+    }
+
+    body.no-scroll{
+      overflow: hidden;
+    }
+
+    #btn{
+      padding: 5px 15px;
+      font-size: 1.5em;
+      border: 2px solid gray;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 200ms ease;
+      will-change: transform;
+    }
+    #btn:hover{
+      background-color: rgba(240, 248, 255, 0.76);
+    }
+    #btn:active{
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="container" id="ctn">
+      <button type="button" id="btn">Open Modal</button>
+    </div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+  </section>
+
+  <dialog id="modal">
+    <h3>This is Modal</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, error! Voluptates ipsa sunt praesentium
+      non.</p>
+    <button type="button" id="closeBtn">Close</button>
+  </dialog>
+
+  <script>
+    const modal = document.querySelector('#modal');
+    const btn = document.getElementById("btn");
+    const close_btn = document.getElementById("closeBtn");
+    
+    btn.addEventListener("click", ()=>{
+      modal.showModal();
+      document.body.classList.add("no-scroll");
+      modal.classList.add("opening");
+    });
+
+    close_btn.addEventListener('click',()=>{
+      modal.classList.remove("opening");
+      modal.classList.add("closing");
+      document.body.classList.remove("no-scroll");
+      setTimeout(()=>{
+        modal.classList.remove("closing");
+        modal.close();
+      },400);
+    });
+
+  </script>
+</body>
+
+</html>
