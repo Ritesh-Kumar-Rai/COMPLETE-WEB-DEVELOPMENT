@@ -14,6 +14,10 @@
     </div>
 
     <nav>
+      <div>
+        <button type="button" aria-label="menu-toggler" id="menu-toggler-close-btn"><i class="ri-close-large-fill"></i></button>
+      </div>
+      
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">All Products</a></li>
@@ -26,8 +30,33 @@
       <button aria-label="sign-in" type="button">Sign In</button>
       <button aria-label="wishlist" type="button"><i class="ri-heart-3-line"></i></button>
       <button aria-label="add-to-cart-button" type="button"><i class="ri-shopping-cart-fill"></i> Cart <span>0</span></button>
-      <button aria-label="menu-toggler" id="menu-toggler-open-btn" type="button"><i class="ri-menu-3-line"></i></button>
+      <div>
+        <button aria-label="menu-toggler" id="menu-toggler-open-btn" type="button"><i class="ri-menu-3-line"></i></button>
+      </div>
     </div>
   </header>
+
+  <script>
+    // JS for Navbar Menu Bar Handling
+    const navElem = document.querySelector("nav");
+    const togglerOpenBtn = document.getElementById("menu-toggler-open-btn");
+    const togglerCloseBtn = document.getElementById("menu-toggler-close-btn");
+
+
+    // attaching event listener to togglerOpenBtn
+    togglerOpenBtn.addEventListener('click',()=>{
+      navElem.style.display = "block";
+      setTimeout(()=>{
+        navElem.style.left = "0%";
+        navElem.style.opacity = "1";
+      },200)
+    });
+
+    togglerCloseBtn.addEventListener('click', ()=>{
+      navElem.style.left = "-100%";
+      navElem.style.opacity = ".5";
+      setTimeout(()=> navElem.style.display = "none",200);
+    });
+  </script>
 </body>
 </html>
