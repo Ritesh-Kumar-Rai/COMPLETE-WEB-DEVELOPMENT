@@ -38,6 +38,9 @@ header > nav > div{
   align-items: center;
   justify-content: flex-end;
 }
+header > nav > div > button{
+  display: none;
+}
 
 header > nav button{
   padding: 6px 15px;
@@ -155,6 +158,11 @@ header > .header-controls > button:nth-child(3) > span{
     background-color: #18181A;
     transition: opacity 700ms ease, left 400ms ease;
   }
+
+  header > nav > div > button{
+    display: block;
+  }
+
   header > nav > ul{
     margin-top: 2rem;
     flex-direction: column;
