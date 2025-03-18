@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search Box</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="search-container">
+    <div class="search-box">
+        <div class="dropdown-container">
+            <div class="select">
+              <div>
+                <span>Sort By: </span>
+                <span class="selected-item">Relevance</span>
+              </div>
+              <span class="caret"></span>
+            </div>
+            <div class="menu-options">
+              <ul>
+                <li option-data-value="Relevance">Relevance</li>
+                <li option-data-value="Price: Low to High">Price: Low to High</li>
+                <li option-data-value="Price: High to Low">Price: High to Low</li>
+                <li option-data-value="Ratings">Ratings</li>
+                <li option-data-value="Discounts">Discounts</li>
+              </ul>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" name="search-input" id="search-input"/>
+            <button type="submit"><i class="ri-search-line"></i></button>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    // getting html dom reference
+    const selectElem = document.querySelector(".select");
+    const menuElem = document.querySelector(".menu-options");
+    
+
+    // attaching event listener
+    selectElem.addEventListener('click', ()=>{
+      const caretElem = document.querySelector(".caret");
+      caretElem.classList.toggle("caretRotate");
+      menuElem.style.display = "block";
+      
+      setTimeout(()=> menuElem.classList.toggle("menuOpened") ,200);
+      setTimeout(()=>{
+        if(!(menuElem.classList.contains("menuOpened"))){
+          setTimeout(()=>{
+            menuElem.style.display = "none";
+          } ,500)
+        }
+      },200);
+    });
+
+    menuElem.addEventListener('click', (e)=>{
+      console.log(e);
+      if(e.target.tagName === "LI"){
+        if(e.target.hasAttribute("option-data-value")){
+          // first remove the classes form all li
+          menuElem.querySelectorAll("li")
+          .forEach(li =>{
+            li.classList.remove("selected");
+          });
+          const attribute = e.target.getAttribute("option-data-value");
+          const selectedElem = document.querySelector(".selected-item");
+          if(selectedElem.nodeType === 1 && selectedElem instanceof Element){
+              selectedElem.innerText = attribute.replace(":"," -");
+              e.target.classList.toggle("selected");
+              menuElem.classList.remove("menuOpened");
+              document.querySelector(".caret").classList.remove("caretRotate");
+          }else{
+            throw new ReferenceError("We failed to get selectedElem!");
+          }
+        }
+        
+      }
+    });
+  </script>
+</body>
+</html>
