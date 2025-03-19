@@ -38,7 +38,7 @@ html,body{
 
 /* css for select container */
 .search-container > .search-box .select{
-  background-color: rgb(13, 59, 88);
+  /* background-color: rgb(13, 59, 88); */
   background-color: #323741;
   color: aliceblue;
   padding: 10px 15px;
@@ -114,4 +114,45 @@ html,body{
 /* custom class for li element */
 .search-container > .search-box .menu-options > ul > li.selected{
   background-color: rgb(51, 50, 50);
+}
+
+
+/* CSS for Search Bar */
+.search-container > .search-box > .search-bar{
+  width: 55%;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.search-container > .search-box > .search-bar{
+  border: 2px solid #323741;
+  border-radius: 10px;
+  background-color: #F0F0F0;
+  overflow: hidden;
+}
+.search-container > .search-box > .search-bar > #search-input{
+  padding: 5px 15px;
+  font-size: 1.2em;
+  width: 90%;
+  border: none;
+  outline:none;
+  background-color:transparent;
+}
+.search-container > .search-box > .search-bar > button[type="submit"]{
+  width: 10%;
+  font-size: 1.5em;
+  padding: 5.5px 5px;
+  font-weight: 600;
+  border: none;
+  color: rgb(107, 105, 105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  transition: scale 200ms ease-out;
+}
+.search-container > .search-box > .search-bar > button[type="submit"]:active{
+  scale: 1.2;
 }
