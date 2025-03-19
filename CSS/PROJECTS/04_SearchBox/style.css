@@ -31,13 +31,13 @@ html,body{
   align-items: center;
 }
 
-.search-container > .search-box > .dropdown-container{
+.search-container  .dropdown-container{
   min-width: 215px;
   position: relative;
 }
 
 /* css for select container */
-.search-container > .search-box .select{
+.search-container  .select{
   /* background-color: rgb(13, 59, 88); */
   background-color: #323741;
   color: aliceblue;
@@ -50,13 +50,13 @@ html,body{
   cursor: pointer;
 }
 
-.search-container > .search-box .select > div >  .selected-item{
+.search-container .select > div >  .selected-item{
   margin-left: 3px;
   margin-right: 8px;
   font-weight: bold;
 }
 
-.search-container > .search-box .select > .caret{
+.search-container  .select > .caret{
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
@@ -66,13 +66,13 @@ html,body{
   transition: transform 300ms ease-out;
 }
 /* custom class for caret element */
-.search-container > .search-box .select > .caret.caretRotate{
+.search-container  .select > .caret.caretRotate{
   transform: rotate(180deg);
 }
 
 
 /* css for menu options */
-.search-container > .search-box .menu-options{
+.search-container  .menu-options{
   position: absolute;
   top: -3rem;
   left: 0;
@@ -80,7 +80,7 @@ html,body{
   background-color: #323741;
   color: white;
   padding: 15px 15px;
-  border: 0;
+  border: 2px solid steelblue;
   border-radius: 10px;
   scale: 0;
   opacity: 0;
@@ -89,18 +89,22 @@ html,body{
   transition-duration: 400ms;
   transition-timing-function: ease-out;
   will-change: top,scale,opacity;
+  z-index: 90;
+}
+.search-container .filter-box .menu-options{
+  z-index: 80;
 }
 /* custom class for menu-options element */
-.search-container > .search-box .menu-options.menuOpened{
+.search-container  .menu-options.menuOpened{
   top: 3rem;
   scale: 1;
   opacity: 1;
 }
 
-.search-container > .search-box .menu-options > ul{
+.search-container  .menu-options > ul{
   list-style-type: none;
 }
-.search-container > .search-box .menu-options > ul > li{
+.search-container  .menu-options > ul > li{
   padding: 8px 10px;
   margin-bottom: 5px;
   border: none;
@@ -108,18 +112,18 @@ html,body{
   cursor: pointer;
   transition: background-color 300ms ease-out;
 }
-.search-container > .search-box .menu-options > ul > li:hover{
+.search-container  .menu-options > ul > li:hover{
   background-color: rgb(51, 50, 50);
 }
 /* custom class for li element */
-.search-container > .search-box .menu-options > ul > li.selected{
+.search-container  .menu-options > ul > li.selected{
   background-color: rgb(51, 50, 50);
 }
 
 
 /* CSS for Search Bar */
 .search-container > .search-box > .search-bar{
-  width: 55%;
+  width: 65%;
   display: flex;
   align-items: center;
   margin-left: 5%;
@@ -156,3 +160,46 @@ html,body{
 .search-container > .search-box > .search-bar > button[type="submit"]:active{
   scale: 1.2;
 }
+
+
+/* CSS for Fliter Box */
+.filter-box{
+  margin-top: 1rem;
+  /* background-color: brown; */
+}
+
+.filter-box > div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #325; */
+}
+
+/* css for range bar container */
+.filter-box .range-bar{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-box .range-bar > label{
+  font-weight: bold;
+}
+
+.filter-box .range-bar input[type="number"]{
+  width: 60px;
+}
+
+.filter-box .range-bar > div{
+  text-align: center;
+  margin-left: 10px;
+}
+.filter-box .range-bar .seperator{
+  padding: 5px;
+  font-size: larger;
+}
+
+.filter-box .range-bar #range-input{
+  width: 100%;
+  cursor: pointer;
+}
+

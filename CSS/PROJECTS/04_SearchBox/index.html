@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Search Box</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
+
 <body>
+
   <div class="search-container">
     <div class="search-box">
-        <div class="dropdown-container">
-            <div class="select">
+      <div class="dropdown-container">
+        <div id="category-element" class="select">
+          <div>
+            <span class="selected-item">All Categories</span>
+          </div>
+          <span class="caret categoryCaret"></span>
+        </div>
+        <div id="category-menu-options" class="menu-options">
+          <ul>
+            <li option-data-value="All Categories">All Categories</li>
+            <li option-data-value="Mobile">Mobile</li>
+            <li option-data-value="Sound">Sound</li>
+            <li option-data-value="Computer">Computer</li>
+            <li option-data-value="Electronics">Electronics</li>
+          </ul>
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" name="search-input" id="search-input" placeholder="Search your products here" />
+        <button type="submit"><i class="ri-search-line"></i></button>
+      </div>
+    </div>
+
+    <div class="filter-box">
+      <div>
+          <div class="dropdown-container">
+            <div id="sort-by-element" class="select">
               <div>
                 <span>Sort By: </span>
                 <span class="selected-item">Relevance</span>
               </div>
-              <span class="caret"></span>
+              <span class="caret sortBy-Caret"></span>
             </div>
-            <div class="menu-options">
+            <div id="sort-by-menu-options" class="menu-options">
               <ul>
                 <li option-data-value="Relevance">Relevance</li>
                 <li option-data-value="Price: Low to High">Price: Low to High</li>
@@ -25,59 +53,29 @@
                 <li option-data-value="Discounts">Discounts</li>
               </ul>
             </div>
-        </div>
-        <div class="search-bar">
-            <input type="text" name="search-input" id="search-input" placeholder="Search your products here"/>
-            <button type="submit"><i class="ri-search-line"></i></button>
-        </div>
-    </div>
-  </div>
+          </div>
+          
+          <div class="range-bar">
+            <label for="range-input">Price Range</label>
+            <div>
+              <input type="range" name="range-input" value="10" min="10" max="5600" id="range-input">
+              <div class="price-range-results">
+                <span>INR</span>
+                <input type="number" value="10" id="price-range-min-value" readonly>
+                <span class="seperator">-</span>
+                <input type="number" id="price-range-max-value" readonly>
+              </div>
+            </div>
+          </div>
 
-  <script>
-    // getting html dom reference
-    const selectElem = document.querySelector(".select");
-    const menuElem = document.querySelector(".menu-options");
+
+        </div>
+
+    </div> <!-- filter-box ends here -->
     
+  </div> <!-- search-container ends here -->
 
-    // attaching event listener
-    selectElem.addEventListener('click', ()=>{
-      const caretElem = document.querySelector(".caret");
-      caretElem.classList.toggle("caretRotate");
-      menuElem.style.display = "block";
-      
-      setTimeout(()=> menuElem.classList.toggle("menuOpened") ,200);
-      setTimeout(()=>{
-        if(!(menuElem.classList.contains("menuOpened"))){
-          setTimeout(()=>{
-            menuElem.style.display = "none";
-          } ,500)
-        }
-      },200);
-    });
 
-    menuElem.addEventListener('click', (e)=>{
-      console.log(e);
-      if(e.target.tagName === "LI"){
-        if(e.target.hasAttribute("option-data-value")){
-          // first remove the classes form all li
-          menuElem.querySelectorAll("li")
-          .forEach(li =>{
-            li.classList.remove("selected");
-          });
-          const attribute = e.target.getAttribute("option-data-value");
-          const selectedElem = document.querySelector(".selected-item");
-          if(selectedElem.nodeType === 1 && selectedElem instanceof Element){
-              selectedElem.innerText = attribute.replace(":"," -");
-              e.target.classList.toggle("selected");
-              menuElem.classList.remove("menuOpened");
-              document.querySelector(".caret").classList.remove("caretRotate");
-          }else{
-            throw new ReferenceError("We failed to get selectedElem!");
-          }
-        }
-        
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
