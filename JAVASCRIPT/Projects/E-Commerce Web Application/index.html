@@ -22,7 +22,7 @@
       font-family: 'Arial Narrow Bold', sans-serif;
     }
     :root{
-      --inline-margin-value: 4rem;
+      --inline-padding-value: 4rem;
     }
     main {
       width: 100%;
@@ -49,7 +49,7 @@
       margin: auto;
       width: 100%;
       margin-top: 2rem;
-      padding-inline: var(--inline-margin-value);
+      padding-inline: var(--inline-padding-value);
       margin-bottom: 6rem;
     }
     .top-products > .top-product-header{
@@ -83,6 +83,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     footer{
@@ -95,6 +97,31 @@
       color: whitesmoke;
       background-color: #18181A;
       font-size: 1.3em;
+    }
+
+    /* Responsive design styles */
+    @media(max-width: 716px){
+      .top-products{
+        padding-inline: 0;
+      }
+      .top-products > .top-product-header{
+        padding-inline: 20px;
+      }
+      .top-products > .top-product-body{
+        padding-inline: 0;
+      }
+
+      .top-products > .top-product-body{
+        justify-content: center;
+      }
+    }
+    @media(max-width:560px){
+      .banner{
+        padding: 1rem;
+      }
+      footer{
+        padding: 1rem;
+      }
     }
   </style>
   <script src="./scripts/navbar.js" defer></script>
@@ -144,25 +171,25 @@
 
     <nav>
       <div>
-        <button type="button" aria-label="menu-toggler" id="menu-toggler-close-btn"><i
+        <button type="button" aria-label="menu-toggler" id="menu-toggler-close-btn" onclick="HapticOn(true)"><i
             class="ri-close-large-fill"></i></button>
       </div>
 
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">All Products</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="#" onclick="HapticOn()">Home</a></li>
+        <li><a href="#" onclick="HapticOn()">All Products</a></li>
+        <li><a href="#" onclick="HapticOn()">About</a></li>
+        <li><a href="#" onclick="HapticOn()">Contact Us</a></li>
       </ul>
     </nav>
 
     <div class="header-controls">
-      <button aria-label="sign-in" type="button">Sign In</button>
-      <button aria-label="wishlist" type="button"><i class="ri-heart-3-line"></i></button>
-      <button aria-label="add-to-cart-button" type="button"><i class="ri-shopping-cart-fill"></i> Cart
+      <button aria-label="sign-in" type="button" onclick="HapticOn()">Sign In</button>
+      <button aria-label="wishlist" type="button" onclick="HapticOn()"><i class="ri-heart-3-line"></i></button>
+      <button aria-label="add-to-cart-button" type="button" onclick="HapticOn()"><i class="ri-shopping-cart-fill"></i> Cart
         <span>0</span></button>
       <div>
-        <button aria-label="menu-toggler" id="menu-toggler-open-btn" type="button"><i
+        <button aria-label="menu-toggler" id="menu-toggler-open-btn" type="button" onclick="HapticOn(true)"><i
             class="ri-menu-3-line"></i></button>
       </div>
     </div>
@@ -178,9 +205,45 @@
       <div class="top-product-header">
         <span>Top Products</span>
         <a href="#" target="_blank" class="view-more-btn" type="button" rel="noopener noreferrer"
-          title="view more button">View More</a>
+          title="view more button" onclick="HapticOn()">View More</a>
       </div>
-      <div class="top-product-body">
+      <div class="top-product-body" id="top-section-product-body">
+        <!-- product card item -->
+          <div class="product-card-item">
+            <div class="product-card-top-box">
+              <span class="discount-badge">-15%</span>
+              <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist"><i
+                  class="ri-heart-3-line"></i></button>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1737268466076-f2aaf343061c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="product title" title="Product Title">
+              </figure>
+            </div>
+            <h3>XBOX one x controller</h3>
+            <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
+            <span class="price">$18.76</span>
+            <div class="product-card-bottom-box">
+              <div class="product-qty">
+                <button type="button" class="quantity-left-minus" data-type="minus"><i
+                    class="ri-subtract-line"></i></button>
+                <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
+                <button type="button" class="quantity-right-plus" data-type="plus"><i class="ri-add-line"></i></button>
+              </div>
+              <button type="button" class="add-to-cart-btn" title="add to cart button">Add to Cart</button>
+            </div>
+          </div> <!-- product card ends here-->
+      </div>
+    </section> <!-- top product section ends -->
+
+    <!-- top discounted products section started -->
+    <section class="top-products">
+      <div class="top-product-header">
+        <span>Top Discounted Products</span>
+        <a href="#" target="_blank" class="view-more-btn" type="button" rel="noopener noreferrer"
+          title="view more button" onclick="HapticOn()">View More</a>
+      </div>
+      <div class="top-product-body" id="discounted-product-body">
         <!-- product card item -->
           <div class="product-card-item">
             <div class="product-card-top-box">
@@ -228,16 +291,23 @@
   </script>
   <script src="./scripts/product-card.js"></script>
   <script>
-    const productCardSection = document.querySelector(".top-product-body");
-    function renderCards(){
-      productCardSection.innerHTML = "";
+    const topProductCardSection = document.getElementById("top-section-product-body");
+    const discountedProductCardSection = document.getElementById("discounted-product-body");
+
+    function renderCards(elementToRender){
+      if(!elementToRender || typeof(elementToRender) !== "object"){
+          throw new TypeError("Oops! We expected a parameter at renderCards function but didn't got it");
+      }else if(elementToRender.nodeType !== 1 || !(elementToRender instanceof Element)){
+        throw new ReferenceError("We didn't get any DOM element as parameter in renderCards function!");
+      }
+      elementToRender.innerHTML = "";
 
       let card = `
       <!-- product card item -->
           <div class="product-card-item">
             <div class="product-card-top-box">
               <span class="discount-badge">-15%</span>
-              <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist"><i
+              <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
                   class="ri-heart-3-line"></i></button>
               <figure>
                 <img
@@ -250,22 +320,42 @@
             <span class="price">$18.76</span>
             <div class="product-card-bottom-box">
               <div class="product-qty">
-                <button type="button" class="quantity-left-minus" data-type="minus"><i
+                <button type="button" class="quantity-left-minus" data-type="minus" onclick="HapticOn()"><i
                     class="ri-subtract-line"></i></button>
                 <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
-                <button type="button" class="quantity-right-plus" data-type="plus"><i class="ri-add-line"></i></button>
+                <button type="button" class="quantity-right-plus" data-type="plus" onclick="HapticOn()"><i class="ri-add-line"></i></button>
               </div>
-              <button type="button" class="add-to-cart-btn" title="add to cart button">Add to Cart</button>
+              <button type="button" class="add-to-cart-btn" title="add to cart button" onclick="HapticOn()">Add to Cart</button>
             </div>
           </div> <!-- product card ends here-->
       `;
 
       for(let i=1; i<=5; i++){
-        productCardSection.innerHTML += card;
+        elementToRender.innerHTML += card;
       }
 
     }
-    renderCards();
+    
+     // Code for Haptic Feedback
+     function HapticOn(isLongEffect = false){
+
+        if('vibrate' in navigator){
+            navigator.vibrate(100);
+
+            if(isLongEffect){
+              navigator.vibrate([40, 40, 40,40,40,40,40,40,40,40,40]); // tick-tick-tick effect
+            }
+
+        }
+
+    }
+
+    try {
+      renderCards(topProductCardSection);
+      renderCards(discountedProductCardSection);
+    } catch (error) {
+      console.error(`${error.name} -> ${error.message}`);
+    }
   </script>
 </body>
 
