@@ -124,8 +124,56 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="./styles/modal.css">
   <script src="./scripts/navbar.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <script>
+    let guestBtn = null;
+    const showModal = () =>{
+      const modal = document.querySelector("dialog");
+      document.querySelector('.modal-container').style.display = "block";
+      modal.show();
+      modal.classList.toggle("modalOpened");
+      document.body.style.overflowY = "hidden";
+      guestBtn = document.getElementById("im-a-guest-btn");
+      listenGuestBtn();
+    }
+
+    const closeModal = () =>{
+      const modal = document.querySelector("dialog");
+      modal.classList.toggle("modalOpened");
+      setTimeout(()=>{
+        modal.close();
+        setTimeout(()=>{
+          document.querySelector(".modal-container").style.display = "none";
+          document.body.style.overflowY = "scroll";
+        },400)
+      },400)
+    }
+    setTimeout(()=>{
+      document.getElementById('sign-in-btn').onclick = showModal;
+      document.getElementById("modal-close-btn").onclick = closeModal;
+    },1000)
+
+    const handleGuestBtnClick = () =>{
+          const spinnerElem = guestBtn.querySelector("#spinner");
+          spinnerElem.classList.add("animate-spinner");
+          console.warn(spinnerElem, spinnerElem.classList);
+          setTimeout(()=>{
+            spinnerElem.classList.remove("animate-spinner");
+          },4000)
+    }
+
+    function listenGuestBtn(){
+      if(guestBtn instanceof Element && guestBtn.nodeType === 1){
+        guestBtn.addEventListener("click", handleGuestBtnClick)
+      }
+      console.error("oop", guestBtn instanceof Element, guestBtn.nodeType);
+    }
+    function removeGuestBtnListener(){
+      guestBtn.removeEventlistener("click", handleGuestBtnClick);
+    }
+  </script>
 </head>
 
 <body>
@@ -184,7 +232,7 @@
     </nav>
 
     <div class="header-controls">
-      <button aria-label="sign-in" type="button" onclick="HapticOn()">Sign In</button>
+      <button aria-label="sign-in" id="sign-in-btn" type="button" onclick="HapticOn()">Sign In</button>
       <button aria-label="wishlist" type="button" onclick="HapticOn()"><i class="ri-heart-3-line"></i></button>
       <button aria-label="add-to-cart-button" type="button" onclick="HapticOn()"><i class="ri-shopping-cart-fill"></i> Cart
         <span>0</span></button>
@@ -194,6 +242,39 @@
       </div>
     </div>
   </header>
+
+  <div class="modal-container">
+    <dialog>
+        <div class="modal-header">
+          <span>Sign In</span>
+          <button type="button" id="modal-close-btn"><i class="ri-close-large-line"></i></button>
+        </div>
+        <div class="modal-body">
+          <form action="#" method="post">
+            <div class="form-control">
+              <label for="sign-in-email-input">Email Address</label>
+              <input type="email" name="" id="sign-in-email-input">
+              <small>We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-control">
+              <label for="sign-in-password-input">Password</label>
+              <input type="password" name="" id="sign-in-password-input">
+            </div>
+            <div>
+              <input type="checkbox" name="remember" id="remember-me">
+              <label for="remember-me">Remember Me</label>
+            </div>
+            <input type="submit" value="Log In">
+            <button type="button" id="im-a-guest-btn"><span id="spinner"></span>I'm a Guest</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#">Haven't created an a ccount, Click here to CREATE ACCOUNT</a>
+        </div>
+    </dialog>
+  </div>
+
+  <!-- main container started -->
   <main>
     <!-- banner -->
     <div class="banner">

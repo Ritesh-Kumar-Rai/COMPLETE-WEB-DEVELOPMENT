@@ -1,0 +1,164 @@
+dialog{
+  width: 370px;
+  aspect-ratio: 1/1.5;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  outline-color: steelblue;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px black;
+  background-color: #18181A;
+  opacity: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition: top 400ms ease, opacity 400ms ease;
+  will-change: opacity, top, display;
+}
+
+/* custom class for modal dialog element */
+dialog.modalOpened{
+  top: 15%;
+  opacity: 1;
+}
+
+.modal-container{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.651);
+  backdrop-filter: blur(1px);
+  display: none;
+}
+
+dialog > .modal-header{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: whitesmoke;
+}
+dialog > .modal-header > span{
+  font-size: 1.5em;
+  font-weight: 600;
+}
+dialog > .modal-header > button{
+  font-size: larger;
+  font-weight: 600;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  outline: 2px solid transparent;
+  background-color: rgba(0, 0, 0, 0.792);
+  color: crimson;
+  cursor: pointer;
+  transition: outline-color 200ms ease, scale 200ms ease;
+}
+dialog > .modal-header > button:hover{
+  outline-color:steelblue;
+}
+dialog > .modal-header > button:active{
+  background-color: rgba(0, 0, 0, 0.301);
+  scale: .9;
+}
+
+/* css for modal body */
+dialog > .modal-body{
+  padding: 1rem;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  height: 75%;
+}
+
+dialog > .modal-body label{
+  cursor: pointer;
+}
+
+.form-control{
+  display: flex;
+  flex-direction: column;
+  row-gap: .9vh;
+  margin-bottom: 2rem;
+}
+
+.form-control > small{
+  color: rgb(94, 92, 92);
+}
+
+.form-control > input[type="text"],
+.form-control > input[type="email"],
+.form-control > input[type="password"]{
+  padding: 0.7rem;
+  border: 1px solid gray;
+  outline-color: steelblue;
+  border-radius: 10px;
+}
+
+dialog > .modal-body form input[type="submit"],
+dialog > .modal-body form #im-a-guest-btn{
+  margin-top: 1rem;
+  padding: 5px 10px;
+  font-size: large;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  background-color: #18181A;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+}
+dialog > .modal-body form input[type="submit"]:hover{
+  background-color: #18181ae2;
+}
+
+dialog > .modal-body form #im-a-guest-btn{
+  background-color: steelblue;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+dialog > .modal-body form #im-a-guest-btn:hover{
+  background-color: rgb(48, 85, 123);
+}
+
+/* custom class for im a guest button spinner */
+dialog > .modal-body form #im-a-guest-btn > #spinner{
+  width: 15px;
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  display: none;
+}
+dialog > .modal-body form #im-a-guest-btn > #spinner.animate-spinner{
+  display: inline-block;
+  border-top-color: white;
+  border-right-color: white;
+  animation: rotateSpinner .6s linear infinite;
+}
+
+@keyframes rotateSpinner {
+  from {
+    transform: rotate(0);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+/* css for modal footer */
+dialog > .modal-footer{
+  padding: 1rem;
+  text-align: center;
+}
+dialog > .modal-footer > a{
+  text-decoration-style: dotted;
+  color: goldenrod;
+  text-decoration-color: red;
+}
+dialog > .modal-footer > a:active{
+  color: gold;
+}
