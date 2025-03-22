@@ -150,9 +150,21 @@
         },400)
       },400)
     }
+
+    const scaleUpModal = (e) =>{
+      // e.stopPropagation();
+      console.log(e)
+      // const modal = document.querySelector('dialog');
+      // modal.classList.toggle('scaleUpModal');
+      setTimeout(()=>{
+        // modal.classList.toggle('scaleUpModal');
+      },300);
+    }
+
     setTimeout(()=>{
       document.getElementById('sign-in-btn').onclick = showModal;
       document.getElementById("modal-close-btn").onclick = closeModal;
+      document.querySelector(".modal-container").addEventListener('click',scaleUpModal);
     },1000)
 
     const handleGuestBtnClick = () =>{
