@@ -1,3 +1,4 @@
+/* CSS for SignIn Modal */
 dialog{
   width: 370px;
   aspect-ratio: 1/1.5;
@@ -36,6 +37,7 @@ dialog.scaleUpModal{
   background-color: rgba(0, 0, 0, 0.651);
   backdrop-filter: blur(1px);
   display: none;
+  transition: display 200ms ease-in-out;
 }
 
 dialog > .modal-header{
@@ -76,7 +78,12 @@ dialog > .modal-body{
   border: none;
   border-radius: 10px;
   height: 75%;
+  overflow-y: auto;
+  scrollbar-color: rgba(0, 0, 0, 0.831) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
+
 
 dialog > .modal-body label{
   cursor: pointer;
@@ -165,4 +172,11 @@ dialog > .modal-footer > a{
 }
 dialog > .modal-footer > a:active{
   color: gold;
+}
+
+/* Responsive Design for Modal */
+@media (max-width: 418px) {
+  dialog{
+    width: 90%;
+  }
 }
