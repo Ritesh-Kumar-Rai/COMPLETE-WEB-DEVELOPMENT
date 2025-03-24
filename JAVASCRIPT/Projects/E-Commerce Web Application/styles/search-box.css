@@ -1,0 +1,192 @@
+/* CSS for Search Box */
+.search-container{
+  margin-top: 2rem;
+  position: relative;
+  transform: translateX(50%);
+  width: 50%;
+  height: 200px;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 5px 40px black;
+  padding: 1rem;
+  font-family: cursive;
+}
+
+/* CSS for search box started */
+.search-container > .search-box{
+  display: flex;
+  align-items: center;
+}
+
+.search-container  .dropdown-container{
+  min-width: 215px;
+  position: relative;
+}
+
+/* css for select container */
+.search-container  .select{
+  /* background-color: rgb(13, 59, 88); */
+  background-color: #323741;
+  color: aliceblue;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.search-container .select > div >  .selected-item{
+  margin-left: 3px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.search-container  .select > .caret{
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+  background-color: #325;
+  transition: transform 300ms ease-out;
+}
+/* custom class for caret element */
+.search-container  .select > .caret.caretRotate{
+  transform: rotate(180deg);
+}
+
+
+/* css for menu options */
+.search-container  .menu-options{
+  position: absolute;
+  top: -3rem;
+  left: 0;
+  width: 100%;
+  background-color: #323741;
+  color: white;
+  padding: 15px 15px;
+  border: 2px solid steelblue;
+  border-radius: 10px;
+  scale: 0;
+  opacity: 0;
+  display: none;
+  transition-property: top, scale, opacity;
+  transition-duration: 400ms;
+  transition-timing-function: ease-out;
+  will-change: top,scale,opacity;
+  z-index: 90;
+}
+.search-container .filter-box .menu-options{
+  z-index: 80;
+}
+/* custom class for menu-options element */
+.search-container  .menu-options.menuOpened{
+  top: 3rem;
+  scale: 1;
+  opacity: 1;
+}
+
+.search-container  .menu-options > ul{
+  list-style-type: none;
+}
+.search-container  .menu-options > ul > li{
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 300ms ease-out;
+}
+.search-container  .menu-options > ul > li:hover{
+  background-color: rgb(51, 50, 50);
+}
+/* custom class for li element */
+.search-container  .menu-options > ul > li.selected{
+  background-color: rgb(51, 50, 50);
+}
+
+
+/* CSS for Search Bar */
+.search-container > .search-box > .search-bar{
+  width: 65%;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.search-container > .search-box > .search-bar{
+  border: 2px solid #323741;
+  border-radius: 10px;
+  background-color: #F0F0F0;
+  overflow: hidden;
+}
+.search-container > .search-box > .search-bar > #search-input{
+  padding: 5px 15px;
+  font-size: 1.2em;
+  width: 90%;
+  border: none;
+  outline:none;
+  background-color:transparent;
+}
+.search-container > .search-box > .search-bar > button[type="submit"]{
+  width: 10%;
+  font-size: 1.5em;
+  padding: 5.5px 5px;
+  font-weight: 600;
+  border: none;
+  color: rgb(107, 105, 105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  transition: scale 200ms ease-out;
+}
+.search-container > .search-box > .search-bar > button[type="submit"]:active{
+  scale: 1.2;
+}
+
+
+/* CSS for Fliter Box */
+.filter-box{
+  margin-top: 1rem;
+  /* background-color: brown; */
+}
+
+.filter-box > div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #325; */
+}
+
+/* css for range bar container */
+.filter-box .range-bar{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-box .range-bar > label{
+  font-weight: bold;
+}
+
+.filter-box .range-bar input[type="number"]{
+  width: 60px;
+}
+
+.filter-box .range-bar > div{
+  text-align: center;
+  margin-left: 10px;
+}
+.filter-box .range-bar .seperator{
+  padding: 5px;
+  font-size: larger;
+}
+
+.filter-box .range-bar #range-input{
+  width: 100%;
+  cursor: pointer;
+}
