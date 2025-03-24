@@ -11,6 +11,7 @@
   box-shadow: 0px 5px 40px black;
   padding: 1rem;
   font-family: cursive;
+  z-index: 50;
 }
 
 /* CSS for search box started */
@@ -80,7 +81,7 @@
   z-index: 90;
 }
 .search-container .filter-box .menu-options{
-  z-index: 80;
+  z-index: 85;
 }
 /* custom class for menu-options element */
 .search-container  .menu-options.menuOpened{
@@ -175,6 +176,9 @@
 
 .filter-box .range-bar input[type="number"]{
   width: 60px;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 2px;
 }
 
 .filter-box .range-bar > div{

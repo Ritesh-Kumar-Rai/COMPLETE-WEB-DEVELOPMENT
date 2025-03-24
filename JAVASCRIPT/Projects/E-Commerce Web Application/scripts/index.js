@@ -13,7 +13,7 @@ function renderCards(elementToRender) {
   let card = `
   <!-- product card item -->
       <div class="product-card-item">
-        <div class="product-card-top-box">
+        <a href="product.html?id=" class="product-card-top-box">
           <span class="discount-badge">-15%</span>
           <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
               class="ri-heart-3-line"></i></button>
@@ -22,8 +22,8 @@ function renderCards(elementToRender) {
               src="https://images.unsplash.com/photo-1737268466076-f2aaf343061c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="product title" title="Product Title">
           </figure>
-        </div>
-        <h3>XBOX one x controller</h3>
+        </a>
+        <a href="#" class="h3">XBOX one x controller</a>
         <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
         <span class="price">$18.76</span>
         <div class="product-card-bottom-box">

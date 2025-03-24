@@ -16,6 +16,15 @@
   box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
 }
 
+.product-card-item a{
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+.product-card-item a:hover{
+  color: #5518AB;
+}
+
 .product-card-item > .product-card-top-box{
   width: 100%;
   height: 50%;
@@ -79,9 +88,11 @@
   /* background-size: cover; */
 }
 
-.product-card-item > h3{
+.product-card-item > .h3{
   margin-top: 1rem;
   margin-bottom: 0.4rem;
+  font-size: larger;
+  font-weight: bold;
   text-transform: capitalize;
 }
 
