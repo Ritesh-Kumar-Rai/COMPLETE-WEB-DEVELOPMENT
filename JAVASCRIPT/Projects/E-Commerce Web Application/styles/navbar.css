@@ -61,6 +61,12 @@ header > nav > ul > li{
 header > nav > ul > li:hover{
   background-color: #ffffff0d;
 }
+header > nav > ul > li.active{
+  background-color: #ffffff0d;
+}
+header > nav > ul > li.active > a {
+  color: goldenrod;
+}
 
 header > nav > ul > li > a{
   text-decoration: none;
