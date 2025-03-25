@@ -35,11 +35,19 @@
     #explore-all-products > .explore-product-body{
       padding: 1rem 2rem;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
       grid-template-rows: auto;
+      place-items: center;
       column-gap: 1rem;
       row-gap: 2rem;
     }
+
+    /* Responsive design CSS */
+  @media(max-width: 716px) {
+    #explore-all-products{
+      padding-inline: 1rem;
+    }
+  }
   </style>
 </head>
 
@@ -190,34 +198,36 @@
   <!-- main container started -->
   <main>
    
-    <!-- search container starts here -->
-    <div class="search-container">
-      <div class="search-box">
-        <div class="dropdown-container">
-          <div id="category-element" class="select">
-            <div>
-              <span class="selected-item">All Categories</span>
+    <section id="search-container-wrapper">
+
+      <!-- search container starts here -->
+      <div class="search-container">
+        <div class="search-box">
+          <div class="dropdown-container">
+            <div id="category-element" class="select">
+              <div>
+                <span class="selected-item">All Categories</span>
+              </div>
+              <span class="caret categoryCaret"></span>
             </div>
-            <span class="caret categoryCaret"></span>
+            <div id="category-menu-options" class="menu-options">
+              <ul>
+                <li option-data-value="All Categories">All Categories</li>
+                <li option-data-value="Mobile">Mobile</li>
+                <li option-data-value="Sound">Sound</li>
+                <li option-data-value="Computer">Computer</li>
+                <li option-data-value="Electronics">Electronics</li>
+              </ul>
+            </div>
           </div>
-          <div id="category-menu-options" class="menu-options">
-            <ul>
-              <li option-data-value="All Categories">All Categories</li>
-              <li option-data-value="Mobile">Mobile</li>
-              <li option-data-value="Sound">Sound</li>
-              <li option-data-value="Computer">Computer</li>
-              <li option-data-value="Electronics">Electronics</li>
-            </ul>
+          <div class="search-bar">
+            <input type="text" name="search-input" id="search-input" placeholder="Search your products here" />
+            <button type="submit"><i class="ri-search-line"></i></button>
           </div>
         </div>
-        <div class="search-bar">
-          <input type="text" name="search-input" id="search-input" placeholder="Search your products here" />
-          <button type="submit"><i class="ri-search-line"></i></button>
-        </div>
-      </div>
-  
-      <div class="filter-box">
-        <div>
+        
+        <div class="filter-box">
+          <div>
             <div class="dropdown-container">
               <div id="sort-by-element" class="select">
                 <div>
@@ -249,13 +259,14 @@
                 </div>
               </div>
             </div>
-  
-  
+            
+            
           </div>
-  
-      </div> <!-- filter-box ends here -->
-      
-    </div> <!-- search-container ends here -->
+          
+        </div> <!-- filter-box ends here -->
+        
+      </div> <!-- search-container ends here -->
+    </section>
 
     <!-- explore all products section started-->
     <section id="explore-all-products">
