@@ -6,6 +6,7 @@ const sortMenuElem = document.getElementById("sort-by-menu-options");
 
 // attaching event listener
 sortSelectElem.addEventListener('click', () => {
+  HapticOn();
   const caretElem = document.querySelector(".sortBy-Caret");
   caretElem.classList.toggle("caretRotate");
   sortMenuElem.style.display = "block";
@@ -35,6 +36,7 @@ sortMenuElem.addEventListener('click', (e) => {
         if (selectedElem.nodeType === 1 && selectedElem instanceof Element) {
           selectedElem.innerText = attribute.replace(":", " -");
           e.target.classList.toggle("selected");
+          HapticOn();
           sortMenuElem.classList.remove("menuOpened");
           document.querySelector(".sortBy-Caret").classList.remove("caretRotate");
         } else {
@@ -57,6 +59,7 @@ const categoryMenuOptions = document.getElementById("category-menu-options");
 categoryElem.addEventListener('click', () => {
   const caretElem = document.querySelector(".categoryCaret");
   caretElem.classList.toggle("caretRotate");
+  HapticOn();
   categoryMenuOptions.style.display = "block";
   categoryMenuOptions.style.zIndex = "999999";
 
@@ -84,6 +87,7 @@ categoryMenuOptions.addEventListener('click', (e) => {
         if (selectedElem.nodeType === 1 && selectedElem instanceof Element) {
           selectedElem.innerText = attribute;
           e.target.classList.toggle("selected");
+          HapticOn();
           categoryMenuOptions.classList.remove("menuOpened");
           document.querySelector(".categoryCaret").classList.remove("caretRotate");
         } else {

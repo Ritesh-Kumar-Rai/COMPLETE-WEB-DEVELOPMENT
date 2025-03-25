@@ -90,6 +90,7 @@ header > .header-controls button{
   font-size: 15px;
   background-color: #ffffff0d;
   color: aliceblue;
+  font-family: "Nunito", sans-serif;
 }
 
 header > .header-controls button:hover{

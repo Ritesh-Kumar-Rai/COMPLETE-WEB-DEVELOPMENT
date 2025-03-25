@@ -32,6 +32,7 @@
       font-weight: 600;
       border-bottom: 2px solid grey;
     }
+ 
     #explore-all-products > .explore-product-body{
       padding: 1rem 2rem;
       display: grid;
@@ -222,7 +223,7 @@
           </div>
           <div class="search-bar">
             <input type="text" name="search-input" id="search-input" placeholder="Search your products here" />
-            <button type="submit"><i class="ri-search-line"></i></button>
+            <button type="submit" onclick="HapticOn();"><i class="ri-search-line"></i></button>
           </div>
         </div>
         
@@ -271,7 +272,7 @@
     <!-- explore all products section started-->
     <section id="explore-all-products">
       <div class="explore-product-header">
-        <span>Explore All Products</span>
+        <h2>Explore All Products</h2>
       </div>
       <div class="explore-product-body" id="explore-all-product-body">
         <!-- product card item -->

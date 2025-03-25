@@ -5,6 +5,7 @@ let go_to_LoginRegisterPage_linkElem = null;
 const showModal = () => {
   const modal = document.querySelector("dialog");
   document.querySelector('.modal-container').style.display = "block";
+  HapticOn();
   modal.show();
   modal.classList.toggle("modalOpened");
   document.body.style.overflowY = "hidden";
@@ -23,6 +24,7 @@ const showModal = () => {
 const closeModal = () => {
   const modal = document.querySelector("dialog");
   modal.classList.toggle("modalOpened");
+  HapticOn();
   setTimeout(() => {
     modal.close();
     setTimeout(() => {
@@ -55,9 +57,11 @@ const scaleUpModal = (e) => {
 const handleGuestBtnClick = () => {
   const spinnerElem = guestBtn.querySelector("#spinner");
   spinnerElem.classList.add("animate-spinner");
+  HapticOn();
   // console.warn(spinnerElem, spinnerElem.classList);
   setTimeout(() => {
     spinnerElem.classList.remove("animate-spinner");
+    HapticOn();
   }, 4000)
 }
 
@@ -97,9 +101,11 @@ const handleGoTo_RegisterLogin_btn_Clicked = (event) =>{
         }
         const form_type = form.getAttribute("data-form-type") ?? null;
         if(form_type === "login-form"){
+          HapticOn();
           // render login form
           render_register_form(go_to_LoginRegisterPage_linkElem, modal_title, modal_body);
         }else if(form_type === "register-form"){
+          HapticOn();
           // render Register form
           render_login_form(go_to_LoginRegisterPage_linkElem, modal_title, modal_body);
         }
