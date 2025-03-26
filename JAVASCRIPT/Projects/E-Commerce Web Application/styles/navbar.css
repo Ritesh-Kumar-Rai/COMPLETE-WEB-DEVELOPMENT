@@ -100,7 +100,8 @@ header > .header-controls button:active{
   background-color: #ffffff16;
 }
 
-header > .header-controls > button:nth-child(2),button:nth-child(3){
+header > .header-controls > button:nth-child(2),
+header > .header-controls > button:nth-child(3){
   display: flex;
   align-items: center;
   column-gap: 5px;
