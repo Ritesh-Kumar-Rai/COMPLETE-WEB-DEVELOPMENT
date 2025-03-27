@@ -13,11 +13,6 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <script src="../scripts/signIn_modal.js" defer></script>
   <link rel="stylesheet" href="../styles/product-details-page.css">
-  <style>
-    .screen-loader{
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -230,6 +225,43 @@
     </section>
     <!-- product details section ended -->
 
+    <!-- similar products section -->
+     <section class="similar-products-section">
+        <div class="similar-products-header">
+          <span>View Similar Products</span>
+          <a href="#" target="_blank" class="view-more-btn" type="button" rel="noopener noreferrer"
+          title="view more button" onclick="HapticOn()">View More</a>
+        </div>
+        <div class="similar-products-body">
+          <!-- product card item -->
+          <div class="product-card-item">
+            <div class="product-card-top-box">
+              <span class="discount-badge">-15%</span>
+              <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist"><i
+                  class="ri-heart-3-line"></i></button>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1737268466076-f2aaf343061c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="product title" title="Product Title">
+              </figure>
+            </div>
+            <h3>XBOX one x controller</h3>
+            <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
+            <span class="price">$18.76</span>
+            <div class="product-card-bottom-box">
+              <div class="product-qty">
+                <button type="button" class="quantity-left-minus" data-type="minus"><i
+                    class="ri-subtract-line"></i></button>
+                <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
+                <button type="button" class="quantity-right-plus" data-type="plus"><i class="ri-add-line"></i></button>
+              </div>
+              <button type="button" class="add-to-cart-btn" title="add to cart button">Add to Cart</button>
+            </div>
+          </div> <!-- product card ends here-->
+        </div>
+     </section>
+    <!-- similar products section ended -->
+
   </main>
   <footer>
     Copyright © RITESH KUMAR RAI 2025
@@ -246,6 +278,45 @@
       // console.log(`${header.offsetHeight}px`);
       console.warn("main margin adjusted based on screen size changes.");
     }
+  </script>
+  <script>
+    // script to render cards
+    const renderCards = () =>{
+      const simBody = document.querySelector(".similar-products-body");
+      const card = `
+      <!-- product card item -->
+      <div class="product-card-item">
+        <a href="product.html?id=" class="product-card-top-box">
+          <span class="discount-badge">-15%</span>
+          <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
+              class="ri-heart-3-line"></i></button>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1737268466076-f2aaf343061c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="product title" title="Product Title">
+          </figure>
+        </a>
+        <a href="#" class="h3">XBOX one x controller</a>
+        <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
+        <span class="price">$18.76</span>
+        <div class="product-card-bottom-box">
+          <div class="product-qty">
+            <button type="button" class="quantity-left-minus" data-type="minus" onclick="HapticOn()"><i
+                class="ri-subtract-line"></i></button>
+            <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
+            <button type="button" class="quantity-right-plus" data-type="plus" onclick="HapticOn()"><i class="ri-add-line"></i></button>
+          </div>
+          <button type="button" class="add-to-cart-btn" title="add to cart button" onclick="HapticOn()">Add to Cart</button>
+        </div>
+      </div> <!-- product card ends here-->
+      `;
+
+      for(let i=1; i<=4; i++){
+        simBody.innerHTML += card;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded",renderCards);
   </script>
   <script src="../scripts/screen-loader.js"></script>
   <script src="../scripts/product-card.js"></script>

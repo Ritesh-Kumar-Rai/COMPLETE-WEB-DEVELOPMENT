@@ -217,7 +217,50 @@ main{
   margin-top: 2rem;
 }
 
+/* CSS for Similar Products Section */
+.similar-products-section{
+  margin: auto;
+  margin-block: 2rem;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding-inline: 0;
+}
 
+.similar-products-section > .similar-products-header{
+  padding: 5px 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.similar-products-section > .similar-products-header > span{
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.similar-products-section > .similar-products-header > a{
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 200ms ease-out;
+}
+.similar-products-section > .similar-products-header > a:hover{
+  background-color: black;
+  color: whitesmoke;
+}
+
+.similar-products-section > .similar-products-body{
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
 /* Responsive CSS */
 @media (max-width: 1070px){
@@ -249,6 +292,16 @@ main{
 
   .product-details-section > .product-detail-image-container{
     padding: 20px;
+  }
+
+  /* style for similar products section */
+  .similar-products-section > .similar-products-header{
+    padding-inline: 10px;
+  }
+
+  .similar-products-section > .similar-products-body{
+    padding-inline: 0;
+    justify-content: center;
   }
 }
 
