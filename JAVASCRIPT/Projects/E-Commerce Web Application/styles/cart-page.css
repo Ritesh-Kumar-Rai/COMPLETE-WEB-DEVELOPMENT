@@ -1,5 +1,5 @@
 main{
-  margin-block: 2rem;
+  padding-block: 2rem;
   padding-inline: var(--inline-padding-value);
 }
 
@@ -8,6 +8,7 @@ main{
 }
 
 .cart-header{
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,6 +18,7 @@ main{
   font-size: xx-large;
   text-transform: capitalize;
   width: 60%;
+  padding-bottom: 10px;
   border-bottom: 2px solid grey;
 }
 
@@ -35,6 +37,14 @@ main{
 .cart-header > .cart-header-total-item-count > .total-item-count{
   border-right: 1px solid black;
   width: 50%;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.cart-header > .cart-header-total-item-count > .total-qty-count{
+  display: block;
+  margin-left: 10px;
+  text-align: center;
 }
 
 .cart-header > .cart-header-total-item-count span{
@@ -55,6 +65,7 @@ main{
 
 .cart-body > .cart-product-lists{
   width: 60%;
+  padding: 5px 10px;
 }
 .cart-body > .summary-bank{
   width: 25%;
@@ -117,4 +128,102 @@ main{
 }
 .cart-body > .summary-bank #place-order-btn:active{
   scale: 0.95;
+}
+
+/* style for summary price discount & deductions */
+#discounted-amount{
+  color: #03a685;
+}
+#tax-deduction-amount{
+  color: #ff3f6c;
+}
+
+.no-charges{
+  color: #03a685;
+}
+.charges-applied{
+  color: #ff3f6c;
+}
+
+/* Responsive Design using CSS */
+@media (max-width: 1600px) {
+  .cart-header > .cart-header-total-item-count{
+    width: 25%;
+  }
+}
+
+@media (max-width: 1210px) {
+  .cart-header > .cart-header-total-item-count{
+    width: 30%;
+  }
+  .cart-body > .summary-bank{
+    width: 30%;
+  }
+}
+
+@media (max-width: 950px){
+
+  main{
+    padding-inline: 1rem;
+  }
+
+  .cart-header > .cart-header-total-item-count{
+    width: 35%;
+    font-size: small;
+  }
+
+  .cart-body > .summary-bank{
+    width: 35%;
+  }
+}
+
+@media (max-width: 670px) {
+  .cart-body{
+    flex-direction: column;
+  }
+
+  .cart-body > .cart-product-lists{
+    width: 100%;
+  }
+  .cart-body > .summary-bank{
+    width: 80%;
+    margin: auto;
+  }
+
+  .cart-header > h3{
+    width: 40%;
+  }
+  .cart-header > .cart-header-total-item-count{
+    width: 50%;
+  }
+}
+
+@media (max-width: 547px){
+  main{
+    padding-inline: 5px;
+  }
+
+  .cart-header{
+    padding: 5px 8px;
+    border-bottom: 2px solid grey;
+  }
+  
+  .cart-header > h3{
+    border-bottom: none;
+  }
+
+  .cart-header > .cart-header-total-item-count{
+    width: 58%;
+    font-size: smaller;
+  }
+  .cart-body > .summary-bank{
+    width: 90%;
+  }
+}
+
+@media (max-width: 455px) {
+  .cart-header > .cart-header-total-item-count{
+    font-size: x-small;
+    padding: 5px 10px;
+  }
 }

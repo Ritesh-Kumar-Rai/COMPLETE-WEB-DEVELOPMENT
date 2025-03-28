@@ -1,0 +1,173 @@
+/* CSS for Product Card which is used in wishlist page and cart page */
+.product-CaWish-card{
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgb(224, 226, 227);
+  /* border-color: #ff3f6c; */
+  border-radius: 8px;
+  /* box-shadow: 0px 5px 20px grey; */
+  display: flex;
+  column-gap: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.product-CaWish-card > .product-photo-left-side{
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-CaWish-card > .product-photo-left-side > img{
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-CaWish-card > .product-info-right-side{
+  width: 80%;
+}
+
+.product-CaWish-card > .product-info-right-side > .product-title-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.product-CaWish-card .product-title-header > .item-brand{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.product-CaWish-card .product-title-header > i{
+  font-size: x-large;
+  font-weight: bold;
+  transition: scale 200ms ease;
+  cursor: pointer;
+}
+.product-CaWish-card .product-title-header > i:hover{
+  color: #ff3f6c;
+}
+.product-CaWish-card .product-title-header > i:active{
+  scale: 0.9;
+}
+
+/* style for quantity of product card */
+
+.product-CaWish-card .product-desc-body > .quantity-box{
+  border: 2px solid goldenrod;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  width: 120px;
+  margin-block: 10px;
+  overflow: hidden;
+}
+.product-CaWish-card .product-desc-body > .quantity-box > button{
+  font-size: large;
+  font-weight: bold;
+  padding: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.product-CaWish-card .product-desc-body > .quantity-box > #qty-decrement:active{
+  background-color: rgba(255, 166, 0, 0.685);
+}
+.product-CaWish-card .product-desc-body > .quantity-box > #qty-increment:active{
+  background-color: rgba(0, 128, 128, 0.694);
+}
+
+.product-CaWish-card .product-desc-body > .quantity-box > input[type='number']{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  outline: none;
+  pointer-events: none;
+  padding-inline: 5px;
+}
+.product-CaWish-card .product-desc-body > .quantity-box > input[type='number']::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+
+/* style for price container */
+
+.product-CaWish-card .product-desc-body > .price-container{
+  margin-block: 1.2rem 2px;
+}
+
+.product-CaWish-card .product-desc-body > .price-container .discounted-price{
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.product-CaWish-card .product-desc-body > .price-container .actual-price{
+  margin-inline: 10px;
+  font-size: medium;
+  font-weight: 600;
+  text-decoration: line-through;
+  color: rgba(255, 0, 0, 0.498);
+}
+
+.product-CaWish-card .product-desc-body > .price-container .discount-percent{
+  font-size: smaller;
+  color: #388e3c;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.product-CaWish-card .product-desc-body > .wishlist-cart-btns{
+  float: right;
+}
+
+.product-CaWish-card .product-desc-body > .wishlist-cart-btns > button{
+  border: 1px solid goldenrod;
+  background-color: transparent;
+  border-radius: 8px;
+  font-size: medium;
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: scale 200ms ease;
+}
+.product-CaWish-card .product-desc-body > .wishlist-cart-btns > button:active{
+  scale: .95;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .product-CaWish-card > .product-photo-left-side{
+    width: 30%;
+  }
+  
+  .product-CaWish-card > .product-info-right-side{
+    width: 70%;
+  }
+
+  .product-CaWish-card .product-desc-body > .wishlist-cart-btns > button{
+    font-size: small;
+    padding: 5px 15px;
+  }
+  .product-CaWish-card{
+    height: auto;
+  }
+}
+
+@media (max-width:550px){
+  .product-CaWish-card > .product-photo-left-side{
+    width: 40%;
+  }
+
+  .product-CaWish-card .product-desc-body > .wishlist-cart-btns{
+    margin-top: 10px;
+  }
+}
