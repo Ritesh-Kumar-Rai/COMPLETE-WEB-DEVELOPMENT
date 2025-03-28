@@ -1,0 +1,120 @@
+main{
+  margin-block: 2rem;
+  padding-inline: var(--inline-padding-value);
+}
+
+.cart-section{
+  width: 100%;
+}
+
+.cart-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-header > h3{
+  font-size: 1.8rem;
+  font-size: xx-large;
+  text-transform: capitalize;
+  width: 60%;
+  border-bottom: 2px solid grey;
+}
+
+.cart-header > .cart-header-total-item-count{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  color: gray;
+  overflow: hidden;
+}
+
+.cart-header > .cart-header-total-item-count > .total-item-count{
+  border-right: 1px solid black;
+  width: 50%;
+}
+
+.cart-header > .cart-header-total-item-count span{
+  color: black;
+  font-weight: bold;
+}
+
+/* style for cart body */
+.cart-body{
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 60vh;
+}
+
+.cart-body > .cart-product-lists{
+  width: 60%;
+}
+.cart-body > .summary-bank{
+  width: 25%;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 5px 30px lightslategray;
+}
+.cart-body > .summary-bank > h3{
+  font-size: x-large;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+  padding-bottom: 0.7rem;
+  border-bottom: 0.5px solid grey;
+}
+.cart-body > .summary-bank > div{
+  width: 100%;
+}
+
+.cart-body > .summary-bank > .price-detail-count{
+  font-size: small;
+  font-weight: bold;
+  color: lightslategrey;
+  text-transform: uppercase;
+  margin-block: 1rem;
+}
+
+.cart-body > .summary-bank .price-base-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.cart-body > .summary-bank .price-base-total{
+  display: flex;
+  justify-content: space-between;
+  margin-block: 20px;
+  border-top: 0.5px solid grey;
+  padding-top: 16px;
+  font-weight: bold;
+}
+
+.cart-body > .summary-bank .price-base-value{
+  font-weight: bold;
+}
+
+.cart-body > .summary-bank #place-order-btn{
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  color: whitesmoke;
+  background-color: #FF3F6C;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 200ms ease, scale 200ms ease;
+}
+.cart-body > .summary-bank #place-order-btn:hover{
+  background-color: #cf3e60;
+}
+.cart-body > .summary-bank #place-order-btn:active{
+  scale: 0.95;
+}
