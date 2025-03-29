@@ -14,7 +14,6 @@ main{
   justify-content: space-between;
 }
 .cart-header > h3{
-  font-size: 1.8rem;
   font-size: xx-large;
   text-transform: capitalize;
   width: 60%;

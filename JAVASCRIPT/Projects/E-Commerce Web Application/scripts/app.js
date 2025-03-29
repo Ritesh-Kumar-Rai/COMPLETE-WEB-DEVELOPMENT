@@ -20,6 +20,10 @@ const navigateToCart = (page_type) =>{
         window.location.href = baseUrl + "./pages/cart.html";
         break;
 
+      case "wishlist.html":
+      window.location.href = baseUrl + "./pages/cart.html";  
+      break;  
+
       default:
         throw new TypeError("We failed to get current page name after clicked on Cart Btn. (error from navbar cart button)");
               
