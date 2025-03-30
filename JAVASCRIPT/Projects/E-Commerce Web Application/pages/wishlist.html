@@ -102,6 +102,19 @@
       border-color: steelblue;
     }
 
+    /* css for product card quantity box stock indicator */
+    .quantity-box{
+      font-weight: bold;
+      padding-left: 5px;
+      justify-content: center;
+    }
+    .quantity-box > .in-stock{
+      color: green;
+    }
+    .quantity-box > .no-stock{
+      color: crimson;
+    }
+
     /* Responsive Design using CSS */
     @media (max-width: 1600px) {
       .wishlist-header>.wishlist-header-total-item-count {
@@ -370,9 +383,7 @@
                 <div class="product-desc-body">
                     <span class="item-model">PS4 Dual Shock 4 Controller</span>
                     <div class="quantity-box">
-                      <button type="button" id="qty-decrement"><i class="ri-subtract-line"></i></button>
-                      <input type="number" name="" value="1" id="qty-input" readonly>
-                      <button type="button" id="qty-increment"><i class="ri-add-line"></i></button>
+                      <span class="in-stock">In Stock</span>
                     </div>
                     <div class="price-container">
                       <span class="discounted-price">₹47,990</span>
@@ -398,6 +409,14 @@
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         renderCards();
+        const quantityText = document.querySelectorAll(".in-stock");
+        quantityText.forEach((textElem, index)=>{
+          if(index === 2){
+            textElem.classList.remove("in-stock");
+            textElem.classList.add("no-stock");
+            textElem.innerText = "Out of Stock";
+          }
+        });
       }, 2000);
     });
   </script>
