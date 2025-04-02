@@ -1,16 +1,13 @@
+// import all necessary modules
+import RenderCards from "./DOM scripts/RenderCards.js";
 
-const topProductCardSection = document.getElementById("top-section-product-body");
-const discountedProductCardSection = document.getElementById("discounted-product-body");
+// Code for index.html and for further feature 
 
-function renderCards(elementToRender) {
-  if (!elementToRender || typeof (elementToRender) !== "object") {
-    throw new TypeError("Oops! We expected a parameter at renderCards function but didn't got it");
-  } else if (elementToRender.nodeType !== 1 || !(elementToRender instanceof Element)) {
-    throw new ReferenceError("We didn't get any DOM element as parameter in renderCards function!");
-  }
+function renderCards2(elementToRender) {
+
   elementToRender.innerHTML = "";
 
-  let card = `
+  let card =`
   <!-- product card item -->
       <div class="product-card-item">
         <a href="product.html?id=" class="product-card-top-box">
@@ -44,9 +41,44 @@ function renderCards(elementToRender) {
 
 }
 
-try {
-  renderCards(topProductCardSection);
-  renderCards(discountedProductCardSection);
-} catch (error) {
-  console.error(`${error.name} -> ${error.message}`);
+// function to render actual product
+const renderActualProductCards = (elementToRender, arrayOfProducts) => {
+  if (!elementToRender || typeof (elementToRender) !== "object") {
+    throw new TypeError("Oops! We expected a parameter at renderCards function but didn't got it");
+  } else if (elementToRender.nodeType !== 1 || !(elementToRender instanceof Element)) {
+    throw new ReferenceError("We didn't get any DOM element as parameter in renderCards function!");
+  }
+
+
+
 }
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+  const topProductCardSection = document.getElementById("top-section-product-body");
+  const discountedProductCardSection = document.getElementById("discounted-product-body");
+  // code to display products on home page
+
+  // renderCards(topProductCardSection, true);
+  // renderCards(discountedProductCardSection, true);
+
+  try {
+    // executing a static method of RenderCards class
+    RenderCards.renderSkeletonCards(topProductCardSection, 5);
+    RenderCards.renderSkeletonCards(discountedProductCardSection, 5);
+  } catch (error) {
+    console.error(`${error.name} -> ${error.message}`);
+  }
+
+  fetch("https://fakestoreapi.in/api/products?limit=13")
+    .then(response => response.json())
+    .then((response) => {
+      const popularProducts = response.products.filter(product => product.popular);
+
+    })
+    .catch((error) => {
+      console.error(`${error.name} -> ${error.message}`);
+    });
+
+// });
+
