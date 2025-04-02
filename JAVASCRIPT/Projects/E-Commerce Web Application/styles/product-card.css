@@ -28,7 +28,7 @@
 .product-card-item > .product-card-top-box{
   width: 100%;
   height: 50%;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   border: none;
   border-radius: inherit;
   position: relative;
@@ -84,7 +84,7 @@
 .product-card-top-box > figure > img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   /* background-size: cover; */
 }
 
@@ -95,6 +95,9 @@
   font-weight: bold;
   text-transform: capitalize;
   line-height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .product-card-item > .rating{

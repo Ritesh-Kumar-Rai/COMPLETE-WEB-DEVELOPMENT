@@ -73,12 +73,27 @@ const renderActualProductCards = (elementToRender, arrayOfProducts) => {
   fetch("https://fakestoreapi.in/api/products?limit=13")
     .then(response => response.json())
     .then((response) => {
+      console.clear();
       const popularProducts = response.products.filter(product => product.popular);
-
+      RenderCards.renderProductCards(topProductCardSection, Array.from(popularProducts));
     })
     .catch((error) => {
       console.error(`${error.name} -> ${error.message}`);
     });
+    
+    fetch("https://fakestoreapi.in/api/products?limit=13")
+    .then(response => response.json())
+    .then(res => {
+      let discountedProductsArray = [];  
+      console.log("length",res.products.length);
+      
+      const sortedProducts = res.products.sort((a,b) => a.discount - b.discount);
+      discountedProductsArray = sortedProducts.slice(0,5);
+      RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
+    })
+    .catch(error =>{
+      console.error(`${error.name} -> ${error.message}`);
+    })
 
 // });
 
