@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles/screen-loader.css">
   <link rel="stylesheet" href="../styles/common-style.css">
   <link rel="stylesheet" href="../styles/navbar.css">
+  <link rel="stylesheet" href="../styles/skeleton-product-card.css">
   <link rel="stylesheet" href="../styles/product-card.css">
   <link rel="stylesheet" href="../styles/modal.css">
   <script src="../scripts/DOM scripts/navbar.js" defer></script>
@@ -172,7 +173,7 @@
         <span>/</span>
       </div>
       <div class="path-set">
-        <a>Product Name</a>
+        <a id="breadcrum-product-name">Product Name</a>
         <span style="display: none;">/</span>
       </div>
       
@@ -182,19 +183,19 @@
     <!-- product details section -->
     <section class="product-details-section">
       <div class="product-detail-image-container">
-          <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          <img id="product-image" src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="product image" title="product-image" srcset="">
       </div>
 
       <div class="product-detail-info-container">
-        <h1>SONY PlayStation5 Console (slim) CFI-2008A01X 1024 GB  (White)</h1>
+        <h1 id="product-title">SONY PlayStation5 Console (slim) CFI-2008A01X 1024 GB  (White)</h1>
         <div class="brand-container">
-          Brand: <strong>Sony</strong> |
-          Model: <strong>CFI-2008A01X</strong>
+          Brand: <strong id="product-brand">Sony</strong> |
+          Model: <strong id="product-modelname">CFI-2008A01X</strong>
         </div>
         <div class="category-container">
-          Category: <a href="#"><strong>Console</strong></a> |
-          Color: <strong>(White)</strong>
+          Category: <a href="#"><strong id="product-category-type">Console</strong></a> |
+          Color: <strong id="product-color-type">(White)</strong>
         </div>
         <div class="price-container">
           <span class="discounted-price">₹47,990</span>
@@ -213,7 +214,7 @@
         </div>
         <div class="product-description-container">
           <h3>Product Description:</h3>
-          <p>PlayStation 5 Digital Edition - The PS5 Digital Edition unleashes new gaming possibilities that you never anticipated. <br>
+          <p id="product-description">PlayStation 5 Digital Edition - The PS5 Digital Edition unleashes new gaming possibilities that you never anticipated. <br>
             Experience lightning fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers, and 3D Audio3 and an all-new generation of incredible PlayStation games. <br>
             PS5 Digital Edition is an all-digital version of the PS5 console with no disc drive. Sign into your account for PlayStation Network and go to PlayStation Store to buy and download games. <br>
             Lightning Speed - Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do. <br>
@@ -279,48 +280,13 @@
       console.warn("main margin adjusted based on screen size changes.");
     }
   </script>
-  <script>
-    // script to render cards
-    const renderCards = () =>{
-      const simBody = document.querySelector(".similar-products-body");
-      const card = `
-      <!-- product card item -->
-      <div class="product-card-item">
-        <a href="product.html?id=" class="product-card-top-box">
-          <span class="discount-badge">-15%</span>
-          <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
-              class="ri-heart-3-line"></i></button>
-          <figure>
-            <img
-              src="https://images.unsplash.com/photo-1737268466076-f2aaf343061c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="product title" title="Product Title">
-          </figure>
-        </a>
-        <a href="#" class="h3">XBOX one x controller</a>
-        <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
-        <span class="price">$18.76</span>
-        <div class="product-card-bottom-box">
-          <div class="product-qty">
-            <button type="button" class="quantity-left-minus" data-type="minus" onclick="HapticOn()"><i
-                class="ri-subtract-line"></i></button>
-            <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
-            <button type="button" class="quantity-right-plus" data-type="plus" onclick="HapticOn()"><i class="ri-add-line"></i></button>
-          </div>
-          <button type="button" class="add-to-cart-btn" title="add to cart button" onclick="HapticOn()">Add to Cart</button>
-        </div>
-      </div> <!-- product card ends here-->
-      `;
-
-      for(let i=1; i<=4; i++){
-        simBody.innerHTML += card;
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded",renderCards);
-  </script>
+ 
   <script src="../scripts/DOM scripts/screen-loader.js"></script>
   <script src="../scripts/DOM scripts/app.js"></script>
   <script src="../scripts/DOM scripts/product-card.js"></script>
+
+  <!-- laoding the script of actual logic -->
+   <script type="module" src="../scripts/DOM scripts/product-page.js"></script>
 
 </body>
 
