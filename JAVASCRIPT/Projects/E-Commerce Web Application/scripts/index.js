@@ -81,19 +81,19 @@ const renderActualProductCards = (elementToRender, arrayOfProducts) => {
       console.error(`${error.name} -> ${error.message}`);
     });
     
-    fetch("https://fakestoreapi.in/api/products?limit=13")
+    fetch("https://fakestoreapi.in/api/products?limit=20")
     .then(response => response.json())
     .then(res => {
       let discountedProductsArray = [];  
       console.log("length",res.products.length);
       
-      const sortedProducts = res.products.sort((a,b) => a.discount - b.discount);
+      const sortedProducts = res.products.sort((a,b) => b.discount - a.discount);
       discountedProductsArray = sortedProducts.slice(0,5);
       RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
     })
     .catch(error =>{
       console.error(`${error.name} -> ${error.message}`);
     })
-
+    
 // });
 

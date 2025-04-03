@@ -63,6 +63,7 @@
   position: absolute;
   right: 0;
   border: 1px solid rgba(128, 128, 128, 0.301);
+  background-color: snow;
   border-radius: 50%;
   padding: 10px;
   font-size: large;
@@ -170,12 +171,10 @@
   font-family: "Nunito", sans-serif;
   background-color: #18181A;
   color: aliceblue;
-  box-shadow: 0 5px 10px gray;
-  transition: all 200ms ease-out;
+  transition: background-color 200ms ease-out;
 }
 .product-card-bottom-box > .add-to-cart-btn:active{
   background-color: #383737f9;
-  box-shadow: 0 8px 15px gray;
 }
 
 /* custom class for wishlist highlight button */
