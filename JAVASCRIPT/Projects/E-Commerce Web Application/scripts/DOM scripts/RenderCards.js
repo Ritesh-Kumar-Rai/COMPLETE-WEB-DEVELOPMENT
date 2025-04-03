@@ -36,7 +36,7 @@ class RenderCards {
 
   }
 
-  static renderProductCards(elementToRender, arrayOfProducts){
+  static renderProductCards(elementToRender, arrayOfProducts, page_type = "home"){
     if (!elementToRender || typeof (elementToRender) !== "object") {
       throw new TypeError("Oops! We expected a parameter at renderProductCards function but didn't got it");
     } else if (elementToRender.nodeType !== 1 || !(elementToRender instanceof Element)) {
@@ -51,13 +51,15 @@ class RenderCards {
       throw new RangeError("Array must contains least amount of data!");
     }
 
+    const page_goto_url = (page_type === "home") ? "./pages/product.html" : "./product.html";
+
     const fragment = document.createDocumentFragment();
 
     arrayOfProducts.forEach((product)=>{
         const productCardElem = document.createElement("div");
         productCardElem.setAttribute("class", "product-card-item");
 
-        productCardElem.innerHTML = `<a href='./product.html?id=${product.id}' class="product-card-top-box">
+        productCardElem.innerHTML = `<a href='${page_goto_url}?id=${product.id}' class="product-card-top-box">
                 <span class="discount-badge">-${product.discount ?? 0}%</span>
                 <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
                     class="ri-heart-3-line"></i></button>
@@ -67,7 +69,7 @@ class RenderCards {
                     alt="${product.image}" title="${product.brand} ${product.model} image">
                 </figure>
               </a>
-              <a href="#?id=1" class="h3">${product.title}</a>
+              <a href="${page_goto_url}?id=${product.id}" class="h3">${product.title}</a>
               <span class="rating"><i class="ri-star-fill"></i> 4.5</span>
               <span class="price">$${product.price}</span>
               <div class="product-card-bottom-box">
