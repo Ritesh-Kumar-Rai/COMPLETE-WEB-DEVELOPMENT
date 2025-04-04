@@ -23,6 +23,13 @@ main{
   color: #5e5d5d;
 }
 
+.path-routemap .path-set:last-child{
+  width: 30%; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+
 .path-routemap .path-set:last-child > a {
   pointer-events: none; /* Disable interaction */
   font-weight: bold;
@@ -308,5 +315,9 @@ main{
 @media (max-width: 375px){
   .path-routemap .path-set > span{
     margin-inline: 8px;
+  }
+
+  .path-routemap .path-set:last-child{
+    width: 80%;
   }
 }
