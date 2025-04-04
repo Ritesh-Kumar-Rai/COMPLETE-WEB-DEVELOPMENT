@@ -28,8 +28,8 @@ const fetchSingleProductData = (id) =>{
   .then(res => res.json())
   .then((response) =>{
     console.log(response.status);
-    const category_type = printProductInfo(response.product);
-    fetchandRenderProduct_byCategory(category_type);
+    const [category_type, id] = printProductInfo(response.product);
+    fetchandRenderProduct_byCategory(category_type, id);
   })
   .catch(err => console.error(`${err.name} -> ${err.message}`));
 }
@@ -65,28 +65,42 @@ const printProductInfo = (productObj) =>{
   breadcrumProductName.textContent = productObj?.title || "Oops! We failed to get title";
   productTitle.textContent = productObj?.title || "Oops! We failed to get title";
   productImage.src = productObj.image;
+  productImage.alt = productObj.title || "product image";
+  productImage.title = productObj.title || "product title";
   productBrand.textContent = productObj.brand;
   productModel.textContent = productObj.model;
   productCategoryType.textContent = productObj.category;
   productColorType.textContent = productObj.color;
-  productDiscountedPriceElem.textContent = "₹" + calculateDiscountedPrice(Number(productObj.price), Number(productObj.discount))
-  productActualPriceElem.textContent = "₹"+ productObj.price;
-  productDiscountPercentElem.textContent = `(-${productObj.discount}% off)`;
   productDescriptionElem.innerHTML = productObj.description.replace(/(\r\n|\n|\r)/g, '<br><br>');
 
-  return productObj.category;
+  if(productObj.discount){
+    productDiscountedPriceElem.textContent = "₹" + calculateDiscountedPrice(Number(productObj.price), Number(productObj.discount))
+    productActualPriceElem.textContent = "₹"+ productObj.price;
+    productDiscountPercentElem.textContent = `(-${productObj.discount}% off)`;
+    
+    return [productObj.category, productObj.id];
+  }
+  productDiscountedPriceElem.textContent = "₹" + productObj.price;
+  productActualPriceElem.textContent = "";
+  productDiscountPercentElem.textContent = "";
+
+  return [productObj.category, productObj.id];
 }
 
-const fetchandRenderProduct_byCategory = async (category_name) =>{
+const fetchandRenderProduct_byCategory = async (category_name, product_id) =>{
   try {
     const response = await fetch(`https://fakestoreapi.in/api/products/category?type=${category_name}`);
 
     const refinedResponse = await response.json();
-    const productsArray =  await (refinedResponse.products).slice(0,5);
+    const productsArray =  await refinedResponse.products.filter((each_product)=>{
+      if(each_product.id !== product_id){
+        return each_product;
+      }
+    }).slice(0,5);
     const similarProElem = document.querySelector(".similar-products-body");
     
     setTimeout(()=>{
-      RenderCards.renderProductCards(similarProElem, productsArray);
+      RenderCards.renderProductCards(similarProElem, productsArray, "product");
     },10000);
 
   } catch (error) {
