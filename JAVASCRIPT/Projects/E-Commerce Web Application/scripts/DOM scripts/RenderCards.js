@@ -30,7 +30,6 @@ class RenderCards {
             </div>`;
       cardElem.innerHTML = card;
       fragment.appendChild(cardElem);
-      console.log(i);
     }
     elementToRender.replaceChildren(fragment);
 
@@ -58,6 +57,7 @@ class RenderCards {
     arrayOfProducts.forEach((product)=>{
         const productCardElem = document.createElement("div");
         productCardElem.setAttribute("class", "product-card-item");
+        productCardElem.setAttribute("data-product-id", product.id);
 
         productCardElem.innerHTML = `<a href='${page_goto_url}?id=${product.id}' class="product-card-top-box">
                 <span class="discount-badge">-${product.discount ?? 0}%</span>

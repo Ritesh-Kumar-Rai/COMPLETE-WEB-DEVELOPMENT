@@ -1,5 +1,6 @@
 // import all necessary modules
 import RenderCards from "./DOM scripts/RenderCards.js";
+import eventController  from "./DOM scripts/eventController.js";
 
 // Code for index.html and for further feature 
 
@@ -24,7 +25,6 @@ import RenderCards from "./DOM scripts/RenderCards.js";
   fetch("https://fakestoreapi.in/api/products?limit=13")
     .then(response => response.json())
     .then((response) => {
-      console.clear();
       const popularProducts = response.products.filter(product => product.popular);
       RenderCards.renderProductCards(topProductCardSection, Array.from(popularProducts));
     })
@@ -48,3 +48,8 @@ import RenderCards from "./DOM scripts/RenderCards.js";
 
 // });
 
+try {
+    const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION");
+} catch (error) {
+  console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
+}
