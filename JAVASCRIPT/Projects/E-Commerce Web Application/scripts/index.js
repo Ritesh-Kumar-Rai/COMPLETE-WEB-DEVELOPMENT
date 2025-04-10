@@ -23,17 +23,39 @@ import eventController  from "./DOM scripts/eventController.js";
 
 
   fetch("https://fakestoreapi.in/api/products?limit=13")
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Server returned status ${response.status}`);
+      }
+      response.json();
+    })
     .then((response) => {
       const popularProducts = response.products.filter(product => product.popular);
       RenderCards.renderProductCards(topProductCardSection, Array.from(popularProducts));
+        try {
+          const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION");
+        } catch (error) {
+          console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
+        }
     })
     .catch((error) => {
-      console.error(`${error.name} -> ${error.message}`);
+      if(!navigator.onLine){
+        console.error("Network Error:", error.message);
+        console.error("It looks like you're offline. Please check your internet connection!");
+      }else{  
+        console.error("Something went wrong while fetching product data. Please try again later.");
+        console.error(`${error.name} -> ${error.message}`);
+      }
+      
     });
     
     fetch("https://fakestoreapi.in/api/products?limit=20")
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Server returned status ${response.status}`);
+      }
+      response.json();
+    })
     .then(res => {
       let discountedProductsArray = [];  
       console.log("length",res.products.length);
@@ -43,13 +65,15 @@ import eventController  from "./DOM scripts/eventController.js";
       RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
     })
     .catch(error =>{
-      console.error(`${error.name} -> ${error.message}`);
+      if(!navigator.onLine){
+        console.error("Network Error:", error.message);
+        console.error("It looks like you're offline. Please check your internet connection!");
+      }else{
+        console.error("Something went wrong while fetching product data. Please try again later.");
+        console.error(`${error.name} -> ${error.message}`);
+      }
+
     })
 
 // });
 
-try {
-    const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION");
-} catch (error) {
-  console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
-}
