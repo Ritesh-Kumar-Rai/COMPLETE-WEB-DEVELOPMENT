@@ -12,7 +12,7 @@ class WishlistError extends Error{
 class WishlistController{
   #WISHLISTED_PRODUCTS = [];
   constructor(){
-
+    console.warn("constructor of WishlistController is executed...");
   }
 
   getWishlistData(){
@@ -32,6 +32,7 @@ class WishlistController{
     }
     this.#WISHLISTED_PRODUCTS.push(id);
     console.log('product added to wishlist');
+    console.log(this.#WISHLISTED_PRODUCTS)
     return true;
   }
 
@@ -45,7 +46,7 @@ class WishlistController{
     const index_to_remove = this.#WISHLISTED_PRODUCTS.indexOf(id);
     this.#WISHLISTED_PRODUCTS.splice(index_to_remove, 1);
     if(this.isAvailableInWishlist(id)){
-      throw new WishlistError("We failed to remove product from wishlist! try to find the reason.");
+      throw new WishlistError("We tried to remove product from wishlist but still it exists! How? try to find the reason. Strange");
     }
     console.warn("product is successfully removed from wishlist!");
   }
@@ -61,10 +62,6 @@ class WishlistController{
   }
 }
 
-const obj = new WishlistController();
-obj.push('A');
-obj.push(10);
-console.log(obj.get());
-
+export default WishlistController;
 
 

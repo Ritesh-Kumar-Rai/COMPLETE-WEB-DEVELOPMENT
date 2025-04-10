@@ -27,7 +27,7 @@ import eventController  from "./DOM scripts/eventController.js";
       if (!response.ok) {
         throw new Error(`Server returned status ${response.status}`);
       }
-      response.json();
+      return response.json();
     })
     .then((response) => {
       const popularProducts = response.products.filter(product => product.popular);
@@ -46,7 +46,7 @@ import eventController  from "./DOM scripts/eventController.js";
         console.error("Something went wrong while fetching product data. Please try again later.");
         console.error(`${error.name} -> ${error.message}`);
       }
-      
+
     });
     
     fetch("https://fakestoreapi.in/api/products?limit=20")
@@ -54,7 +54,7 @@ import eventController  from "./DOM scripts/eventController.js";
       if (!response.ok) {
         throw new Error(`Server returned status ${response.status}`);
       }
-      response.json();
+      return response.json();
     })
     .then(res => {
       let discountedProductsArray = [];  

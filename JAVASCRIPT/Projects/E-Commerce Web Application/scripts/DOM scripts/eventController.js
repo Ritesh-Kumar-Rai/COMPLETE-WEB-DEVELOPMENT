@@ -1,11 +1,17 @@
 // Class for product Cards event controller like "DOM Manipulation"
 import DOMError from "../Custom Errors/DOMError.js";
+import WishlistController from "../WishlistController.js";
 
 class eventController {
+
+  #wishlistControllerObj;
+
   constructor(targettedDOMElement, name_for_identification) {
     this.targettedDOMElement = targettedDOMElement;
     this.identity_name = name_for_identification;
     this.quantitylength = 1;
+    
+    this.#wishlistControllerObj = new WishlistController(); // creating instance of WishlistController Object to class level variable
 
     if (!targettedDOMElement) {
       throw new DOMError("Target Element Parameter is expected", "eventController Class");
@@ -59,16 +65,24 @@ class eventController {
       if (!attribute) {
         throw new ReferenceError("We are failed to get Attribute: data-type");
       }
-
+      
       switch (attribute) {
         case "wishlist-btn":
+          const productCardElem = (passedElement.parentElement.parentElement);
+          const productId = parseInt(productCardElem.getAttribute("data-product-id")); // will implement error handling for this in future..
+          console.log(this.#wishlistControllerObj.getWishlistData());
           if (passedElement.classList.contains("isWishlisted")) {
+            console.log(this.#wishlistControllerObj.isAvailableInWishlist(productId));
+            this.#wishlistControllerObj.remove_product_from_wishlist(productId);
             passedElement.classList.remove("isWishlisted");
             passedElement.innerHTML = `<i class="ri-heart-3-line"></i>`;
           } else {
+            console.log(this.#wishlistControllerObj.isAvailableInWishlist(productId));
+            this.#wishlistControllerObj.push_product_to_wishlist(productId);
             passedElement.classList.add("isWishlisted");
             passedElement.innerHTML = `<i class="ri-heart-3-fill"></i>`;
           }
+          console.log("arr->", this.#wishlistControllerObj.getWishlistData());
           break;
 
         case "minus":
