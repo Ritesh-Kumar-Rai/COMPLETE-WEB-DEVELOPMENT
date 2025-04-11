@@ -63,6 +63,11 @@ import eventController  from "./DOM scripts/eventController.js";
       const sortedProducts = res.products.sort((a,b) => b.discount - a.discount);
       discountedProductsArray = sortedProducts.slice(0,5);
       RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
+        try {
+          const event_controller2 = new eventController(discountedProductCardSection, "DISCOUNTED PRODUCT SECTION");
+        } catch (error) {
+          console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
+        }
     })
     .catch(error =>{
       if(!navigator.onLine){

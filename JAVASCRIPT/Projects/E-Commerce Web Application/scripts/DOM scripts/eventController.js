@@ -9,7 +9,6 @@ class eventController {
   constructor(targettedDOMElement, name_for_identification) {
     this.targettedDOMElement = targettedDOMElement;
     this.identity_name = name_for_identification;
-    this.quantitylength = 1;
     
     this.#wishlistControllerObj = new WishlistController(); // creating instance of WishlistController Object to class level variable
 
@@ -86,11 +85,13 @@ class eventController {
           break;
 
         case "minus":
-          if (this.quantitylength === 1 || this.quantitylength < 2) {
+          const inputElement = passedElement.nextElementSibling;
+          let quantitylength = parseInt(inputElement.value) || 1;
+
+          if (quantitylength === 1 || quantitylength < 2) {
             return;
           }
 
-          const inputElement = passedElement.nextElementSibling;
           if (!inputElement || inputElement.nodeType !== 1 || !(inputElement instanceof Element)) {
             throw new ReferenceError("Oops! We failed to target nextElement Sibling: reference -> manageQty_n_wishlist() function");
           }
@@ -98,12 +99,13 @@ class eventController {
           if (inputElement.tagName !== "INPUT" || !(inputElement.classList.contains("qty-input"))) {
             throw new TypeError("Aww! The target input tag of product card is not a type of `input` or does not have className called `qty-input`");
           }
-          this.quantitylength--;
-          inputElement.value = parseInt(this.quantitylength);
+          quantitylength--;
+          inputElement.value = parseInt(quantitylength);
           break;
 
         case "plus":
           const inputElement2 = passedElement.previousElementSibling;
+          let quantitylength2 = parseInt(inputElement2.value) || 1;
           if (!inputElement2 || inputElement2.nodeType !== 1 || !(inputElement2 instanceof Element)) {
             console.warn(inputElement2)
             throw new ReferenceError("Oops! We failed to target prevElement Sibling: reference -> manageQty_n_wishlist() function");
@@ -112,8 +114,8 @@ class eventController {
           if (inputElement2.tagName !== "INPUT" || !(inputElement2.classList.contains("qty-input"))) {
             throw new TypeError("Aww! The target input tag of product card is not a type of `input` or does not have className called `qty-input`");
           }
-          this.quantitylength++;
-          inputElement2.value = this.quantitylength;
+          quantitylength2++;
+          inputElement2.value = quantitylength2;
           break;
 
         default:
