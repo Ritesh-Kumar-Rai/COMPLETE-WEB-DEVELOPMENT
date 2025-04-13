@@ -27,11 +27,11 @@ class eventController {
     console.log('initializing event listener...');
 
     this.targettedDOMElement.addEventListener("click", (e) => {
-      e.preventDefault()
       // console.log(e.target, e);
       // we can use e.target.tagName or e.target.matches();
       const tagName = e.target.tagName;
       if (tagName === "I") {
+        e.preventDefault();
         const parentElem = e.target.parentElement;
         try {
           this.#manageQty_n_wishlist(parentElem);
@@ -40,6 +40,7 @@ class eventController {
           // console.error(error);
         }
       } else if (tagName === "BUTTON") {
+        e.preventDefault();
         if (e.target.classList.contains("add-to-cart-btn")) {
           // ... further logic for add to cart button
           return;
