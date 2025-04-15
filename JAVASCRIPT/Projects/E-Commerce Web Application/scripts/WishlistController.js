@@ -14,6 +14,7 @@ class WishlistController {
   constructor() {
     const cookieName = "logoIpsum-Wishlist-Cookie";
     this.#WISHLISTED_PRODUCTS = this.#getCookie(cookieName) || [];
+    alert(this.#WISHLISTED_PRODUCTS);
     console.warn("constructor of WishlistController is executed...");
   }
 
@@ -94,7 +95,8 @@ class WishlistController {
 
     // Create cookie with expiration date
     const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(JSON.stringify(value))}; ${expires}; path=/`;
+    // document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(JSON.stringify(value))}; ${expires}; path=/`;
+    document.cookie = `${encodeURIComponent(name)}=${JSON.stringify(value)}; ${expires}; path=/`;
     console.log(`Cookie "${name}" set with expiration: ${date}`);
   }
 
