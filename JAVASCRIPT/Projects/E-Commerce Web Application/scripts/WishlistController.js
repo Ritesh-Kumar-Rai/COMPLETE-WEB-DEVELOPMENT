@@ -11,9 +11,9 @@ class WishlistError extends Error {
 // wishlist main class
 class WishlistController {
   #WISHLISTED_PRODUCTS = [];
+  #cookieName = "logoIpsum-Wishlist-Cookie";
   constructor() {
-    const cookieName = "logoIpsum-Wishlist-Cookie";
-    this.#WISHLISTED_PRODUCTS = this.#getCookie(cookieName) || [];
+    this.#WISHLISTED_PRODUCTS = this.#getCookie(this.#cookieName) || [];
     alert(this.#WISHLISTED_PRODUCTS);
     console.warn("constructor of WishlistController is executed...");
   }
@@ -68,9 +68,8 @@ class WishlistController {
 
   #saveWishlistData() {
     // method to store/save wishlist data to Cookie/Session
-    const cookieName = "logoIpsum-Wishlist-Cookie";
-    this.#setCookie(cookieName, this.#WISHLISTED_PRODUCTS, 1, "minutes");
-    alert(this.#getCookie(cookieName));
+    this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 1, "minutes");
+    alert(this.#getCookie(this.#cookieName));
   }
 
   // method to save cookies with options for minutes, hours, or days
