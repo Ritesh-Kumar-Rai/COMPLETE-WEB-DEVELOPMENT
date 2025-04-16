@@ -52,6 +52,10 @@ class RenderCards {
 
     const page_goto_url = (page_type === "home") ? "./pages/product.html" : "./product.html";
 
+    // logic for wishlist data checking
+    const wishlistList = this.#checkForCookieWishlistData() || [];
+
+    // cards render logic
     const fragment = document.createDocumentFragment();
 
     arrayOfProducts.forEach((product)=>{
@@ -59,9 +63,11 @@ class RenderCards {
         productCardElem.setAttribute("class", "product-card-item");
         productCardElem.setAttribute("data-product-id", product.id);
 
+        const isExists = this.#isAvailableInWishlistCookie(wishlistList, product.id);
+
         productCardElem.innerHTML = `<a href='${page_goto_url}?id=${product.id}' class="product-card-top-box">
                 <span class="discount-badge">-${product.discount ?? 0}%</span>
-                <button type="button" class="wishlist-button" data-type="wishlist-btn" title="add to wishlist" onclick="HapticOn()"><i
+                <button type="button" class="wishlist-button ${(isExists) ? 'isWishlisted' : ''}" data-type="wishlist-btn" title="${(isExists) ? 'remove from wishlist' : 'add to wishlist'}" onclick="HapticOn()"><i
                     class="ri-heart-3-line"></i></button>
                 <figure>
                   <img
@@ -87,6 +93,35 @@ class RenderCards {
 
     elementToRender.replaceChildren(fragment);
 
+  }
+
+  // method to get wishlist data from a cookie
+  static #checkForCookieWishlistData(){
+    // cookie name
+    const name = "logoIpsum-Wishlist-Cookie";
+    const cookies = document.cookie.split("; ");
+    for (let cookie of cookies) {
+      const [key, value] = cookie.split("=");
+      if (decodeURIComponent(key) === name) {
+        return JSON.parse(decodeURIComponent(value)); // Parse the JSON back into an array/object
+      }
+    }
+    return null; // Return null if the cookie doesn't exist
+  }
+
+  static #isAvailableInWishlistCookie(array, id){
+    if (!array) {
+      throw new ReferenceError("'array' parameter is missing!");
+    } else if (!(array instanceof Array) && Object.prototype.toString.call(array) !== "[object Array]") {
+      throw new TypeError("'array' parameter is expected as Array type!");;
+    }
+
+    if (!id) {
+      throw new ReferenceError("'id' parameter is missing!");
+    } else if (typeof (id) !== 'number') {
+      throw new TypeError("'id' parameter is expected as Numeric type!");;
+    }
+    return array.includes(id);
   }
 
 };
