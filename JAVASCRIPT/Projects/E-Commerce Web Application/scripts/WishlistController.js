@@ -29,6 +29,9 @@ class WishlistController {
     } else if (typeof (id) !== 'number') {
       throw new WishlistError("'id' parameter is expected as Numeric type!");;
     }
+    // importing cookie data again to this wishlist array [because when more instances created it causes issue like both contains different data, so i am merging them]
+    this.#WISHLISTED_PRODUCTS = this.#getCookie(this.#cookieName) || this.#WISHLISTED_PRODUCTS;
+
     if (this.isAvailableInWishlist(id)) {
       this.remove_product_from_wishlist(id);
       return false;
@@ -46,8 +49,14 @@ class WishlistController {
     } else if (typeof (id) !== 'number') {
       throw new WishlistError("'id' parameter is expected as Numeric type!");;
     }
-
+    // importing cookie data again to this wishlist array [because when more instances created it causes issue like both contains different data, so i am merging them]
+    this.#WISHLISTED_PRODUCTS = this.#getCookie(this.#cookieName) || this.#WISHLISTED_PRODUCTS;
+    console.log(`Attempting to remove ID: ${id} from wishlist.`);
+    
     const index_to_remove = this.#WISHLISTED_PRODUCTS.indexOf(id);
+    if(index_to_remove === -1){
+      throw new WishlistError(`ID:${id} is not found in array!`);
+    }
     this.#WISHLISTED_PRODUCTS.splice(index_to_remove, 1);
     if (this.isAvailableInWishlist(id)) {
       throw new WishlistError("We tried to remove product from wishlist but still it exists! How? try to find the reason. Strange");
