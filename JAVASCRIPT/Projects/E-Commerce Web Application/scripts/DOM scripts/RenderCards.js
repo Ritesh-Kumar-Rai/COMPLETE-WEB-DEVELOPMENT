@@ -76,7 +76,7 @@ class RenderCards {
                 <div class="product-qty">
                   <button type="button" class="quantity-left-minus" data-type="minus" onclick="HapticOn()"><i
                       class="ri-subtract-line"></i></button>
-                  <input type="number" class="qty-input" value="1" min="1" spellcheck="false">
+                  <input type="number" class="qty-input" value="1" min="1" spellcheck="false" readonly>
                   <button type="button" class="quantity-right-plus" data-type="plus" onclick="HapticOn()"><i class="ri-add-line"></i></button>
                 </div>
                 <button type="button" class="add-to-cart-btn" title="add to cart button" onclick="HapticOn()">Add to Cart</button>

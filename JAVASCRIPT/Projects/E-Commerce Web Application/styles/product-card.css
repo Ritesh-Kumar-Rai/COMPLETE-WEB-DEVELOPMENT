@@ -139,6 +139,7 @@
   border: none;
   outline-color: steelblue;
   padding: 5px;
+  pointer-events: none;
 }
 
 /* Remove default spinner buttons */

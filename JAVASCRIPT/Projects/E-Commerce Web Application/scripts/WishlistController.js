@@ -52,7 +52,7 @@ class WishlistController {
     // importing cookie data again to this wishlist array [because when more instances created it causes issue like both contains different data, so i am merging them]
     this.#WISHLISTED_PRODUCTS = this.#getCookie(this.#cookieName) || this.#WISHLISTED_PRODUCTS;
     console.log(`Attempting to remove ID: ${id} from wishlist.`);
-    
+
     const index_to_remove = this.#WISHLISTED_PRODUCTS.indexOf(id);
     if(index_to_remove === -1){
       throw new WishlistError(`ID:${id} is not found in array!`);
@@ -77,7 +77,7 @@ class WishlistController {
 
   #saveWishlistData() {
     // method to store/save wishlist data to Cookie/Session
-    this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 1, "minutes");
+    this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 5, "minutes");
     alert(this.#getCookie(this.#cookieName));
   }
 

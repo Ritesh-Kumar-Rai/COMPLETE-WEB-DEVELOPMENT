@@ -1,22 +1,33 @@
 // Class for product Cards event controller like "DOM Manipulation"
 import DOMError from "../Custom Errors/DOMError.js";
 import WishlistController from "../WishlistController.js";
+import RenderCards from "./RenderCards.js";
 
 class eventController {
 
   #wishlistControllerObj;
 
-  constructor(targettedDOMElement, name_for_identification) {
+  constructor(targettedDOMElement, name_for_identification = "UNKNOWN CALLER", arrayForCardRe_Rendering, page_type = "home") {
     this.targettedDOMElement = targettedDOMElement;
     this.identity_name = name_for_identification;
-    
-    this.#wishlistControllerObj = new WishlistController(); // creating instance of WishlistController Object to class level variable
-
+    this.page_type = page_type;
+    // check for DOM element param is correct or exists
     if (!targettedDOMElement) {
-      throw new DOMError("Target Element Parameter is expected", "eventController Class");
+      throw new DOMError("Target Element Parameter is expected", "eventController Class Constructor");
     } else if (!(targettedDOMElement instanceof Element) || targettedDOMElement.nodeType !== 1) {
-      throw new DOMError("The parameter [which is targeted DOM] is must be an HTML DOM element", "eventController");
+      throw new DOMError("The parameter [which is targeted DOM] is must be an HTML DOM element", "eventController Class Constructor");
     }
+    
+    // check for array is exists or not [mandatory for Cards Re-rendering when any changes made like wishlist, quantity, may be while added to cart]
+    if(!arrayForCardRe_Rendering){
+        throw new DOMError("Array param for cards Re-rendering is Required!", "eventController Class Constructor");
+      }else if(!(arrayForCardRe_Rendering instanceof Array) && Object.prototype.toString.call(arr) !== "[object Array]"){
+      throw new DOMError(`Array data type expected but got ${typeof(arrayForCardRe_Rendering)}!`, "eventController Class Constructor");
+    }
+
+    this.arrayForCardRe_Rendering = arrayForCardRe_Rendering;
+
+    this.#wishlistControllerObj = new WishlistController(); // creating instance of WishlistController Object to class level variable
 
     console.warn("eventController is Running\n", `Target Element is ${this.targettedDOMElement} for event listener\n`, "Identity Name: " + this.identity_name);
 
@@ -124,6 +135,7 @@ class eventController {
           break;
       }
       console.log("indar ka block chala");
+      RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering, this.page_type);
       return;
     }
     console.log("bahar ka chala")

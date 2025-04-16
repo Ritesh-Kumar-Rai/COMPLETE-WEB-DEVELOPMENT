@@ -33,7 +33,7 @@ import eventController  from "./DOM scripts/eventController.js";
       const popularProducts = response.products.filter(product => product.popular);
       RenderCards.renderProductCards(topProductCardSection, Array.from(popularProducts));
         try {
-          const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION");
+          const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION", Array.from(popularProducts));
         } catch (error) {
           console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
         }
@@ -64,7 +64,7 @@ import eventController  from "./DOM scripts/eventController.js";
       discountedProductsArray = sortedProducts.slice(0,5);
       RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
         try {
-          const event_controller2 = new eventController(discountedProductCardSection, "DISCOUNTED PRODUCT SECTION");
+          const event_controller2 = new eventController(discountedProductCardSection, "DISCOUNTED PRODUCT SECTION", discountedProductsArray);
         } catch (error) {
           console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
         }
