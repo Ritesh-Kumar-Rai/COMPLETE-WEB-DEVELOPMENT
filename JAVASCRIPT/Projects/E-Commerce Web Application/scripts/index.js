@@ -4,6 +4,7 @@ import eventController  from "./DOM scripts/eventController.js";
 
 // Code for index.html and for further feature 
 
+let indexPageFilteredArrayData = new Array(2); // this array will contains the 2 sections filtered sub array
 
 // document.addEventListener("DOMContentLoaded", () => {
   const topProductCardSection = document.getElementById("top-section-product-body");
@@ -32,8 +33,9 @@ import eventController  from "./DOM scripts/eventController.js";
     .then((response) => {
       const popularProducts = response.products.filter(product => product.popular);
       RenderCards.renderProductCards(topProductCardSection, Array.from(popularProducts));
+      indexPageFilteredArrayData[0] = Array.from(popularProducts); // store it to global Array var which will use for Cards Re-rendering
         try {
-          const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION", Array.from(popularProducts));
+          const event_controller1 = new eventController(topProductCardSection, "TOP PRODUCT SECTION", {secondDom: discountedProductCardSection, arrays: indexPageFilteredArrayData});
         } catch (error) {
           console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
         }
@@ -63,8 +65,9 @@ import eventController  from "./DOM scripts/eventController.js";
       const sortedProducts = res.products.sort((a,b) => b.discount - a.discount);
       discountedProductsArray = sortedProducts.slice(0,5);
       RenderCards.renderProductCards(discountedProductCardSection, discountedProductsArray);
+      indexPageFilteredArrayData[1] = Array.from(discountedProductsArray); // store it to global Array var which will use for Cards Re-rendering
         try {
-          const event_controller2 = new eventController(discountedProductCardSection, "DISCOUNTED PRODUCT SECTION", discountedProductsArray);
+          const event_controller2 = new eventController(discountedProductCardSection, "DISCOUNTED PRODUCT SECTION", {secondDom: topProductCardSection, arrays: indexPageFilteredArrayData});
         } catch (error) {
           console.error(`${error.name} -> ${error.message}; [Error from: ${error.referenceFrom}]`);
         }

@@ -7,7 +7,7 @@ class eventController {
 
   #wishlistControllerObj;
 
-  constructor(targettedDOMElement, name_for_identification = "UNKNOWN CALLER", arrayForCardRe_Rendering, page_type = "home") {
+  constructor(targettedDOMElement, name_for_identification = "UNKNOWN CALLER", extras = {secondDom, arrays}, page_type = "home") {
     this.targettedDOMElement = targettedDOMElement;
     this.identity_name = name_for_identification;
     this.page_type = page_type;
@@ -18,14 +18,24 @@ class eventController {
       throw new DOMError("The parameter [which is targeted DOM] is must be an HTML DOM element", "eventController Class Constructor");
     }
     
+    // checking for an dom element which we will get from extras parameter
+    const secondDom = extras?.secondDom || null;
+    if (!secondDom) {
+      throw new DOMError("The Second Element Parameter is expected", "eventController Class Constructor - extras obj");
+    } else if (!(secondDom instanceof Element) || secondDom.nodeType !== 1) {
+      throw new DOMError("The parameter [which is second DOM for Card Re-rendering] is must be an HTML DOM element", "eventController Class Constructor - extras obj");
+    }
+
     // check for array is exists or not [mandatory for Cards Re-rendering when any changes made like wishlist, quantity, may be while added to cart]
+    const arrayForCardRe_Rendering = extras?.arrays || null;
     if(!arrayForCardRe_Rendering){
-        throw new DOMError("Array param for cards Re-rendering is Required!", "eventController Class Constructor");
-      }else if(!(arrayForCardRe_Rendering instanceof Array) && Object.prototype.toString.call(arr) !== "[object Array]"){
-      throw new DOMError(`Array data type expected but got ${typeof(arrayForCardRe_Rendering)}!`, "eventController Class Constructor");
+        throw new DOMError("Array param for cards Re-rendering is Required!", "eventController Class Constructor - extras obj");
+      }else if(!(arrayForCardRe_Rendering instanceof Array) && Object.prototype.toString.call(arrayForCardRe_Rendering) !== "[object Array]"){
+      throw new DOMError(`Array data type expected but got ${typeof(arrayForCardRe_Rendering)}!`, "eventController Class Constructor - extras obj");
     }
 
     this.arrayForCardRe_Rendering = arrayForCardRe_Rendering;
+    this.secondDomElement = secondDom;
 
     this.#wishlistControllerObj = new WishlistController(); // creating instance of WishlistController Object to class level variable
 
@@ -135,7 +145,13 @@ class eventController {
           break;
       }
       console.log("indar ka block chala");
-      RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering, this.page_type);
+      if(this.identity_name === "TOP PRODUCT SECTION"){
+        RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[0], this.page_type);
+        RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[1], this.page_type);
+      }else if(this.identity_name === "DISCOUNTED PRODUCT SECTION"){
+        RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[1], this.page_type);
+        RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[0], this.page_type);
+      }
       return;
     }
     console.log("bahar ka chala")
