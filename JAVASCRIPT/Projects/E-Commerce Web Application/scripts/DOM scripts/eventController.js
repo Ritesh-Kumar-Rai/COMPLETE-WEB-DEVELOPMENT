@@ -146,10 +146,10 @@ class eventController {
       }
       console.log("indar ka block chala");
       if(this.identity_name === "TOP PRODUCT SECTION"){
-        RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[0], this.page_type);
+        // RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[0], this.page_type);
         RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[1], this.page_type);
       }else if(this.identity_name === "DISCOUNTED PRODUCT SECTION"){
-        RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[1], this.page_type);
+        // RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[1], this.page_type);
         RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[0], this.page_type);
       }
       return;

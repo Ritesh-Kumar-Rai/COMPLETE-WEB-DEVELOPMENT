@@ -68,7 +68,7 @@ class RenderCards {
         productCardElem.innerHTML = `<a href='${page_goto_url}?id=${product.id}' class="product-card-top-box">
                 <span class="discount-badge">-${product.discount ?? 0}%</span>
                 <button type="button" class="wishlist-button ${(isExists) ? 'isWishlisted' : ''}" data-type="wishlist-btn" title="${(isExists) ? 'remove from wishlist' : 'add to wishlist'}" onclick="HapticOn()"><i
-                    class="ri-heart-3-line"></i></button>
+                    class="ri-heart-3-${(isExists) ? "fill" : "line"}"></i></button>
                 <figure>
                   <img
                     src="${product.image}"

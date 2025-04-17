@@ -14,7 +14,7 @@ class WishlistController {
   #cookieName = "logoIpsum-Wishlist-Cookie";
   constructor() {
     this.#WISHLISTED_PRODUCTS = this.#getCookie(this.#cookieName) || [];
-    alert(this.#WISHLISTED_PRODUCTS);
+    // alert(this.#WISHLISTED_PRODUCTS);
     console.warn("constructor of WishlistController is executed...");
   }
 
@@ -78,7 +78,7 @@ class WishlistController {
   #saveWishlistData() {
     // method to store/save wishlist data to Cookie/Session
     this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 5, "minutes");
-    alert(this.#getCookie(this.#cookieName));
+    // alert(this.#getCookie(this.#cookieName));
   }
 
   // method to save cookies with options for minutes, hours, or days
