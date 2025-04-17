@@ -6,6 +6,7 @@ import RenderCards from "./RenderCards.js";
 class eventController {
 
   #wishlistControllerObj;
+  #productQtyArray = []; // a class level variable which stores data of qty which user will change of any products, the structure is like [{product_id, qty}, ...]  
 
   constructor(targettedDOMElement, name_for_identification = "UNKNOWN CALLER", extras = {secondDom, arrays}, page_type = "home") {
     this.targettedDOMElement = targettedDOMElement;
@@ -86,6 +87,11 @@ class eventController {
       if (!attribute) {
         throw new ReferenceError("We are failed to get Attribute: data-type");
       }
+
+      const product_id_for_qty = parseInt(passedElement.parentElement.parentElement.parentElement.getAttribute("data-product-id")) || null;
+      if(!product_id_for_qty){
+        throw new ReferenceError("We are failed to get the product id for qty.. from product card.");
+      }
       
       switch (attribute) {
         case "wishlist-btn":
@@ -123,6 +129,7 @@ class eventController {
           }
           quantitylength--;
           inputElement.value = parseInt(quantitylength);
+          this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
           break;
 
         case "plus":
@@ -138,6 +145,7 @@ class eventController {
           }
           quantitylength2++;
           inputElement2.value = quantitylength2;
+          this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength2); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
           break;
 
         default:
@@ -158,6 +166,36 @@ class eventController {
     throw new TypeError("The clicked and passed element is not a DOM element: error occured at manageQty_n_wishlist() function");
   }
 
+  // This method is used to save product quanity info. to session which will be used for Card Re-rendering
+  #saveQtyToSessionStorage(productId, qty = 1){
+    try {
+      console.log(this.timer);
+    } catch (error) {
+    }
+    clearTimeout(this.timer);
+      if(!productId){
+        throw new ReferenceError("'product id' is required as parameter!");
+      }
+      if(!qty){
+        throw new ReferenceError("'quantity' is required as parameter!");
+      }
+      this.timer = setTimeout(()=>{
+        let isExists = false;
+      console.warn(this.#productQtyArray[0])
+      this.#productQtyArray.forEach((each_obj, index)=>{
+        if(each_obj.product_id === productId){
+          each_obj.qty = qty;
+          // console.log("qty:",qty)
+          // console.log(each_obj.qty);
+          isExists = true;
+        }
+      });
+      if (!isExists) this.#productQtyArray.push({product_id: productId, qty});
+      
+      console.log(this.#productQtyArray);
+      sessionStorage.setItem("logoIpsum-product-quantity-data", JSON.stringify(this.#productQtyArray));
+      },500)
+  }
 }
 
 export default eventController;
