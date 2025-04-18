@@ -168,11 +168,7 @@ class eventController {
 
   // This method is used to save product quanity info. to session which will be used for Card Re-rendering
   #saveQtyToSessionStorage(productId, qty = 1){
-    try {
-      console.log(this.timer);
-    } catch (error) {
-    }
-    clearTimeout(this.timer);
+    clearTimeout(this.timer); // clearing the previous timer of async.. function
       if(!productId){
         throw new ReferenceError("'product id' is required as parameter!");
       }
