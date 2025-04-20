@@ -109,7 +109,7 @@ class eventController {
             passedElement.classList.add("isWishlisted");
             passedElement.innerHTML = `<i class="ri-heart-3-fill"></i>`;
           }
-          console.log("arr->", this.#wishlistControllerObj.getWishlistData());
+          // console.log("arr->", this.#wishlistControllerObj.getWishlistData());
           break;
 
         case "minus":
@@ -136,7 +136,7 @@ class eventController {
           const inputElement2 = passedElement.previousElementSibling;
           let quantitylength2 = parseInt(inputElement2.value) || 1;
           if (!inputElement2 || inputElement2.nodeType !== 1 || !(inputElement2 instanceof Element)) {
-            console.warn(inputElement2)
+            // console.warn(inputElement2)
             throw new ReferenceError("Oops! We failed to target prevElement Sibling: reference -> manageQty_n_wishlist() function");
           }
 
