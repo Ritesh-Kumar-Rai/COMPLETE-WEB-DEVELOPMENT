@@ -54,6 +54,7 @@ class RenderCards {
 
     // logic for wishlist data checking
     const wishlistList = this.#checkForCookieWishlistData() || [];
+    const qtyList = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || [];
 
     // cards render logic
     const fragment = document.createDocumentFragment();
@@ -63,7 +64,9 @@ class RenderCards {
         productCardElem.setAttribute("class", "product-card-item");
         productCardElem.setAttribute("data-product-id", product.id);
 
+
         const isExists = this.#isAvailableInWishlistCookie(wishlistList, product.id);
+        const productQty = this.#isAvailableInSessionQty(qtyList, product.id) || 1;
 
         productCardElem.innerHTML = `<a href='${page_goto_url}?id=${product.id}' class="product-card-top-box">
                 <span class="discount-badge">-${product.discount ?? 0}%</span>
@@ -82,7 +85,7 @@ class RenderCards {
                 <div class="product-qty">
                   <button type="button" class="quantity-left-minus" data-type="minus" onclick="HapticOn()"><i
                       class="ri-subtract-line"></i></button>
-                  <input type="number" class="qty-input" value="1" min="1" spellcheck="false" readonly>
+                  <input type="number" class="qty-input" value="${productQty}" min="1" spellcheck="false" readonly>
                   <button type="button" class="quantity-right-plus" data-type="plus" onclick="HapticOn()"><i class="ri-add-line"></i></button>
                 </div>
                 <button type="button" class="add-to-cart-btn" title="add to cart button" onclick="HapticOn()">Add to Cart</button>
@@ -124,6 +127,27 @@ class RenderCards {
     return array.includes(id);
   }
 
+
+  static #isAvailableInSessionQty(array = [], id){
+    if (!array) {
+      throw new ReferenceError("'array' parameter is missing!");
+    } else if (!(array instanceof Array) && Object.prototype.toString.call(array) !== "[object Array]") {
+      throw new TypeError("'array' parameter is expected as Array type!");;
+    }
+
+    if (!id) {
+      throw new ReferenceError("'id' parameter is missing!");
+    } else if (typeof (id) !== 'number') {
+      throw new TypeError("'id' parameter is expected as Numeric type!");;
+    }
+    
+    const quantityObj = array.find(each => each.product_id === id);
+    if(!quantityObj){
+      console.error("No object found with product_id:", id);
+      return null; // or any fallback value or logic as needed
+    }
+    return (quantityObj.qty > 1) ? quantityObj.qty : 1; 
+  }
 };
 
 export default RenderCards;

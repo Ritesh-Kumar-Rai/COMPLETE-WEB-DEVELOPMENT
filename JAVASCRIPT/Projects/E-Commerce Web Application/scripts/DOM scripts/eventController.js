@@ -80,7 +80,7 @@ class eventController {
 
 
   // function to increment/decrement quantity or add to wishlist functionality
-  #manageQty_n_wishlist(passedElement){
+  async #manageQty_n_wishlist(passedElement){
     
     if (passedElement.nodeType === 1 && passedElement instanceof Element) {
       const attribute = passedElement.getAttribute("data-type");
@@ -130,7 +130,7 @@ class eventController {
           }
           quantitylength--;
           inputElement.value = parseInt(quantitylength);
-          this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
           break;
 
         case "plus":
@@ -146,7 +146,7 @@ class eventController {
           }
           quantitylength2++;
           inputElement2.value = quantitylength2;
-          this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength2); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength2); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
           break;
 
         default:
@@ -169,29 +169,32 @@ class eventController {
 
   // This method is used to save product quanity info. to session which will be used for Card Re-rendering
   #saveQtyToSessionStorage(productId, qty = 1){
-    clearTimeout(this.timer); // clearing the previous timer of async.. function
-      if(!productId){
-        throw new ReferenceError("'product id' is required as parameter!");
-      }
-      if(!qty){
-        throw new ReferenceError("'quantity' is required as parameter!");
-      }
-      this.timer = setTimeout(()=>{
-        let isExists = false;
-      console.warn(this.#productQtyArray[0])
-      this.#productQtyArray.forEach((each_obj, index)=>{
-        if(each_obj.product_id === productId){
-          each_obj.qty = qty;
-          // console.log("qty:",qty)
-          // console.log(each_obj.qty);
-          isExists = true;
-        }
-      });
-      if (!isExists) this.#productQtyArray.push({product_id: productId, qty});
-      
-      console.log(this.#productQtyArray);
-      sessionStorage.setItem("logoIpsum-product-quantity-data", JSON.stringify(this.#productQtyArray));
-      },500)
+    return new Promise((resolve, reject)=>{
+          clearTimeout(this.timer); // clearing the previous timer of async.. function
+          if(!productId){
+            reject(new ReferenceError("'product id' is required as parameter!"));
+          }
+          if(!qty){
+            reject(new ReferenceError("'quantity' is required as parameter!"));
+          }
+          this.timer = setTimeout(()=>{
+            let isExists = false;
+            console.warn(this.#productQtyArray[0])
+          this.#productQtyArray.forEach((each_obj, index)=>{
+            if(each_obj.product_id === productId){
+              each_obj.qty = qty;
+              // console.log("qty:",qty)
+              // console.log(each_obj.qty);
+              isExists = true;
+            }
+          });
+          if (!isExists) this.#productQtyArray.push({product_id: productId, qty});
+          
+          console.log(this.#productQtyArray);
+          sessionStorage.setItem("logoIpsum-product-quantity-data", JSON.stringify(this.#productQtyArray));
+          resolve(true);
+          },500)
+    });
   }
 }
 
