@@ -6,12 +6,13 @@ import RenderCards from "./RenderCards.js";
 class eventController {
 
   #wishlistControllerObj;
-  #productQtyArray = []; // a class level variable which stores data of qty which user will change of any products, the structure is like [{product_id, qty}, ...]  
+  #productQtyArray = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || []; // a class level variable which stores data of qty which user will change of any products, the structure is like [{product_id, qty}, ...]  
 
   constructor(targettedDOMElement, name_for_identification = "UNKNOWN CALLER", extras = {secondDom, arrays}, page_type = "home") {
     this.targettedDOMElement = targettedDOMElement;
     this.identity_name = name_for_identification;
     this.page_type = page_type;
+    console.error(this.#productQtyArray)
     // check for DOM element param is correct or exists
     if (!targettedDOMElement) {
       throw new DOMError("Target Element Parameter is expected", "eventController Class Constructor");
