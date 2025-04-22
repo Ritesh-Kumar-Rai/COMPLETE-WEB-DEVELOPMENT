@@ -130,7 +130,11 @@ class eventController {
           }
           quantitylength--;
           inputElement.value = parseInt(quantitylength);
-          await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          try {
+            await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          } catch (error) { 
+            console.error(`${error.name} -> ${error.message}`);
+          }
           break;
 
         case "plus":
@@ -146,7 +150,11 @@ class eventController {
           }
           quantitylength2++;
           inputElement2.value = quantitylength2;
-          await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength2); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          try {
+            await this.#saveQtyToSessionStorage(product_id_for_qty, quantitylength2); // sending the product id and qty. count to this method to save it to session which will be used for Card Re-rendering
+          } catch (error) {
+            console.error(`${error.name} -> ${error.message}`);
+          }
           break;
 
         default:
@@ -170,7 +178,8 @@ class eventController {
   // This method is used to save product quanity info. to session which will be used for Card Re-rendering
   #saveQtyToSessionStorage(productId, qty = 1){
     return new Promise((resolve, reject)=>{
-          clearTimeout(this.timer); // clearing the previous timer of async.. function
+          if(this.timer) clearTimeout(this.timer); // clearing the previous timer of async.. function
+
           if(!productId){
             reject(new ReferenceError("'product id' is required as parameter!"));
           }
@@ -179,7 +188,8 @@ class eventController {
           }
           this.timer = setTimeout(()=>{
             let isExists = false;
-            console.warn(this.#productQtyArray[0])
+            console.warn(this.#productQtyArray)
+          this.#productQtyArray = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || this.#productQtyArray; // this will help to prevent the override of sessionStorage due to various constructor local arrays; it will first import the previous data to current array then perform any operations..   
           this.#productQtyArray.forEach((each_obj, index)=>{
             if(each_obj.product_id === productId){
               each_obj.qty = qty;
