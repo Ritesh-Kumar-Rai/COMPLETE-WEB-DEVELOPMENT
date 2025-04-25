@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../styles/common-style.css">
   <link rel="stylesheet" href="../styles/navbar.css">
   <link rel="stylesheet" href="../styles/modal.css">
-  <script src="../scripts/DOM scripts/navbar.js" defer></script>
+  <script type="module" src="../scripts/DOM scripts/navbar.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <script src="../scripts/DOM scripts/signIn_modal.js" defer></script>
   <link rel="stylesheet" href="../styles/cart-page.css">
@@ -73,7 +73,7 @@
     <div class="header-controls">
       <button aria-label="sign-in" id="sign-in-btn" type="button" onclick="HapticOn()">Sign In</button>
       <button aria-label="wishlist" id="navbar-wishlist-btn" data-page-type="cart.html" type="button" onclick="HapticOn()"><i class="ri-heart-3-line"></i></button>
-      <button aria-label="add-to-cart-button" type="button" onclick="HapticOn()"><i class="ri-shopping-cart-fill"></i> Cart
+      <button aria-label="add-to-cart-button" id="navbar-go-to-cart-btn" type="button" onclick="HapticOn()"><i class="ri-shopping-cart-fill"></i> Cart
         <span>0</span></button>
       <div>
         <button aria-label="menu-toggler" id="menu-toggler-open-btn" type="button" onclick="HapticOn(true)"><i

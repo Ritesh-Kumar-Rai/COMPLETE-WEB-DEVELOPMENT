@@ -66,6 +66,12 @@ class eventController {
         e.preventDefault();
         if (e.target.classList.contains("add-to-cart-btn")) {
           // ... further logic for add to cart button
+          // here the closest() method in JS DOM is used to find the parent/ancestor element of targeted element
+          const product_id = parseInt(e.target.closest(".product-card-item").getAttribute("data-product-id")) || null;
+          const inputElement = e.target.previousElementSibling.children[1];
+          alert(product_id)
+          console.log(inputElement)
+          cartObj.add_product_to_CART(product_id, inputElement);
           return;
         }
         try {

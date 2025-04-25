@@ -1,3 +1,6 @@
+//  importing modules
+import CartController from "../CartController.js" 
+ 
  // JS for Navbar Menu Bar Handling
  const navElem = document.querySelector("nav");
  const togglerOpenBtn = document.getElementById("menu-toggler-open-btn");
@@ -31,4 +34,22 @@ function HapticOn(isLongEffect = false) {
 
   }
 
+}
+
+
+// Code for CART class instantiation
+const nav_cart_count_element = document.getElementById("navbar-go-to-cart-btn").lastElementChild;
+console.warn(nav_cart_count_element);
+
+// creating an instance of CartController class
+let cartObj; // a global variable for storing instance of CartController;
+
+try {
+  cartObj = new CartController(nav_cart_count_element);
+  setTimeout(()=>{
+    cartObj.add_product_to_CART(2, document.querySelector('span'));
+  },5000)
+} catch (error) {
+  console.error(`${error.name} -> ${error.message}`);
+  console.error(error.stack);
 }
