@@ -52,7 +52,8 @@ class CartController{
     if(!(input_element instanceof Element) && input_element.nodeType !== 1){
       throw new CartError("'input_element' is must be DOM element type");
     }
-    const qtyData = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || [];
+    const sessionName = "logoIpsum-product-quantity-data";
+    const qtyData = JSON.parse(sessionStorage.getItem(sessionName)) || [];
     const productQty = Number(qtyData.find( each_obj => each_obj.product_id === id)?.qty) || null;
 
     if(!productQty){
@@ -65,8 +66,16 @@ class CartController{
       return; // here because CART array does not contains particular id, we will inject it 
     }
     // but when the product id already exists in CART array we will increment the quantity of product from/to sessionStorage
+    // here we will increment the quantity of specific product by 1
+    qtyData.forEach((each_obj)=>{
+      if(each_obj.product_id === id){
+        each_obj.qty++;
+      }
+    });
+    sessionStorage.setItem(sessionName, JSON.stringify(qtyData));
     this.#displayTotalCARTCount();
-    console.log(qtyData);
+    console.log("*****",qtyData);
+    console.log(this.#CART)
   }
 
   remove_product_from_CART(id){

@@ -2,6 +2,7 @@
 import DOMError from "../Custom Errors/DOMError.js";
 import WishlistController from "../WishlistController.js";
 import RenderCards from "./RenderCards.js";
+import { cartObj } from "./navbar.js";
 
 class eventController {
 
@@ -69,9 +70,9 @@ class eventController {
           // here the closest() method in JS DOM is used to find the parent/ancestor element of targeted element
           const product_id = parseInt(e.target.closest(".product-card-item").getAttribute("data-product-id")) || null;
           const inputElement = e.target.previousElementSibling.children[1];
-          alert(product_id)
+          // alert(product_id)
           console.log(inputElement)
-          cartObj.add_product_to_CART(product_id, inputElement);
+          cartObj.add_product_to_CART(product_id, inputElement); // cart object execution
           return;
         }
         try {
@@ -95,7 +96,7 @@ class eventController {
         throw new ReferenceError("We are failed to get Attribute: data-type");
       }
 
-      const product_id_for_qty = parseInt(passedElement.parentElement.parentElement.parentElement.getAttribute("data-product-id")) || null;
+      const product_id_for_qty = parseInt(passedElement.closest(".product-card-item").getAttribute("data-product-id")) || null;
       if(!product_id_for_qty){
         throw new ReferenceError("We are failed to get the product id for qty.. from product card.");
       }
