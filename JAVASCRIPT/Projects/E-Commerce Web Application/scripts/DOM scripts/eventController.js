@@ -133,7 +133,7 @@ class eventController {
           let quantitylength = parseInt(inputElement.value) || 1;
 
           if (quantitylength === 1 || quantitylength < 2) {
-            return;
+            return; // TODO
           }
 
           if (!inputElement || inputElement.nodeType !== 1 || !(inputElement instanceof Element)) {

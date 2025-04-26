@@ -8,6 +8,8 @@ class CartError extends Error{
   }
 };
 
+// TODO -> While saving data to Cookie, we need to store their quantity also and we required to fetch and display products based on that also when session started first time
+
 // main class for CART Related Operations
 class CartController{
   #CART = [];
