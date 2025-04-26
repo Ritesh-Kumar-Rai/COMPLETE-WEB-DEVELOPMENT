@@ -45,21 +45,25 @@ class CartController{
   }
 
   add_product_to_CART(id, input_element){
-    if(!id || typeof(id) !== 'number'){
-      throw new CartError("id is required! and must be Numeric type");
+    if(!id || typeof(id) !== 'number' || !Number.isInteger(id) || id <= 0){
+      throw new CartError("id is required! and must be Numeric type and positive value");
     }
 
     if(!(input_element instanceof Element) && input_element.nodeType !== 1){
       throw new CartError("'input_element' is must be DOM element type");
     }
     const sessionName = "logoIpsum-product-quantity-data";
-    const qtyData = JSON.parse(sessionStorage.getItem(sessionName)) || [];
-    const productQty = Number(qtyData.find( each_obj => each_obj.product_id === id)?.qty) || null;
-
-    if(!productQty){
-      // throw new CartError("We are unable to get the product Quantity!" + productQty);
+    let qtyData = [];
+    try {
+      qtyData = JSON.parse(sessionStorage.getItem(sessionName)) || [];
+      if(!Array.isArray(qtyData)) throw new Error(); // Ensure it's an array
+    } catch (error) {
+      console.error(`Invalid session data for ${sessionName}. Resetting to empty array.`);
+      qtyData = []; // Reset to a safe default
     }
-    console.log(`product id is ${id} which has quantity : ${productQty}`);
+    // const productQty = Number(qtyData.find( each_obj => each_obj.product_id === id)?.qty) || 1;
+    // console.log(`product id is ${id} which has quantity : ${productQty}`);
+    
     if(!this.#CART.includes(id)){
       this.#CART.push(id);
       this.#displayTotalCARTCount()
@@ -67,19 +71,20 @@ class CartController{
     }
     // but when the product id already exists in CART array we will increment the quantity of product from/to sessionStorage
     // here we will increment the quantity of specific product by 1
-    let isExists = false;
-    qtyData.forEach((each_obj)=>{
-      if(each_obj.product_id === id){
-        each_obj.qty++;
-        input_element.value++; // changing the input value state
-        isExists = true;
-      }
-    });
-    if (!isExists) qtyData.push({product_id: id, qty : 1}); // TODO
-    sessionStorage.setItem(sessionName, JSON.stringify(qtyData));
-    this.#displayTotalCARTCount();
-    console.log("*****",qtyData);
-    console.log(this.#CART)
+    // the qtyData is from sessionStorage, and the below code is used to increment the quantity of it by 1.
+    const existing_product = qtyData.find(each_obj => each_obj.product_id === id);
+    if(existing_product){
+      existing_product.qty++;
+      input_element.value = parseInt(input_element.value || 1) + 1; // changing the input value state
+    }else{
+      qtyData.push({product_id: id, qty : 2}); 
+      input_element.value = parseInt(input_element.value || 1) + 1; 
+    } 
+
+    const updatedData = JSON.stringify(qtyData);
+    if(sessionStorage.getItem(sessionName) !== updatedData){
+      sessionStorage.setItem(sessionName, updatedData);
+    }
   }
 
   remove_product_from_CART(id){

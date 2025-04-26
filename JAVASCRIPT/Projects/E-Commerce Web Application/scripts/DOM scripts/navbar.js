@@ -22,20 +22,6 @@ import CartController from "../CartController.js"
    // setTimeout(()=> navElem.style.display = "none",200);
  });
 
- // Code for Haptic Feedback
-function HapticOn(isLongEffect = false) {
-
-  if ('vibrate' in navigator) {
-    navigator.vibrate(100);
-
-    if (isLongEffect) {
-      navigator.vibrate([40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]); // tick-tick-tick effect
-    }
-
-  }
-
-}
-
 
 // Code for CART class instantiation
 const nav_cart_count_element = document.getElementById("navbar-go-to-cart-btn").lastElementChild;
