@@ -67,11 +67,15 @@ class CartController{
     }
     // but when the product id already exists in CART array we will increment the quantity of product from/to sessionStorage
     // here we will increment the quantity of specific product by 1
+    let isExists = false;
     qtyData.forEach((each_obj)=>{
       if(each_obj.product_id === id){
         each_obj.qty++;
+        input_element.value++; // changing the input value state
+        isExists = true;
       }
     });
+    if (!isExists) qtyData.push({product_id: id, qty : 1}); // TODO
     sessionStorage.setItem(sessionName, JSON.stringify(qtyData));
     this.#displayTotalCARTCount();
     console.log("*****",qtyData);

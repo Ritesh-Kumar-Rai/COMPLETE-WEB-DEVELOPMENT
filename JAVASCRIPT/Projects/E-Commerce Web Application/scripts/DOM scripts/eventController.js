@@ -72,7 +72,15 @@ class eventController {
           const inputElement = e.target.previousElementSibling.children[1];
           // alert(product_id)
           console.log(inputElement)
-          cartObj.add_product_to_CART(product_id, inputElement); // cart object execution
+          cartObj.add_product_to_CART(product_id, inputElement); // cart object execution added product to CART
+          // now Re-rendering the cards, because when user clicks 2nd or more times on "add to cart" btn, the quantity increases that's require card Re-rendering
+          if(this.identity_name === "TOP PRODUCT SECTION"){
+            // RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[0], this.page_type);
+            RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[1], this.page_type);
+          }else if(this.identity_name === "DISCOUNTED PRODUCT SECTION"){
+            // RenderCards.renderProductCards(this.targettedDOMElement, this.arrayForCardRe_Rendering[1], this.page_type);
+            RenderCards.renderProductCards(this.secondDomElement, this.arrayForCardRe_Rendering[0], this.page_type);
+          }
           return;
         }
         try {
