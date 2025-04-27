@@ -77,7 +77,7 @@ class WishlistController {
 
   #saveWishlistData() {
     // method to store/save wishlist data to Cookie/Session
-    this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 5, "minutes");
+    this.#setCookie(this.#cookieName, this.#WISHLISTED_PRODUCTS, 5, "days");
     // alert(this.#getCookie(this.#cookieName));
   }
 
