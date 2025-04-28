@@ -116,13 +116,13 @@ class RenderCards {
     if (!array) {
       throw new ReferenceError("'array' parameter is missing!");
     } else if (!(array instanceof Array) && Object.prototype.toString.call(array) !== "[object Array]") {
-      throw new TypeError("'array' parameter is expected as Array type!");;
+      throw new TypeError("'array' parameter is expected as Array type!");
     }
 
     if (!id) {
       throw new ReferenceError("'id' parameter is missing!");
     } else if (typeof (id) !== 'number') {
-      throw new TypeError("'id' parameter is expected as Numeric type!");;
+      throw new TypeError("'id' parameter is expected as Numeric type!");
     }
     return array.includes(id);
   }
@@ -132,13 +132,13 @@ class RenderCards {
     if (!array) {
       throw new ReferenceError("'array' parameter is missing!");
     } else if (!(array instanceof Array) && Object.prototype.toString.call(array) !== "[object Array]") {
-      throw new TypeError("'array' parameter is expected as Array type!");;
+      throw new TypeError("'array' parameter is expected as Array type!");
     }
 
     if (!id) {
       throw new ReferenceError("'id' parameter is missing!");
     } else if (typeof (id) !== 'number') {
-      throw new TypeError("'id' parameter is expected as Numeric type!");;
+      throw new TypeError("'id' parameter is expected as Numeric type!");
     }
     
     const quantityObj = array.find(each => each.product_id === id);

@@ -18,6 +18,68 @@ const productId = parseInt(params.get('id'));
 // Log or use the productId as needed
 console.log(productId); // This will print the id
 
+// checking for sessionStorage for product quantity
+const sessionQtyArray = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || [];
+
+// 5. Block of Code
+const isAvailableInSessionQty = (id) =>{
+  if (!sessionQtyArray) {
+    return 1;
+  } else if (!(sessionQtyArray instanceof Array) && Object.prototype.toString.call(sessionQtyArray) !== "[object Array]") {
+    return 1;
+  }
+
+  if (!id) {
+    throw new ReferenceError("'id' parameter is missing!");
+  } else if (typeof (id) !== 'number') {
+    throw new TypeError("'id' parameter is expected as Numeric type!");;
+  }
+  
+  const quantityObj = sessionQtyArray.find(each => each.product_id === id);
+  if(!quantityObj){
+    console.error("No object found with product_id:", id);
+    return 1; // or any fallback value or logic as needed
+  }
+  return (quantityObj.qty > 1) ? quantityObj.qty : 1; 
+}
+
+
+// 6. method to get wishlist data from a cookie and check it's availability
+const checkForCookieWishlistData = () =>{
+  // cookie name
+  const name = "logoIpsum-Wishlist-Cookie";
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    const [key, value] = cookie.split("=");
+    if (decodeURIComponent(key) === name) {
+      return JSON.parse(decodeURIComponent(value)); // Parse the JSON back into an array/object
+    }
+  }
+  return []; // Return empty array if the cookie doesn't exist
+}
+
+const isAvailableInWishlistCookie = (id) =>{
+  if (!wishlistData) {
+    console.error("'wishlist data' is missing!");
+    return false;
+  } else if (!(wishlistData instanceof Array) && Object.prototype.toString.call(wishlistData) !== "[object Array]") {
+    console.error("'wishlist data' is expected as Array type!");
+    return false;
+  }
+
+  if (!id) {
+    throw new ReferenceError("'id' parameter is missing!");
+  } else if (typeof (id) !== 'number') {
+    throw new TypeError("'id' parameter is expected as Numeric type!");
+  }
+  return wishlistData.includes(id);
+}
+
+// checking for wishlist cookie
+const wishlistData = checkForCookieWishlistData();
+
+
+// 2. Block of Code
 const fetchSingleProductData = (id) =>{
   if(!id || typeof(id) !== "number"){
     // console.warn(id, typeof id)
@@ -29,6 +91,21 @@ const fetchSingleProductData = (id) =>{
   .then((response) =>{
     console.log(response.status);
     const [category_type, id] = printProductInfo(response.product);
+    // --
+    const quantityElement = document.getElementById("qty-input");
+    if(!quantityElement && !(quantityElement instanceof Element)){
+      throw new ReferenceError("failed to get quantity input element!");
+    }
+    quantityElement.value = isAvailableInSessionQty(id);
+
+    const wishlistElement = document.querySelector(".wishlist-btn");
+    if(!wishlistElement && !(wishlistElement instanceof Element)){
+      throw new ReferenceError("failed to get wishlist btn element!");
+    }
+    const isWishlisted = isAvailableInWishlistCookie(id);
+    isWishlisted ? wishlistElement.classList.add("isWishlisted") : wishlistElement.classList.remove("isWishlisted");
+    isWishlisted ? wishlistElement.firstElementChild.setAttribute("class","ri-heart-3-fill") :  wishlistElement.firstElementChild.setAttribute("class", "ri-heart-3-line");
+    // --
     fetchandRenderProduct_byCategory(category_type, id);
   })
   .catch(err => console.error(`${err.name} -> ${err.message}`));
@@ -53,6 +130,7 @@ const calculateDiscountedPrice = (amount, discount) =>{
   return discountedPrice;
 }
 
+// 3. Block of Code
 const printProductInfo = (productObj) =>{
   if(!productObj){
     throw new ReferenceError("productObj as parameter is Required!");
@@ -87,6 +165,7 @@ const printProductInfo = (productObj) =>{
   return [productObj.category, productObj.id];
 }
 
+// 4. Block of Code
 const fetchandRenderProduct_byCategory = async (category_name, product_id) =>{
   try {
     const response = await fetch(`https://fakestoreapi.in/api/products/category?type=${category_name}`);
@@ -108,6 +187,7 @@ const fetchandRenderProduct_byCategory = async (category_name, product_id) =>{
   }
 }
 
+// 1. Main Block of Code
 try {
   const similarProductContainer = document.querySelector(".similar-products-body");
   console.log(similarProductContainer)
@@ -116,4 +196,21 @@ try {
 
 } catch (error) {
   console.error(`${error.name} -> ${error.message}`);
+}
+
+
+// 7. Block of Code 
+function listenEventsOnElements(){
+  // this function will used to attach an event listeners to elements
+
+  // quantity Increment/Decrement Button Elements
+  const qtyIncre = document.getElementById("qty-increment");
+  const qtyDecre = document.getElementById("qty-decrement");
+  qtyIncre.addEventListener('click', ()=>{});
+  qtyDecre.addEventListener('click', ()=>{});
+
+  // wishlist Element
+  wishlistElement.addEventListener("click", ()=>{
+
+  });
 }

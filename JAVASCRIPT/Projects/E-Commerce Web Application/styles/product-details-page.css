@@ -212,6 +212,16 @@ main{
   color: #fff;
 }
 
+/* css for is-wishlisted wishlist btn*/
+.product-details-section > .product-detail-info-container > .product-actions > .wishlist-btn.isWishlisted{
+  color: crimson;
+}
+.product-details-section > .product-detail-info-container > .product-actions > .wishlist-btn.isWishlisted:hover{
+  background-color: crimson;
+  color: #fff;
+}
+/* is-wishlisted over */
+
 .product-details-section > .product-detail-info-container > .product-actions > .wishlist-btn:active {
   scale: 0.9;
 }
