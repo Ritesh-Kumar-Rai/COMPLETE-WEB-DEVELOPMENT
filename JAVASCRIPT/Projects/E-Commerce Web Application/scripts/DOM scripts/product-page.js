@@ -1,5 +1,6 @@
 // import class
 import RenderCards from "../DOM scripts/RenderCards.js";
+import WishlistController from "../WishlistController.js";
 
 // Code for product.html
 
@@ -193,6 +194,7 @@ try {
   console.log(similarProductContainer)
   RenderCards.renderSkeletonCards(similarProductContainer, 5);
   fetchSingleProductData(productId);
+  listenEventsOnElements();
 
 } catch (error) {
   console.error(`${error.name} -> ${error.message}`);
@@ -203,14 +205,27 @@ try {
 function listenEventsOnElements(){
   // this function will used to attach an event listeners to elements
 
+  const wishlistElement = document.querySelector(".wishlist-btn");
+
   // quantity Increment/Decrement Button Elements
   const qtyIncre = document.getElementById("qty-increment");
   const qtyDecre = document.getElementById("qty-decrement");
+
+  const wishlistObj = new WishlistController(); // instance of WishlistController
+
   qtyIncre.addEventListener('click', ()=>{});
   qtyDecre.addEventListener('click', ()=>{});
 
   // wishlist Element
-  wishlistElement.addEventListener("click", ()=>{
-
+  wishlistElement.addEventListener("click", (e)=>{
+    if(wishlistElement.classList.contains("isWishlisted")){
+      wishlistObj.remove_product_from_wishlist(productId);
+      wishlistElement.classList.remove("isWishlisted");
+      wishlistElement.firstElementChild.setAttribute("class", "ri-heart-3-line");
+    }else{
+      wishlistObj.push_product_to_wishlist(productId);
+      wishlistElement.classList.add("isWishlisted");
+      wishlistElement.firstElementChild.setAttribute("class", "ri-heart-3-fill");
+    }
   });
 }
