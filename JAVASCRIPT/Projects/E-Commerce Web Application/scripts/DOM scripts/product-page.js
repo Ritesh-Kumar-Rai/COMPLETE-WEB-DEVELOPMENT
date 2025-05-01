@@ -206,6 +206,7 @@ function listenEventsOnElements(){
   // this function will used to attach an event listeners to elements
 
   const wishlistElement = document.querySelector(".wishlist-btn");
+  const qtyInputElement = document.querySelector(".qty-input");
 
   // quantity Increment/Decrement Button Elements
   const qtyIncre = document.getElementById("qty-increment");
@@ -213,8 +214,22 @@ function listenEventsOnElements(){
 
   const wishlistObj = new WishlistController(); // instance of WishlistController
 
-  qtyIncre.addEventListener('click', ()=>{});
-  qtyDecre.addEventListener('click', ()=>{});
+  qtyIncre.addEventListener('click', ()=>{
+    const value = parseInt(qtyInputElement.value);
+    if(!value){
+      throw new Error("input element must be numeric type");
+    }
+    value++;
+    qtyInputElement.value = value;
+  });
+  qtyDecre.addEventListener('click', ()=>{
+    const value = parseInt(qtyInputElement.value);
+    if(!value){
+      throw new Error("input element must be numeric type");
+    }
+    value--;
+    qtyInputElement.value = value;
+  });
 
   // wishlist Element
   wishlistElement.addEventListener("click", (e)=>{
