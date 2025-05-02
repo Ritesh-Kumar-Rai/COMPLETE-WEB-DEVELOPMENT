@@ -200,13 +200,28 @@ try {
   console.error(`${error.name} -> ${error.message}`);
 }
 
+// 8. function to save quantity to sessionStorage
+const saveQtyToSession = (quantity = 1) =>{
+  const sessionArr = JSON.parse(sessionStorage.getItem("logoIpsum-product-quantity-data")) || [];
+  let isExists = false;
+  sessionArr.forEach((each_obj) =>{
+    if(each_obj.product_id === productId){
+        each_obj.qty = quantity;
+        isExists = true;
+    }
+  });
+  if (!isExists) sessionArr.push({product_id: productId, qty: quantity});
+  
+  sessionStorage.setItem("logoIpsum-product-quantity-data", JSON.stringify(sessionArr));
+}
+
 
 // 7. Block of Code 
 function listenEventsOnElements(){
   // this function will used to attach an event listeners to elements
 
   const wishlistElement = document.querySelector(".wishlist-btn");
-  const qtyInputElement = document.querySelector(".qty-input");
+  const qtyInputElement = document.getElementById("qty-input");
 
   // quantity Increment/Decrement Button Elements
   const qtyIncre = document.getElementById("qty-increment");
@@ -215,20 +230,36 @@ function listenEventsOnElements(){
   const wishlistObj = new WishlistController(); // instance of WishlistController
 
   qtyIncre.addEventListener('click', ()=>{
-    const value = parseInt(qtyInputElement.value);
+    let value = parseInt(qtyInputElement.value) || 1;
     if(!value){
       throw new Error("input element must be numeric type");
+    }
+
+    if(value <= 0){
+      value = 1;
+      qtyInputElement.value = value;
+      saveQtyToSession(value);
+      return;
     }
     value++;
     qtyInputElement.value = value;
+    saveQtyToSession(value);
   });
+
   qtyDecre.addEventListener('click', ()=>{
-    const value = parseInt(qtyInputElement.value);
+    let value = parseInt(qtyInputElement.value) || 1;
     if(!value){
       throw new Error("input element must be numeric type");
     }
+    if(value <=1){
+      value = 1;
+      qtyInputElement.value = value;
+      saveQtyToSession(value);
+      return;
+    }
     value--;
     qtyInputElement.value = value;
+    saveQtyToSession(value);
   });
 
   // wishlist Element
