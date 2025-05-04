@@ -143,7 +143,7 @@ class RenderCards {
     
     const quantityObj = array.find(each => each.product_id === id);
     if(!quantityObj){
-      console.error("No object found with product_id:", id);
+      // console.error("No object found with product_id:", id);
       return null; // or any fallback value or logic as needed
     }
     return (quantityObj.qty > 1) ? quantityObj.qty : 1; 
