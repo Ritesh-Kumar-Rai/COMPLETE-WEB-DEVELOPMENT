@@ -1,6 +1,7 @@
 // import class
 import RenderCards from "../DOM scripts/RenderCards.js";
 import WishlistController from "../WishlistController.js";
+import { cartObj } from "./navbar.js";
 
 // Code for product.html
 
@@ -221,6 +222,7 @@ function listenEventsOnElements(){
   // this function will used to attach an event listeners to elements
 
   const wishlistElement = document.querySelector(".wishlist-btn");
+  const addToCartBtn = document.querySelector(".add-to-cart-btn");
   const qtyInputElement = document.getElementById("qty-input");
 
   // quantity Increment/Decrement Button Elements
@@ -273,5 +275,10 @@ function listenEventsOnElements(){
       wishlistElement.classList.add("isWishlisted");
       wishlistElement.firstElementChild.setAttribute("class", "ri-heart-3-fill");
     }
+  });
+
+  // attaching event listener to add to cart btn
+  addToCartBtn.addEventListener("click", ()=>{
+      cartObj.add_product_to_CART(productId, qtyInputElement);
   });
 }
