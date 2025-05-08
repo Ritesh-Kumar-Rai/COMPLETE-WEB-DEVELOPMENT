@@ -9,17 +9,21 @@ class CartError extends Error{
 };
 
 // TODO -> While saving data to Cookie, we need to store their quantity also and we required to fetch and display products based on that also when session started first time
+// TODO -> I have implemented the save to cookie and get data from cookie methods, but i haven't saved data with quantity because this might reflect the whole data structure of CART array and causes eventController.js class to modify there code also, ... will do this later
 
 // main class for CART Related Operations
 class CartController{
   #CART = [];
+  #cookieName = "logoIpsum-CART-Cookie";
   constructor(navbar_count_element){
+    console.log("CART constructor called");
     console.log(this.#CART, typeof navbar_count_element);
     if(!(navbar_count_element instanceof Element) && navbar_count_element.nodeType !== 1){
       throw new CartError("the passed navbar cart button element to constructor is must be DOM element type!");
     }
 
     this._navbar_count_element = navbar_count_element;
+    this.#CART = this.#getCookie(this.#cookieName) || []; // fetching initial data from cookie
     this.#displayTotalCARTCount();
   }
 
@@ -69,6 +73,7 @@ class CartController{
     if(!this.#CART.includes(id)){
       this.#CART.push(id);
       this.#displayTotalCARTCount()
+      this.#saveCARTData();
       return; // here because CART array does not contains particular id, we will inject it 
     }
     // but when the product id already exists in CART array we will increment the quantity of product from/to sessionStorage
@@ -104,9 +109,53 @@ class CartController{
     }
     this.#CART.splice(index_to_remove, 1); // built-in method to remove the specific value from array [in this case the product id will be removed] 
     // [Note: The splice() method will modify the original array]
+    this.#saveCARTData();
   }
 
-  
+  #saveCARTData() {
+    // method to store/save CART data to Cookie/Session
+    this.#setCookie(this.#cookieName, this.#CART, 5, "days");
+    // alert(this.#getCookie(this.#cookieName));
+  }
+
+  // method to save CART data with options for minutes, hours, or days
+  #setCookie(name, value, duration, unit) {
+    const date = new Date();
+
+    // Calculate expiration time based on the unit (minutes, hours, days)
+    switch (unit) {
+      case "minutes":
+        date.setTime(date.getTime() + (duration * 60 * 1000)); // Convert minutes to milliseconds
+        break;
+      case "hours":
+        date.setTime(date.getTime() + (duration * 60 * 60 * 1000)); // Convert hours to milliseconds
+        break;
+      case "days":
+        date.setTime(date.getTime() + (duration * 24 * 60 * 60 * 1000)); // Convert days to milliseconds
+        break;
+      default:
+        console.error("Invalid time unit! Use 'minutes', 'hours', or 'days'.");
+        return;
+    }
+
+    // Create cookie with expiration date
+    const expires = `expires=${date.toUTCString()}`;
+    // document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(JSON.stringify(value))}; ${expires}; path=/`;
+    document.cookie = `${encodeURIComponent(name)}=${JSON.stringify(value)}; ${expires}; path=/`;
+    console.log(`Cookie "${name}" set with expiration: ${date}`);
+  }
+
+  // method to get data from a cookie
+  #getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let cookie of cookies) {
+      const [key, value] = cookie.split("=");
+      if (decodeURIComponent(key) === name) {
+        return JSON.parse(decodeURIComponent(value)); // Parse the JSON back into an array/object
+      }
+    }
+    return null; // Return null if the cookie doesn't exist
+  }
 
 }
 
