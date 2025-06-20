@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frameset in HTML</title>
+</head>
+<!-- framesets allowed you to create a multiple frames/windows in a webpage. -->
+ <!-- If you want to implement a frameset then you want to use frameset tag without body-->
+  <frameset border="1" rows="10%, 80%, 10%">
+      <frame src="./contents/header.html" name="header">
+        <frameset cols="15%, 85%">
+            <frame src="" name="file-explorer">
+            <frame src="" name="codearea">
+        </frameset>
+        <frame src="./contents/footer.html" name="footer">
+  </frameset>
+</html>
