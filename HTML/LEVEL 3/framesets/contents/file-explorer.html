@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Explorer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: sans-serif;
+      }
+
+      :root {
+        --padding-value: 10px;
+      }
+
+      #file-explorer-container {
+        background-color: #181818;
+        background-color: #1f1f1f;
+        color: azure;
+        height: 100%;
+        width: 100%;
+      }
+
+      header {
+        padding: var(--padding-value);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid rgba(240, 255, 255, 0.833);
+      }
+
+      header > .explorer-title {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      header > .nav {
+        font-size: larger;
+        opacity: 0;
+        transition: opacity 300ms ease-in-out;
+      }
+
+      header:hover > .nav {
+        opacity: 1;
+      }
+
+      header > .nav > i {
+        cursor: pointer;
+        display: inline-block;
+        transition: transform 300ms ease-in-out;
+      }
+      header > .nav > i:hover {
+        color: lightblue;
+      }
+      header > .nav > i:active {
+        transform: scale(1.1);
+      }
+
+      nav > .files-container {
+        padding: var(--padding-value);
+      }
+
+      .files-container > .file-type-container > .files-container{
+        padding-left: var(--padding-value);
+      }
+      .files-container > .file-type-container > .main-file{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block: 5px;
+      }
+
+      .files-container > .file-type-container > .file-info{
+        display: flex;
+        gap: 5px;
+        width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .files-container > .file-type-container > .file-info > span{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+
+      .files-container > .file-type-container > .controls{
+        font-weight: 500;
+      }
+      .files-container > .file-type-container > .controls > .ri-delete-bin-7-line{
+        color: crimson;
+      } 
+
+      .edit-btn{
+        color: goldenrod;
+      }
+
+      .files-container i{
+        cursor: pointer;
+        font-size: large;
+        display: inline-block;
+        user-select: none;
+        transition: transform 100ms ease;
+        will-change: transform;
+      }
+      .files-container i:active{
+        transform: scale(1.1);
+      }
+
+      /* style for modal */
+      #popup-modal {
+        position: relative;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%);
+        width: 80%;
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: 5px;
+        box-shadow: 0px 0px 20px gray;
+        text-align: right;
+      }
+
+      #popup-modal > input[type="text"] {
+        width: 100%;
+        font-family: sans-serif;
+        padding: 2px;
+        font-size: medium;
+      }
+
+      #popup-modal > button {
+        font-size: medium;
+        font-weight: 500;
+        padding: 2px 5px;
+        font-family: sans-serif;
+        border: none;
+        border-radius: 3px;
+        margin-top: 10px;
+        background-color: green;
+        color: azure;
+        cursor: pointer;
+      }
+
+      #popup-modal > #cancel-btn {
+        background-color: crimson;
+        color: azure;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="file-explorer-container">
+      <nav>
+        <header>
+          <div class="explorer-title">Explorer</div>
+          <div class="nav">
+            <i class="ri-file-add-fill"></i>
+            <i class="ri-folder-add-line"></i>
+          </div>
+        </header>
+
+        <div class="files-container">
+
+          <!-- file type file container -->
+          <div class="file-type-container">
+            <div class="main-file">
+              <div class="file-info">
+                <!-- <img src="" alt="file type icon" height="20px"> -->
+                <i class="ri-file-2-fill" style="color: brown"></i>
+                <span>index.html</span>
+              </div>
+              <div class="controls">
+                <i class="ri-file-edit-fill edit-btn"></i>
+                <i class="ri-delete-bin-7-line"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- folder type folder container-->
+          <div class="file-type-container">
+            <div class="main-file">
+              <div class="file-info">
+                <i class="ri-folder-fill" style="color: brown;"></i>
+                <span>folder</span>
+              </div>
+              <div class="controls">
+                <i class="ri-file-add-fill"></i>
+                <i class="ri-folder-add-line"></i>
+                <i class="ri-edit-line overlay-icon edit-btn"></i>
+                <i class="ri-delete-bin-7-line"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+    </section>
+
+    <dialog id="popup-modal">
+      <input
+        type="text"
+        name="f-name"
+        placeholder="enter a "
+        id="fname-input"
+        autocomplete="off"
+      />
+      <button type="button" id="cancel-btn">Cancel</button>
+      <button type="button" id="create-btn">Create</button>
+    </dialog>
+
+    <script>
+   /*   const files = [
+        {
+          id: 1,
+          file_name: 'index.html',
+          data_type: 'file',
+      },
+      {
+        id: 2,
+        file_name: "script.js",
+        data_type: 'file',
+      },
+      {
+        id: 3,
+        file_name: 'styles',
+        data_type: 'folder',
+        childrens: [],
+      },
+      {
+        id: 4,
+        file_name: 'components',
+        data_type: 'folder',
+        childrens: [{id: 4.1, file_name: 'navbar.jsx', data_type: 'file',}],
+      }
+    ];
+*/
+
+ const files = [
+  {
+    id: "1",
+    file_name: "index.html",
+    data_type: "file",
+  },
+  {
+    id: "2",
+    file_name: "script.js",
+    data_type: "file",
+  },
+  {
+    id: "3",
+    file_name: "styles",
+    data_type: "folder",
+    childrens: [
+      {
+        id: "3.1",
+        file_name: "global.css",
+        data_type: "file",
+      },
+      {
+        id: "3.2",
+        file_name: "themes",
+        data_type: "folder",
+        childrens: [
+          {
+            id: "3.2.1",
+            file_name: "light.css",
+            data_type: "file",
+          },
+          {
+            id: "3.2.2",
+            file_name: "dark.css",
+            data_type: "file",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "4",
+    file_name: "components",
+    data_type: "folder",
+    childrens: [
+      {
+        id: "4.1",
+        file_name: "navbar.jsx",
+        data_type: "file",
+      },
+      {
+        id: "4.2",
+        file_name: "footer.jsx",
+        data_type: "file",
+      },
+      {
+        id: "4.3",
+        file_name: "ui",
+        data_type: "folder",
+        childrens: [
+          {
+            id: "4.3.1",
+            file_name: "button.jsx",
+            data_type: "file",
+          },
+          {
+            id: "4.3.2",
+            file_name: "modal.jsx",
+            data_type: "file",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "5",
+    file_name: "utils",
+    data_type: "folder",
+    childrens: [
+      {
+        id: "5.1",
+        file_name: "helpers.js",
+        data_type: "file",
+      },
+      {
+        id: "5.2",
+        file_name: "validators",
+        data_type: "folder",
+        childrens: [
+          {
+            id: "5.2.1",
+            file_name: "email.js",
+            data_type: "file",
+          },
+          {
+            id: "5.2.2",
+            file_name: "password.js",
+            data_type: "file",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+// function to find that node
+const findById = (tree, targetted_id) =>{
+  for(node of tree){
+    // console.error(node);
+    if(node.id === targetted_id) return node;
+    if(node.data_type === "folder" && node.childrens){
+      const found = findById(node.childrens, targetted_id);
+      if(found) return found;
+    }
+  }
+};
+
+      const modal = document.getElementById("popup-modal");
+
+      const create_file_btn = document.querySelector(".ri-file-add-fill");
+      const create_folder_btn = document.querySelector(".ri-folder-add-line");
+
+      const openModal = (typename = "file") => {
+        modal.showModal();
+
+        document
+          .getElementById("create-btn")
+          .addEventListener("click", closeModal);
+
+        document
+          .getElementById("cancel-btn")
+          .addEventListener("click", closeModal);
+
+        const inputElement = document.getElementById("fname-input");
+        inputElement.placeholder = `enter a ${typename} name`;
+      };
+
+      const closeModal = () => {
+        modal.close();
+      };
+
+      create_file_btn.addEventListener("click", () => {
+        openModal("file");
+      });
+      create_folder_btn.addEventListener("click", () => {
+        openModal("folder");
+      });
+
+      const files_container = document.querySelector(".files-container");
+
+      function render_files_n_folders(file,index,files_arr){
+        let contents = "";
+        if(file.data_type === 'file'){
+          contents = `<div class="file-type-container" data-file-id=${file.id}>
+          <div class="main-file">  
+            <div class="file-info">
+              <i class="ri-file-2-fill" style="color: brown"></i>
+              <span>${file.file_name}</span>
+            </div>
+            <div class="controls">
+              <i class="ri-file-edit-fill edit-btn"></i>
+              <i class="ri-delete-bin-7-line"></i>
+            </div>
+          </div>  
+          </div>`;
+        }else{
+          // folder type data
+        contents = `<div class="file-type-container" data-file-id=${file.id}>
+          <div class="main-file">
+            <div class="file-info">
+            ${file.childrens.length >0 ? '<i class="ri-arrow-right-s-line expand-file"></i>' : ''}
+              <i class="ri-folder-fill" style="color: brown;"></i>
+              <span>${file.file_name}</span>
+            </div>
+            <div class="controls">
+              <i class="ri-file-add-fill"></i>
+              <i class="ri-folder-add-line"></i>
+              <i class="ri-edit-line overlay-icon edit-btn"></i>
+              <i class="ri-delete-bin-7-line"></i>
+            </div>
+           </div> 
+          </div>`;
+        }
+
+        return contents;
+      }
+      
+      files.forEach((file,index,files_arr)=>{
+        const contents = render_files_n_folders(file,index, files_arr);
+        files_container.innerHTML += contents;
+      });
+
+      // attaching event listener to files container
+      files_container.addEventListener('click', (e)=>{
+        const target = e.target;
+        if(target.tagName === 'I'){
+          if(target.classList.contains('expand-file')){
+            const id = target.parentElement.parentElement.parentElement.getAttribute('data-file-id');
+            // console.log(target);
+            // console.log(id);
+
+            const node_found = findById(files,id);
+                if(node_found?.childrens.length >0){
+                  target.setAttribute('class', "ri-arrow-down-s-line collapse-file");
+
+                  let contents = '';
+                  const div = document.createElement('div');
+                  div.setAttribute('class', "files-container");
+
+                  node_found?.childrens.forEach((file, index)=>{
+                    contents = render_files_n_folders(file, index);
+                  });
+                  div.innerHTML = contents;
+                  target.parentElement.parentElement.parentElement.append(div);
+                }
+            
+        
+            
+          }else if(target.classList.contains('collapse-file')){
+            target.setAttribute('class', "ri-arrow-right-s-line expand-file");
+            // removing the last child
+            target.parentElement.parentElement.parentElement.lastChild.remove();
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
