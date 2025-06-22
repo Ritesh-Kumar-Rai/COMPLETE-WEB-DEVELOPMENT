@@ -97,10 +97,10 @@
       }
 
 
-      .files-container > .file-type-container > .controls{
+      .files-container > .file-type-container  .controls{
         font-weight: 500;
       }
-      .files-container > .file-type-container > .controls > .ri-delete-bin-7-line{
+      .files-container > .file-type-container  .controls > .ri-delete-bin-7-line{
         color: crimson;
       } 
 
@@ -119,6 +119,14 @@
       .files-container i:active{
         transform: scale(1.1);
       }
+
+      .main-file > .controls{
+        opacity: 0;
+      }
+      .main-file:hover > .controls{
+        opacity: 1;
+      }
+
 
       /* style for modal */
       #popup-modal {
@@ -369,14 +377,13 @@ const findById = (tree, targetted_id) =>{
 
       const create_file_btn = document.querySelector(".ri-file-add-fill");
       const create_folder_btn = document.querySelector(".ri-folder-add-line");
-
+      
+      
       const openModal = (typename = "file") => {
         modal.showModal();
-
-        document
-          .getElementById("create-btn")
-          .addEventListener("click", closeModal);
-
+        
+        document.getElementById("create-btn").addEventListener("click", ()=> saveText(typename));
+        
         document
           .getElementById("cancel-btn")
           .addEventListener("click", closeModal);
@@ -385,7 +392,19 @@ const findById = (tree, targetted_id) =>{
         inputElement.placeholder = `enter a ${typename} name`;
       };
 
+      // save typed text
+      const saveText = (typename) =>{
+        if(!typename && typeof(typename) !== 'string'){
+          throw new Error('typename must be passed!, --> saveText()');
+        }
+        const textInput = document.getElementById("fname-input");
+        closeModal();
+        alert(textInput.value);
+      }
+
       const closeModal = () => {
+        document.getElementById('create-btn').removeEventListener('click', saveText);
+        document.getElementById('cancel-btn').removeEventListener('click', saveText);
         modal.close();
       };
 
@@ -409,7 +428,7 @@ const findById = (tree, targetted_id) =>{
             </div>
             <div class="controls">
               <i class="ri-file-edit-fill edit-btn"></i>
-              <i class="ri-delete-bin-7-line"></i>
+              <i class="ri-delete-bin-7-line delete-btn"></i>
             </div>
           </div>  
           </div>`;
@@ -423,10 +442,10 @@ const findById = (tree, targetted_id) =>{
               <span>${file.file_name}</span>
             </div>
             <div class="controls">
-              <i class="ri-file-add-fill"></i>
-              <i class="ri-folder-add-line"></i>
+              <i class="ri-file-add-fill create-file-btn"></i>
+              <i class="ri-folder-add-line create-folder-btn"></i>
               <i class="ri-edit-line overlay-icon edit-btn"></i>
-              <i class="ri-delete-bin-7-line"></i>
+              <i class="ri-delete-bin-7-line delete-btn"></i>
             </div>
            </div> 
           </div>`;
@@ -470,7 +489,13 @@ const findById = (tree, targetted_id) =>{
             target.setAttribute('class', "ri-arrow-right-s-line expand-file");
             // removing the last child
             target.parentElement.parentElement.parentElement.lastChild.remove();
+          }else if(target.classList.contains('create-file-btn')){
+            openModal('file');
+          }else if(target.classList.contains('create-folder-btn')){
+            openModal('folder');
           }
+
+
         }
       })
     </script>
