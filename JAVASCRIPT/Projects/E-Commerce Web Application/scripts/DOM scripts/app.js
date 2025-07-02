@@ -5,7 +5,8 @@ const navigateToCart = (page_type) => {
     throw new ReferenceError("We didn't get attribute from navbar go-to-cart-btn");
   }
 
-  const baseUrl = window.location.origin + "/JAVASCRIPT/Projects/E-Commerce Web Application/";
+  // const baseUrl = window.location.origin + "/JAVASCRIPT/Projects/E-Commerce Web Application/";
+  const baseUrl = window.location.origin + "/Projects/E-Commerce Web Application/"; // temporarily changed because of some issue while navigating to pages
 
   switch (page_type) {
     case "index.html":
@@ -37,7 +38,8 @@ const navigateToWishlist = (page_type) => {
     throw new ReferenceError("We didn't get attribute from navbar wishlist-btn");
   }
 
-  const baseUrl = window.location.origin + "/JAVASCRIPT/Projects/E-Commerce Web Application/";
+  // const baseUrl = window.location.origin + "/JAVASCRIPT/Projects/E-Commerce Web Application/";
+  const baseUrl = window.location.origin + "/Projects/E-Commerce Web Application/"; // temporarily changed because of some issue while navigating to pages
 
   switch (page_type) {
     case "index.html":
