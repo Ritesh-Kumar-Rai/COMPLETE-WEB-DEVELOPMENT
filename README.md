@@ -13,11 +13,16 @@
 ## For React transition animations of DOM instead of direct dom manipulation using React
 
     --- react-transition-group
+    --- framer-motion
 
 ## Some other Libraries
 
     --- Popper.js (for tooltip)
     --- Sonner.js (for toast notification)
+    --- date-fns (for date related functionality, formatting, etc.)
+    --- shadcn ui (for scalable, multifunctional, robust, industry-standard ui components)
+    --- radix ui (shadcn uses this library)
+    --- react-icons (for icons)
 
 ## For Notes visit:
 
