@@ -25,6 +25,8 @@
     --- react-icons (for icons)
     --- Material UI (ui library for react frontend)
     --- tanstack/react-table (a headless library for tables in react with many great functionalities - which can handles large datasets of tables)
+    --- faker.js (for fake data generation for API's/testing/demos)
+    --- moment.js (for Parse, validate, manipulate, and display dates and times in JavaScript.)
 
 ## For Notes visit:
 
