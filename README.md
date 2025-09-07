@@ -23,6 +23,8 @@
     --- shadcn ui (for scalable, multifunctional, robust, industry-standard ui components)
     --- radix ui (shadcn uses this library)
     --- react-icons (for icons)
+    --- Material UI (ui library for react frontend)
+    --- tanstack/react-table (a headless library for tables in react with many great functionalities - which can handles large datasets of tables)
 
 ## For Notes visit:
 
