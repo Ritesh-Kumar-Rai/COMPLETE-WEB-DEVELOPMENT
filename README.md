@@ -27,6 +27,11 @@
     --- tanstack/react-table (a headless library for tables in react with many great functionalities - which can handles large datasets of tables)
     --- faker.js (for fake data generation for API's/testing/demos)
     --- moment.js (for Parse, validate, manipulate, and display dates and times in JavaScript.)
+    --- Reshaped UI (for ui components)
+    --- tailwind css (class based css library)
+    --- bootstrap (class based css + ui component library)
+    --- Ripple UI (for ui components)
+    --- magicui.design
 
 ## For Notes visit:
 
