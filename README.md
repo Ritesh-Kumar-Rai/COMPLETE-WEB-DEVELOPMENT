@@ -32,6 +32,8 @@
     --- bootstrap (class based css + ui component library)
     --- Ripple UI (for ui components)
     --- magicui.design
+    --- pocketbase (a self-hosted backend platform)
+    --- prebuiltui (free ui components and templates)
 
 ## For Notes visit:
 
