@@ -149,3 +149,19 @@ example:
 ```bash
 docker run --rm --name <container-name> -e CHOKIDAR_USEPOLLING=true -d -p 3000:3000 -v $(pwd):/app <image-name>
 ```
+
+## How to connect a nodejs server container to mongodb and mongo-express containers
+
+- First add a env variables in server.js/index.js/app.js
+
+```js
+MONGO_URL = process.env.MONGO_URL || "mongodb://admin:qwerty@mongodb-new:27017";
+```
+
+- then run the docker container of nodejs
+
+```bash
+docker run -p 5050:5050 --network mongo-express-network -e MONGO_URL=mongodb://admin:qwerty@mongodb-new:27017 -d node-server-test:latest
+```
+
+- It's done
