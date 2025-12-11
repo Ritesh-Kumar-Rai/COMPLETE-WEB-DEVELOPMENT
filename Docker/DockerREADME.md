@@ -108,6 +108,13 @@ docker ps
 
 - and visit to browsers: `localhost:8081` to see mongo-express UI
 
+## How to Create a container from docker-compose.yaml file
+
+```bash
+docker compose -f docker-compose.yaml -d up # to create a containers
+docker compose -f docker-compose.yaml down # to delete/remove containers
+```
+
 ## How to create a development docker image from React app
 
 ```bash
