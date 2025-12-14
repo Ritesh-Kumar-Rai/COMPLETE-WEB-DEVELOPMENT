@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The backend of youtube clone built with nodejs, expressjs, mongodb etc. to learn and build a project simultaneously",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js"
   },
@@ -20,5 +21,10 @@
   "devDependencies": {
     "nodemon": "^3.1.11",
     "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1"
   }
 }
