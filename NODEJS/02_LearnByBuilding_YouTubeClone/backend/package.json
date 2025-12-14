@@ -1,0 +1,23 @@
+{
+  "name": "youtube_clone_backend",
+  "version": "1.0.0",
+  "description": "The backend of youtube clone built with nodejs, expressjs, mongodb etc. to learn and build a project simultaneously",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "youtube-clone",
+    "nodejs",
+    "mongodb",
+    "expressjs",
+    "backend",
+    "javascript",
+    "docker"
+  ],
+  "author": "Ritesh Kumar Rai",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
