@@ -12,9 +12,9 @@ connect_to_mongodb()
       console.log("Something went wrong!");
       throw err;
     });
-
-    app.listen(process.env.PORT, () => {
-      console.log(`Server is started serving at http://localhost:${process.env.PORT}`);
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => {
+      console.log(`Server is started serving at http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
