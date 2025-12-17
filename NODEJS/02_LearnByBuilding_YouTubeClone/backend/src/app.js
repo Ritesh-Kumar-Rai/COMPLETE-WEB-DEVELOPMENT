@@ -14,5 +14,18 @@ app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+// routes import
+import userRouter from "./routes/user.routes.js";
+
+// routes declaration
+app.use("/api/v1/users", userRouter);
+
+
+app.get("/api/v1/test", (req, res) => {
+    res.status(200).json({
+        message: "Namaste, API Tester",
+        author: "Ritesh Kumar Rai"
+    });
+})
 
 export default app;
