@@ -12,7 +12,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All fields required!");
     }
 
-    const isUserExisted = User.findOne({
+    const isUserExisted = await User.findOne({
         $or : [{username}, {email}]
     });
 
@@ -22,17 +22,17 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const avatarImage = req?.files?.avatar[0];
 
-    if(!avatar){
+    if(!avatarImage){
         throw new ApiError(400, "`avatar` field is required!");
     }
 
     let coverImagePath = '';
 
     if(req?.files && Array.isArray(req?.files?.coverImage) && req?.files?.coverImage?.length > 0){
-        coverImagePath = req?.files?.coverImage?.path || '';
+        coverImagePath = req?.files?.coverImage[0]?.path || '';
     }
 
-    const response = User.create({
+    const response = await User.create({
         fullName: fullName?.trim(),
         username: username.trim().toLowerCase(),
         email,
@@ -41,9 +41,13 @@ const registerUser = asyncHandler(async (req, res) => {
         coverImage: coverImagePath
     });
 
-    console.log(response);
+    const Re_verifyUserRegistration = await User.findById(response._id, "-password -watchHistory -refreshToken -__v -_id");
 
-    return res.status(201).json(new ApiResponse(200, [username, email], "User Registered Successfully."));
+    if(!Re_verifyUserRegistration){
+        return res.status(500).json(new ApiError(500, "Oops! Something wrong happened while Registering user! Pardon for incovinience", Re_verifyUserRegistration));
+    }
+
+    return res.status(201).json(new ApiResponse(200, Re_verifyUserRegistration, "User Registered Successfully."));
 });
 
 export {registerUser};
