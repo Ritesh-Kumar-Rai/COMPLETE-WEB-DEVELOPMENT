@@ -5,6 +5,20 @@ import {ApiError} from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import {User} from "../models/user.models.js";
 
+
+// Utility Function
+const generateAccess_and_RefreshToken = async (user_id, user) => {
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+
+    user.refreshToken = refreshToken;
+    await user.save({validateBeforeSave: false});
+
+    return {accessToken, refreshToken};
+};
+
+
+// user related controller functions 
 const registerUser = asyncHandler(async (req, res) => {
     const {fullName, username, email, password} = req.body;
     console.log(fullName, username, email, password)
@@ -50,7 +64,93 @@ const registerUser = asyncHandler(async (req, res) => {
     return res.status(201).json(new ApiResponse(200, Re_verifyUserRegistration, "User Registered Successfully."));
 });
 
-export {registerUser};
+// login user controller
+const loginUser = asyncHandler(async (req,res) => {
+    const {username, email, password} = req.body;
+
+    if(!email && !username){
+        throw new ApiError(400, "email or username is required for login!");
+    }
+    
+    if(!password){
+        throw new ApiError(400, "It seem's like the `password` is missing or invalid! Kindly check before login");
+    }
+
+    const user = await User.findOne({
+        $or: [{email}, {username}]
+    });
+
+    if(!user){
+        throw new ApiError(401, "User not found! 😶");
+    }
+    
+    const isValidUser = await user.isPasswordCorrect(password);
+    
+    if(!isValidUser){
+        throw new ApiError(401, "Invalid Credentials! login failed😩");
+    }
+
+    const {accessToken, refreshToken} = await generateAccess_and_RefreshToken(user._id, user);
+
+    if(!accessToken || !refreshToken){
+        throw new ApiError(500, "Oops! Internal Server Error");
+    }
+
+    const cookieOptions = {
+        httpOnly: true,
+        secure: true 
+    };
+
+    res.status(200)
+    .cookie("youtubeClone_access_token", accessToken, cookieOptions)
+    .cookie("youtubeClone_refresh_token", refreshToken, cookieOptions)
+    .json(new ApiResponse(200, {
+        username: user?.username,
+        email: user?.email,
+        apiTokens: {
+            accessToken,
+            refreshToken
+        },
+        message: "tokens generated successfully, loggedIn success"
+    }, "User loggedIn Successfully. 🥳"));
+
+});
+
+const logoutUser = asyncHandler(async (req, res) => {
+    const userId = req?.user?._id;
+
+    await User.findByIdAndUpdate(userId, {
+        // $unset: {
+        //     refreshToken: 1
+        // },
+        $set: {
+            refreshToken: undefined
+        }
+    }, {
+        new: true
+    });
+
+    // or 
+    /* 
+        const updatedUser = await User.findById(userId);
+        updatedUser?.refreshToken = undefined;
+        updatedUser?.save({validateBeforeSave: false});
+    */
+
+    const cookieOptions = {
+        httpOnly: true,
+        secure: true 
+    };
+
+    return res
+    .status(200)
+    .clearCookie("youtubeClone_access_token", cookieOptions)
+    .clearCookie("youtubeClone_refresh_token", cookieOptions)
+    .json(new ApiResponse(200,{},"User logged Out!"));
+
+});
+
+export {registerUser, loginUser, logoutUser};
 
 
 /*
@@ -87,4 +187,14 @@ export {registerUser};
     - remove password and accesstoken from response of mongodb
     - check for user creation
     - return response to user
+
+ 2. Login User:
+        DB Schema --> { refer register model}
+        VALIDATE EACH FIELD
+        a. get email or username
+        b. get password
+        c. generate refresh token & access token
+        d. store refresh token to db
+        e. send access token to client/user via cookie
+        f. send response back to client/user 
 */
