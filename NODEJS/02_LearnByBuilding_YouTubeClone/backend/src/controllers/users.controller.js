@@ -4,6 +4,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import {ApiError} from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import {User} from "../models/user.models.js";
+import { cookieOptions } from "../constants.js";
 
 
 // Utility Function
@@ -71,6 +72,13 @@ const loginUser = asyncHandler(async (req,res) => {
     if(!email && !username){
         throw new ApiError(400, "email or username is required for login!");
     }
+
+    // or
+    /*
+    *   if(!(!email || !username)){
+            throw new ApiError(400, "email or username is required for login!");
+        }
+    */
     
     if(!password){
         throw new ApiError(400, "It seem's like the `password` is missing or invalid! Kindly check before login");
@@ -96,14 +104,10 @@ const loginUser = asyncHandler(async (req,res) => {
         throw new ApiError(500, "Oops! Internal Server Error");
     }
 
-    const cookieOptions = {
-        httpOnly: true,
-        secure: true 
-    };
 
     res.status(200)
-    .cookie("youtubeClone_access_token", accessToken, cookieOptions)
-    .cookie("youtubeClone_refresh_token", refreshToken, cookieOptions)
+    .cookie(process.env.COOKIE_ACCESS_TOKENNAME, accessToken, cookieOptions)
+    .cookie(process.env.COOKIE_REFRESH_TOKENNAME, refreshToken, cookieOptions)
     .json(new ApiResponse(200, {
         username: user?.username,
         email: user?.email,
@@ -137,15 +141,10 @@ const logoutUser = asyncHandler(async (req, res) => {
         updatedUser?.save({validateBeforeSave: false});
     */
 
-    const cookieOptions = {
-        httpOnly: true,
-        secure: true 
-    };
-
     return res
     .status(200)
-    .clearCookie("youtubeClone_access_token", cookieOptions)
-    .clearCookie("youtubeClone_refresh_token", cookieOptions)
+    .clearCookie(process.env.COOKIE_ACCESS_TOKENNAME, cookieOptions)
+    .clearCookie(process.env.COOKIE_REFRESH_TOKENNAME, cookieOptions)
     .json(new ApiResponse(200,{},"User logged Out!"));
 
 });
