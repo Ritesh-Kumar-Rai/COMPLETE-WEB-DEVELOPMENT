@@ -25,7 +25,7 @@ const verifyJWT = asyncHandler(async (req,_,next)=>{
         next();
 
     } catch (error) {
-        throw new ApiError(401, "Invalid User!", [error.name, error.message], error.stackTrace);
+        throw new ApiError(401, "Invalid User!", [error.name, error.message], error.stack);
     }
 });
 

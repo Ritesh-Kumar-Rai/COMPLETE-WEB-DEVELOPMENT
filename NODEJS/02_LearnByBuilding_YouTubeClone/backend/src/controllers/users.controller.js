@@ -5,6 +5,7 @@ import {ApiError} from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import {User} from "../models/user.models.js";
 import { cookieOptions } from "../constants.js";
+import jwt from "jsonwebtoken";
 
 
 // Utility Function
@@ -121,35 +122,85 @@ const loginUser = asyncHandler(async (req,res) => {
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
-    const userId = req?.user?._id;
+    try {
+        const userId = req?.user?._id;
+    
+        await User.findByIdAndUpdate(userId, {
+            // $unset: {
+            //     refreshToken: 1
+            // },
+            $set: {
+                refreshToken: undefined
+            }
+        }, {
+            new: true
+        });
+    
+        // or 
+        /* 
+            const updatedUser = await User.findById(userId);
+            updatedUser?.refreshToken = undefined;
+            updatedUser?.save({validateBeforeSave: false});
+        */
+    
+        return res
+        .status(200)
+        .clearCookie(process.env.COOKIE_ACCESS_TOKENNAME, cookieOptions)
+        .clearCookie(process.env.COOKIE_REFRESH_TOKENNAME, cookieOptions)
+        .json(new ApiResponse(200,{},"User logged Out!"));
 
-    await User.findByIdAndUpdate(userId, {
-        // $unset: {
-        //     refreshToken: 1
-        // },
-        $set: {
-            refreshToken: undefined
-        }
-    }, {
-        new: true
-    });
-
-    // or 
-    /* 
-        const updatedUser = await User.findById(userId);
-        updatedUser?.refreshToken = undefined;
-        updatedUser?.save({validateBeforeSave: false});
-    */
-
-    return res
-    .status(200)
-    .clearCookie(process.env.COOKIE_ACCESS_TOKENNAME, cookieOptions)
-    .clearCookie(process.env.COOKIE_REFRESH_TOKENNAME, cookieOptions)
-    .json(new ApiResponse(200,{},"User logged Out!"));
+    } catch (error) {
+        console.error(`${error.name} -> ${error.message}`);
+        throw new ApiError(500, error.message || "Oops! Interval Server Error", [error.name, error.message], error.stack);
+    }
 
 });
 
-export {registerUser, loginUser, logoutUser};
+
+// re-generate the refresh + access token when both/anyone expires or invalid by this below controller [Refresh Rotation Controller]
+const regenerateAccessRefreshToken = asyncHandler(async (req, res)=>{
+    const incomingRefreshToken = req?.cookies?.process.env.COOKIE_REFRESH_TOKENNAME || req?.body?.youtubeClone_refreshToken;
+
+    if(!incomingRefreshToken){
+        throw new ApiError(401, "Unauthorized Request!");
+    }
+
+    try {
+        
+        const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+        const user = await User.findById(decodedToken?._id);
+
+        if(!user){
+            throw new ApiError(401, "Invalid Refresh Token");
+        }
+
+        if(incomingRefreshToken !== user?.refreshToken){
+            // SECURITY_ACTION: Clear the refreshToken from DB..
+            user?.refreshToken = undefined;
+            await user?.save({validateBeforeSave: false});
+            throw new ApiError(403, "Refresh token was reused! Please login again.");
+        }
+
+        const {accessToken, refreshToken: newRefreshToken} = await generateAccess_and_RefreshToken(_, user);
+
+        return res.status(200)
+        .cookie(process.env.COOKIE_ACCESS_TOKENNAME, accessToken, cookieOptions)
+        .cookie(process.env.COOKIE_REFRESH_TOKENNAME, newRefreshToken, cookieOptions)
+        .json(new ApiResponse(200, {
+            accessToken,
+            refreshToken: newRefreshToken
+        }, "Tokens Refreshed Successfully."));
+
+
+
+    } catch (error) {
+        console.error(`${error.name} -> ${error.message}`);
+        throw new ApiError(401, error.message || "Unauthorized Access because there's a invalid refresh token identified", [error.name, error.message], error.stack);
+    }
+});
+
+export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken};
 
 
 /*
