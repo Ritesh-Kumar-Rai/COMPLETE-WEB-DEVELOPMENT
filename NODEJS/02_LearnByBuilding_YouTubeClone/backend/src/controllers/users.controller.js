@@ -342,9 +342,80 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     }
 });
 
+// some other controller methods related to user activities
+
+const getUserChannelProfileDetails = asyncHandler(async (req, res)=> {
+    const {username} = req?.params;
+
+    if(!username.trim()){
+        throw new ApiError(400, "cannot get username/channel name!");
+    }
+
+    const channel = await User.aggregate([
+        {
+            $match: {
+                username: username?.trim()?.toLowerCase()
+            }
+        },
+        {
+            $lookup: {
+                from: "subscriptions",
+                localField: "_id",
+                foreignField: "channel",
+                as: "subscribers"
+            }
+        },
+        {
+            $lookup: {
+                from: "subscriptions",
+                localField: "_id",
+                foreignField: "subscriber",
+                as: "subscribedTo"
+            }
+        },
+        {
+            $addFields: {
+                subscribersTotalCount: {
+                    $size: "$subscribers"
+                },
+                channelSubscribedToTotalCount: {
+                    $size: "$subscribedTo"
+                },
+                isSubscribed: {
+                    $con: {
+                        if: {$in: [req?.user?._id || null, "$subscribers.subscriber"]},
+                        then: true,
+                        else: false
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                fullName: 1,
+                email: 1,
+                avatar: 1,
+                coverImage: 1,
+                username: 1,
+                subscribersTotalCount: 1,
+                channelSubscribedToTotalCount: 1,
+                isSubscribed: 1
+            }
+        }
+    ]);
+
+    if(!channel?.length){
+        throw new ApiError(404, "Channel or Username does not exists!");
+    }
+
+    return res.status(200)
+    .json(new ApiResponse(200, channel[0], "Channel Details fetched successfully."));
+
+}); 
 
 
-export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken, changeUserPassword, updateUserAccountDetails, updateUserAvatarImage, updateUserCoverImage, getCurrentUser};
+
+export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken, changeUserPassword, updateUserAccountDetails, updateUserAvatarImage, updateUserCoverImage, getCurrentUser, getUserChannelProfileDetails};
 
 
 /*
