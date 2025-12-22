@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import {User} from "../models/user.models.js";
 import { cookieOptions } from "../constants.js";
 import jwt from "jsonwebtoken";
+import deleteExistingImage from "../utils/deleteExistingImage.js";
 
 
 // Utility Function
@@ -200,7 +201,150 @@ const regenerateAccessRefreshToken = asyncHandler(async (req, res)=>{
     }
 });
 
-export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken};
+
+// controller methods for user account management endpoints
+
+const changeUserPassword = asyncHandler(async (req, res)=>{
+    const {oldPassword, newPassword} = req?.body;
+
+    if(!(oldPassword && newPassword)){
+        throw new ApiError(406, "Both new and old password required!", ['Not acceptable without required field parameters!']);
+    }
+
+    const user = await User.findById(req?.user?._id);
+    const isPasswordMatched = await user?.isPasswordCorrect(oldPassword);
+
+    if(!isPasswordMatched){
+        throw new ApiError(400, "Invalid old password!");
+    }
+
+    user?.password = newPassword;
+    // await user.save({validateBeforeSave: false}); will not check for contraints
+    await user.save(); // will check for constraints of all field
+    // [note: since we are fetching the data by id which will fetch entire document,so when we save without validateBeforeSave:false update, documented will check for all contstaints of all field so don't worried because all fields are already exists with document]
+
+    return res.status(200)
+    .json(new ApiResponse(201, null, "password has been changed successfully."));
+
+
+});
+
+const updateUserAccountDetails = asyncHandler(async (req, res) =>{
+    const {fullName, email} = req?.body;
+
+    if(!fullName && !email){
+        throw new ApiError(400, "Full name or email is required to update");
+    }
+
+    let warningMessage = '';
+
+    let updateFields = {};
+
+    if(fullName) updateFields.fullName = fullName;
+
+    if(email && email !== req?.user?.email){
+        const existingUser = await User.findOne({email});
+        if(existingUser && existingUser._id.toString() !== req.user._id.toString()){
+            throw new ApiError(409, "This email is already in use by another account");
+        }
+        warningMessage = "Note: Changing email may affect your login credentials.";
+        updateFields.email = email;
+    }
+
+    // Only hit the DB if there is actually something to change
+    if (Object.keys(updateFields).length === 0) {
+        throw new ApiError(400, "No changes detected");
+    }
+
+    const updated_user = await User.findByIdAndUpdate(req?.user?._id, 
+    {
+        $set: updateFields
+    }, {
+        new: true,
+        runValidators: true
+    })?.select("-password -refreshToken");
+
+    const response_data = {
+        user: updated_user, 
+        warning: warningMessage,
+        emailChanged: !!updateFields?.email 
+    };
+
+    return res.status(200)
+    .json(new ApiResponse(
+        200, 
+        response_data, 
+        "Account details updated successfully. 🚀"
+    ));
+
+
+});
+
+const updateUserAvatarImage = asyncHandler(async (req, res) =>{
+    const avatarImageFilePath = req?.file?.path || (req?.files && req?.files?.avatar ? req?.files?.avatar[0]?.path : null);
+
+    if(!avatarImageFilePath){
+        throw new ApiError(400, "Avatar file is missing");
+    }
+
+    const user = await User.findById(req?.user?._id).select("-password -refreshToken -watchHistory");
+    const oldAvatarLocalPath = user?.avatar;
+    user?.avatar = avatarImageFilePath;
+    await user.save({validateBeforeSave: false});
+
+    const isDeleted = deleteExistingImage(oldAvatarLocalPath, "avatar-image");
+
+
+    /*const user = await User.findByIdAndUpdate(req?.user?._id,
+        {
+            $set: {
+                avatar: avatarImageFilePath   
+            }
+        },
+        {
+            new: true,
+            runValidators: true 
+        }
+    ).select("-password -refreshToken -watchHistory");*/
+
+    return res.status(200)
+    .json(new ApiResponse(200, user, "Avatar image updated successfully."));
+
+    
+});
+
+const updateUserCoverImage = asyncHandler(async (req, res) =>{
+    const coverImageFilePath = req?.file?.path || (req?.files && req?.files?.coverImage ? req?.files?.coverImage[0]?.path : null);
+
+    if(!coverImageFilePath){
+        throw new ApiError(400, "Cover image file is missing");
+    }
+
+    const user = await User.findById(req?.user?._id).select("-password -refreshToken -watchHistory");
+    const oldCoverImageLocalPath = user?.avatar;
+    user?.avatar = coverImageFilePath;
+    await user.save({validateBeforeSave: false});
+
+    const isDeleted = deleteExistingImage(oldCoverImageLocalPath, "cover-image");
+
+    return res.status(200)
+    .json(new ApiResponse(400, user, "Cover image updated successfully."));
+
+});
+
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+    try {
+        return res.status(200).json(new ApiResponse(200, req?.user, "User fetched successfully."))
+    } catch (error) {
+        console.log(`Error from "getCurrentUser" controller \n${error.name} -> ${error.message}`);
+        throw new ApiError(500, "Some Errors occurred while fetching current user data!", [error.name, error.message]);
+    }
+});
+
+
+
+export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken, changeUserPassword, updateUserAccountDetails, updateUserAvatarImage, updateUserCoverImage, getCurrentUser};
 
 
 /*
