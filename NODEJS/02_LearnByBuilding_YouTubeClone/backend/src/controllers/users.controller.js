@@ -7,6 +7,7 @@ import {User} from "../models/user.models.js";
 import { cookieOptions } from "../constants.js";
 import jwt from "jsonwebtoken";
 import deleteExistingImage from "../utils/deleteExistingImage.js";
+import mongoose from "mongoose";
 
 
 // Utility Function
@@ -414,8 +415,56 @@ const getUserChannelProfileDetails = asyncHandler(async (req, res)=> {
 }); 
 
 
+const getUserWatchHistory = asyncHandler(async (req, res) => {
+    const userInfoDocument = await User.aggregate([
+        {
+            $match: {
+                _id: new mongoose.Schema.Types.ObjectId(req?.user?._id)
+            }
+        },
+        {
+            $lookup: {
+                from: "videos",
+                foreignField: "_id",
+                localField: "watchHistory",
+                as: "watch_history",
+                pipeline: [
+                    {
+                        $lookup: {
+                            from: "users",
+                            localField: "owner",
+                            foreignField: "_id",
+                            as: "owner",
+                            pipeline: [
+                                {
+                                    $project: {
+                                        username: 1,
+                                        fullName: 1,
+                                        avatar: 1
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $addFields: {
+                            owner: {
+                                $first: "$owner" 
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]);
 
-export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken, changeUserPassword, updateUserAccountDetails, updateUserAvatarImage, updateUserCoverImage, getCurrentUser, getUserChannelProfileDetails};
+    // final result would be like: [{_id: "aeds34SuGDH..", watch_history: [{},{}, ...]}]
+    
+    return res.status(200).json(new ApiResponse(200, userInfoDocument[0]?.watch_history, "Watch History was successfully fetched."));
+});
+
+
+export {registerUser, loginUser, logoutUser, regenerateAccessRefreshToken, changeUserPassword, updateUserAccountDetails, updateUserAvatarImage, updateUserCoverImage, getCurrentUser, getUserChannelProfileDetails, getUserWatchHistory};
 
 
 /*
