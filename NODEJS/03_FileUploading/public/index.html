@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploading Project</title>
+    <link rel="stylesheet" href="./stylesheets/index.css">
+</head>
+<body>
+    <main>
+        <h1>File Uploading using Nodejs Multer</h1>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-control">
+                <label for="file-to-upload">Upload file from here:</label>
+                <input type="file" name="file" id="file-to-upload">
+            </div>
+            <input type="submit" id="smt-btn" value="Upload File">
+        </form>
+    </main>
+</body>
+</html>

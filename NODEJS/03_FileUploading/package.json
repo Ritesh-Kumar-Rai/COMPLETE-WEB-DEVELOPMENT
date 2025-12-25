@@ -1,0 +1,21 @@
+{
+  "name": "03_fileuploading",
+  "version": "0.0.1",
+  "description": "This nodejs project is to learn about how to upload a file [like pdf, image, or any kind of file] using multer from frontend to backend and how to serve those files from backend server to frontend.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "multerjs",
+    "multipart-form",
+    "file-upload"
+  ],
+  "author": "Ritesh Kumar Rai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^1.4.4-lts.1"
+  }
+}
