@@ -10,13 +10,27 @@
     <main>
         <h1>File Uploading using Nodejs Multer</h1>
 
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <div class="form-control">
-                <label for="file-to-upload">Upload file from here:</label>
-                <input type="file" name="file" id="file-to-upload">
-            </div>
-            <input type="submit" id="smt-btn" value="Upload File">
-        </form>
+        <div class="container">
+            <select id="upload-version-selector">
+                <option value="version1">Version 1 Normal Upload</option>
+                <option value="version2">Version 2 Upload with ChunkSpying</option>
+                <option value="version3">Version 3 Upload Array of files</option>
+                <option value="version4">Version 4 Upload mutiple fields of files</option>
+            </select>
+        </div>
+
+        <div id="form-attacher">
+            <form action="/api/v1/upload" method="post" enctype="multipart/form-data">
+                <div class="form-control">
+                    <label for="file-to-upload">Upload file from here:</label>
+                    <input type="file" name="file" id="file-to-upload">
+                </div>
+                <input type="submit" id="smt-btn" value="Upload File">
+            </form>
+        </div>
     </main>
+
+
+    <script src="./javascripts/app.dom..js"></script>
 </body>
 </html>

@@ -20,6 +20,27 @@ h1{
     text-align: center;
 }
 
+h3{
+    text-align: center;
+    font-size: xx-large;
+}
+
+.container{
+    margin-block: 3rem;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    border-bottom: 2px dashed gray;
+}
+
+#upload-version-selector{
+    padding: 5px;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: 500;
+}
+
 form{
     margin: auto;
     margin-block: 4rem;
