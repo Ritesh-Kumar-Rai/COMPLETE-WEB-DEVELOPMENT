@@ -1,7 +1,11 @@
 const express = require("express");
 const multer = require("multer");
-const crypto = require("crypto");
-const path = require("path");
+const chunkspying = require("./middlewares/chunkspying.middleware");
+const storage = require("./middlewares/multer.middleware");
+const fileSizeLimitConfig = require("./configurations/multerfilesize_limit.config");
+const fileFilter = require("./configurations/multer_filefilter.config");
+const errorHandler = require("./middlewares/errorhandler.middleware");
+const terminateFileUploadWhenSizeLimitHit = require("./middlewares/fileupload_terminator.middleware");
 
 const app = express();
 const PORT = 3800;
@@ -16,53 +20,9 @@ app.use(function(req, res, next){
 // middleware to serve the static files
 app.use("/public", express.static("public"));
 
-
-// middleware to upload an file probably image
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/uploads')
-  },
-  filename: function (req, file, cb) {
-    crypto.randomBytes(12, (err, bytes) => {
-        if(err){
-            throw new Error(`Server error: ${err}`);
-        }
-
-        console.log("FROM MULTER MIDDLEWARE, file params contains:\n", file);
-
-        const uniqueSuffixWithExtension = bytes?.toString("hex") + path?.extname(file.originalname);
-        cb(null, file.fieldname + '-' + uniqueSuffixWithExtension)
-    });
-  }
-})
-
-// middleware for global error handling [multer related error also]
-const errorHandler = (error, req, res, next) => {
-    if(error instanceof multer.MulterError){
-        return res.status(400).send(`Unexpected Error while uploading file: \n${error.name} -> ${error.message}`);
-    }else if(error){
-        return res.status(400).send(`Server Error: ${error.name} -> ${error.message}`);
-    }
-    next();
-};
-
 // use the above middleware as global
 app.use(errorHandler);
 
-// file size limit config
-const fileSizeLimitConfig = {
-    fileSize: 1024 * 1024 * 10 // 1024KB * 1024KB = 1MB; 1MB * 10 = 10MB [total size limit] 
-};
-
-// fileFilter Configuration
-const fileFilter = (req, file, callback) => {
-    if(file?.mimetype?.startsWith("image/") || file?.mimetype?.endsWith("/pdf")){
-        // accept image or document type of files only.
-        callback(null, true)
-    }else{
-        callback(new TypeError("Only images or documents are allowed!"), false)
-    }
-}
 
 const upload = multer({
     storage: storage,
@@ -89,24 +49,69 @@ app.post("/api/v1/upload", upload.single("file"), (req, res)=>{
 });
 
 
-app.post('/upload', (req, res, next) => {
-    // A middleware for calculating or monitoring a chunks of file which was receiving
-    let received = 0;
-    let count = 1;
-    const total = req.headers['content-length'];
-
-    req.on('data', (chunk) => {
-        received += chunk.length;
-        count += 1;
-        const percentage = ((received / total) * 100).toFixed(2);
-        console.log(`${count}. Receiving chunks... Progress: ${percentage}% (${received} bytes) [each-chunk size: ${chunk.length}]`);
-    });
-
-    next(); // Pass to Multer after setting up the listener
-}, upload.single('file'), (req, res) => {
+app.post("/api/v2/upload", chunkspying, terminateFileUploadWhenSizeLimitHit, upload.single('file'), (req, res) => {
     console.log("Upload Complete. File saved at:", req.file, req.file.path);
     res.send("File received and merged! `"+req.file.originalname + "` uploaded successfully.");
 });
+
+
+app.post("/api/v3/upload", 
+    // terminateFileUploadWhenSizeLimitHit,
+    chunkspying,
+    upload.array("gallery", 5), // users can upload same field files upto 5
+    (req, res) => {
+        const files = req.files;
+        if(!files || !files.length){
+            return res.status(400).json({
+                status: 400,
+                message: "Oops! file is not uploaded!",
+                success: false
+            });
+        }
+
+        // success
+        return res.status(201).json({
+            status: 201,
+            message: "files are successfully created.",
+            success: true,
+            uploaded_files: files
+        });
+
+    }
+);
+
+
+app.post("/api/v4/upload", terminateFileUploadWhenSizeLimitHit, chunkspying,
+    upload.fields([{name: 'avatar', maxCount: 1}, {name: 'documents', maxCount: 2}]),
+    (req, res) => {
+        const avatar = req.files['avatar'];
+        const documents = req.files['documents'];
+        
+        if(!avatar || !avatar.length){
+            return res.status(400).json({
+                status: 400,
+                message: "Oops! avatar image is not uploaded!",
+                success: false
+            });
+        }
+
+        if(!documents || !documents.length){
+            return res.status(400).json({
+                status: 400,
+                message: "Oops! documents is not uploaded!",
+                success: false
+            });
+        }
+
+        // success
+        return res.status(201).json({
+            status: 201,
+            message: "files are successfully uploaded.",
+            success: true,
+            uploaded_files: req?.files
+        });
+    }
+)
 
 
 
