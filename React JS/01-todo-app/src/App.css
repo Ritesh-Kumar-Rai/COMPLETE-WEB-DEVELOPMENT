@@ -16,12 +16,21 @@ button {
   cursor: pointer;
 }
 
+.delete-btn {
+  color: red;
+}
+
+.bg-black {
+  background-color: black;
+  color: whitesmoke;
+}
+
 #todo-header > div:first-child {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-#todo-header > div:first-child > button {
+.tag-btn {
   font-size: x-small;
   font-weight: bold;
   padding: 2px 5px;
@@ -30,7 +39,7 @@ button {
   outline: 2px solid transparent;
   transition: outline-color 200ms ease-in-out;
 }
-#todo-header > div:first-child > button:hover {
+.tag-btn:hover {
   outline-color: gray;
 }
 
@@ -46,7 +55,8 @@ select {
   font-weight: 600;
 }
 
-#add-task-btn {
+#add-task-btn,
+#edit-task-btn {
   font-size: large;
   padding: 5px 8px;
   font-weight: bold;
@@ -59,7 +69,12 @@ select {
   will-change: transform;
 }
 
-#add-task-btn:hover {
+#edit-task-btn {
+  background-color: goldenrod;
+}
+
+#add-task-btn:hover,
+#edit-task-btn:hover {
   outline-color: gray;
 }
 
@@ -81,7 +96,6 @@ select {
 
 .todo-container > div {
   padding: 0.8rem;
-  border-right: 2px solid black;
 }
 
 .todo-container > div:nth-child(1) {
@@ -110,6 +124,7 @@ select {
   padding: 10px;
   background-color: ghostwhite;
   max-width: 500px;
+  transition: transform 300ms ease-in;
 }
 
 .todo-card > p {
@@ -120,18 +135,26 @@ select {
   margin-bottom: 10px;
 }
 
-.todo-card-foot {
+.todo-card-foot > div:last-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .todo-card-foot > div:first-child {
   width: 95%;
-  background-color: purple;
   display: flex;
   align-items: center;
   gap: 5px;
   flex-wrap: wrap;
+}
+
+.isEditingOn {
+  /* transform: scale(1.2); */
+  box-shadow: 10px 10px 10px gray;
+  /* position: relative;
+  z-index: 50; */
+  opacity: 0.3;
 }
