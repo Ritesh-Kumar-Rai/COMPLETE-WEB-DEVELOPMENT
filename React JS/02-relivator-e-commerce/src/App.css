@@ -16,3 +16,7 @@ button {
   width: 50px;
   border-radius: 5px;
 }
+
+body.dark .custom-heading::after {
+  border-color: white;
+}
