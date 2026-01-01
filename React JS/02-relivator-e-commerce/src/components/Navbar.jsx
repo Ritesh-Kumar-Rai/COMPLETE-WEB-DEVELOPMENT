@@ -22,7 +22,7 @@ const Navbar = () => {
     }, [darkTheme]);
 
     return (
-        <header className="w-full py-2 px-2 shadow-2xs sticky top-0 backdrop:backdrop-blur-md border-b z-50">
+        <header className="w-full py-2.5 px-2 shadow-2xs sticky top-0 backdrop-blur-md border-b z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="flex items-center gap-5">
                     <Link to='/' className="font-bold text-lg gradient">Relivator</Link>
@@ -34,8 +34,8 @@ const Navbar = () => {
                     </nav>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button variant="outline" size="icon" className="rounded-full relative"><BsCart2 /> <span className="bg-accent-foreground rounded-full text-xs text-white dark:text-black absolute top-0 right-0 w-4 h-4">3</span> </Button>
-                    <Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute top-0 right-0 h-4 w-4">2</span> </Button>
+                    <Button variant="outline" size="icon-sm" className="rounded-fulls relative"><BsCart2 /> <span className="bg-accent-foreground rounded-full text-xs text-white dark:text-black absolute -top-2 -right-1 w-4 h-4">3</span> </Button>
+                    <Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute -top-2 -right-1 h-4 w-4">2</span> </Button>
                     <div className="hidden md:flex items-center gap-2">
                         <Button variant="outline" size="sm">Log in</Button>
                         <Button variant="default" size="sm">Sign up</Button>

@@ -1,3 +1,18 @@
 button {
   cursor: pointer;
 }
+
+.custom-heading {
+  position: relative;
+}
+
+.custom-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid black;
+  width: 50px;
+  border-radius: 5px;
+}

@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <main className='py-8'>
+        <Outlet />
+      </main>
       <footer>lldsdsd</footer>
     </>
   )
