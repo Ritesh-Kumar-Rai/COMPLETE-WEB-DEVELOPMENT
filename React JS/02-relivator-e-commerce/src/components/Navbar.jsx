@@ -22,7 +22,7 @@ const Navbar = () => {
     }, [darkTheme]);
 
     return (
-        <header className="w-full py-2.5 px-2 shadow-2xs sticky top-0 backdrop-blur-md border-b z-50">
+        <header className="w-full py-2.5 px-2 shadow-2xs sticky top-0 backdrop-blur-md bg-white/50 dark:bg-black/50 border-b z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="flex items-center gap-5">
                     <Link to='/' className="font-bold text-lg gradient">Relivator</Link>

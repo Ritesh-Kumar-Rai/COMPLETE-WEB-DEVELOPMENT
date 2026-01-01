@@ -20,3 +20,66 @@ button {
 body.dark .custom-heading::after {
   border-color: white;
 }
+
+/* marquee effect code */
+
+.feedback-loop-container {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.842),
+    transparent,
+    rgba(255, 255, 255, 0.842)
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+body.dark .feedback-loop-container {
+  background: linear-gradient(to right, black, transparent, black);
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  display: flex; /* The outer container must be flex to sit groups side-by-side */
+  user-select: auto;
+  gap: 20px;
+  padding: 20px 0; /* Extra padding so shadows aren't cut off */
+}
+
+.marquee-group {
+  flex-shrink: 0;
+  display: grid;
+  /* Magic Part: Forces cards to be 300px wide (or whatever size you want) */
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+
+  align-items: stretch; /* Ensures all cards have the same HEIGHT */
+  gap: 30px;
+  min-width: 100%;
+  animation: scroll 30s infinite linear;
+}
+
+/* Ensure the content inside cards handles the fixed width */
+.marquee-group > * {
+  width: 100%;
+  height: 100%;
+}
+
+.marquee:hover .marquee-group {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Must match the gap set in .marquee (10px) */
+    transform: translateX(calc(-100% - 30px));
+  }
+}

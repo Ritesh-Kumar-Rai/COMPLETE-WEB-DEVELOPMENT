@@ -7,8 +7,10 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { homeData } from "@/constants/dummyproductsData";
+import { homeData, userFeedbacks } from "@/constants/dummyproductsData";
 import { Link } from "react-router-dom";
+import { RiShoppingBag3Line } from "react-icons/ri";
+
 
 
 
@@ -44,7 +46,7 @@ const ProductCard = ({
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute right-3 top-3 z-10 rounded-full bg-accent transition-colors hover:bg-white hover:text-red-500"
+                    className="absolute right-3 top-3 z-10 rounded-full bg-accent transition-colors hover:bg-white hover:text-red-500 active:text-red-500 active:scale-95"
                 >
                     <Heart className="h-5 w-5" />
                 </Button>
@@ -82,10 +84,42 @@ const ProductCard = ({
                 </div>
             </CardContent>
             <CardFooter className="mt-3">
-                <Button className="w-full gap-2 font-semibold"><ShoppingCart className="h-4 w-4" /> Add to Cart</Button>
+                <Button className="w-full gap-2 font-semibold active:scale-95"><ShoppingCart className="h-4 w-4" /> Add to Cart</Button>
             </CardFooter>
         </Card>
     );
+};
+
+
+const BenefitCard = ({ icon, label = '', content = '' }) => {
+    return (<Card className="w-2xs">
+        <CardContent>
+            <span className="bg-zinc-300 dark:bg-accent p-3 inline-block rounded-full"> {icon} </span>
+            <h5 className="font-semibold">{label}</h5>
+        </CardContent>
+        <CardFooter className="text-muted-foreground">
+            {content}
+        </CardFooter>
+    </Card>);
+}
+
+
+
+const FeedbackCard = ({ imgSrc = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face", fullname = "Sophia Martinez", username = "@sophiareviews", msg = 'lorem ipsum, hare krsna..' }) => {
+    return (<Card className="max-w-2xs">
+        <CardHeader className="flex items-center gap-2">
+            <div className="w-12 h-12 overflow-hidden rounded-full">
+                <img src={imgSrc} alt={fullname} className="object-cover" title={fullname} />
+            </div>
+            <div className="flex flex-col gap-0">
+                <h6 className="font-bold">{fullname}</h6>
+                <span className="text-xs text-muted-foreground">{username}</span>
+            </div>
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground">
+            {msg}
+        </CardContent>
+    </Card>);
 };
 
 
@@ -131,7 +165,7 @@ const Home = () => {
                 {/* Image Container */}
                 <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-10">
                     <img
-                        src="https://images.unsplash.com/photo-1665041974623-d398d035023e?w=700&auto=format&fit=crop&q=60"
+                        src="https://plus.unsplash.com/premium_photo-1687919417131-c50f7d9a407a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGdhbWV8ZW58MHx8MHx8fDA%3D"
                         alt="game zone banner image"
                         className="w-full max-w-125 lg:max-w-full object-cover rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-105"
                     />
@@ -165,6 +199,40 @@ const Home = () => {
                 <div className="my-5 flex items-center justify-center">
                     <Link className="flex mx-auto items-center gap-2 bg-white hover:bg-gray-200 dark:bg-black/10 hover:shadow-xl hover:gap-4 transition-all duration-300 ease-in-out p-2 border border-zinc-300 dark:border-black/20 rounded-sm font-semibold">View All Products <FaArrowRight /> </Link>
                 </div>
+            </section>
+
+            {/* why choose section */}
+            <section className="py-20">
+                <article className="max-w-7xl mx-auto px-3">
+
+                    <h2 className="custom-heading text-3xl font-bold text-center">Why Choose Us</h2>
+                    <p className="text-muted-foreground text-center my-4">We offer the best shopping experience with premium features</p>
+                    <div className="my-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4 justify-center">
+                        <BenefitCard icon={<PiTruckDuotone size={25} />} label="Free Shipping" content="Free shipping on all orders over ₹5000. Fast and reliable delivery to your doorstep." />
+                        <BenefitCard icon={<RiShoppingBag3Line size={25} />} label="Secure Checkout" content="Your payment information is always safe and secure with us. We use industry-leading encryption." />
+                        <BenefitCard icon={<FiClock size={25} />} label="24/7 Support" content="Our customer support team is always available to help with any questions or concerns." />
+                        <BenefitCard icon={<Star size={25} />} label="Quality Guarantee" content="We stand behind the quality of every product we sell. 30-day money-back guarantee." />
+                    </div>
+                </article>
+            </section>
+
+            <section className="w-full py-20 bg-muted/50">
+                <article className="relative max-w-7xl py-20 mx-auto bg-white dark:bg-black/20">
+                    <div className="feedback-loop-container"></div>
+                    <h2 className="custom-heading text-4xl font-bold text-center">What Our Customers Say</h2>
+                    <p className="text-muted-foreground text-center my-8">Don't just take our word for it - hear from our satisfied customers</p>
+                    <div className="marquee">
+                        {/* Group 1 */}
+                        <div className="marquee-group">
+                            {userFeedbacks.map((feedback, index) => <FeedbackCard key={index} imgSrc={feedback.imgSrc} fullname={feedback.fullname} username={feedback.username} msg={feedback.msg} />)}
+                        </div>
+
+                        {/* Group 2 (Exact copy of Group 1) */}
+                        <div aria-hidden="true" className="marquee-group">
+                            {userFeedbacks.map((feedback, index) => <FeedbackCard key={index} imgSrc={feedback.imgSrc} fullname={feedback.fullname} username={feedback.username} msg={feedback.msg} />)}
+                        </div>
+                    </div>
+                </article>
             </section>
         </>
     )
