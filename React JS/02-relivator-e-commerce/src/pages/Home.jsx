@@ -217,7 +217,7 @@ const Home = () => {
             </section>
 
             <section className="w-full py-20 bg-muted/50">
-                <article className="relative max-w-7xl py-20 mx-auto bg-white dark:bg-black/20">
+                <article className="relative max-w-7xl py-20 mx-auto bg-white dark:bg-black/20 max-md:px-4">
                     <div className="feedback-loop-container"></div>
                     <h2 className="custom-heading text-4xl font-bold text-center">What Our Customers Say</h2>
                     <p className="text-muted-foreground text-center my-8">Don't just take our word for it - hear from our satisfied customers</p>
@@ -233,6 +233,18 @@ const Home = () => {
                         </div>
                     </div>
                 </article>
+            </section>
+
+            {/* call to action container */}
+            <section className="pt-20 pb-25 max-md:p-5">
+                <div className="max-w-7xl mx-auto rounded-lg shadow-lg bg-accent p-10 md:p-20 md:px-70 text-center">
+                    <h4 className="text-4xl font-bold">Ready to Upgrade Your Tech?</h4>
+                    <p className="text-muted-foreground my-5 text-lg">Join thousands of satisfied customers and experience the best tech products on the market. Sign up today for exclusive deals and offers.</p>
+                    <div className="flex items-center justify-center flex-wrap gap-3">
+                        <Link to='/auth'><Button size="lg">Sign Up Now</Button></Link>
+                        <Link to='/products'><Button variant="outline" size="lg">Browse Products</Button></Link>
+                    </div>
+                </div>
             </section>
         </>
     )
