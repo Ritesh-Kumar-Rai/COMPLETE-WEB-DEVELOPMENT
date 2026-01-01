@@ -28,8 +28,8 @@ const Navbar = () => {
                     <Link to='/' className="font-bold text-lg gradient">Relivator</Link>
                     <nav className="hidden md:block">
                         <ul className="flex items-center gap-3">
-                            <li><NavLink to='/' className={({ isActive }) => ``}>Home</NavLink></li>
-                            <li><NavLink to='/products' className={({ isActive }) => ``}>Products</NavLink></li>
+                            <li><NavLink to='/' className={({ isActive }) => `${isActive ? 'font-semibold text-primary' : 'text-muted-foreground hover:text-primary'}`}>Home</NavLink></li>
+                            <li><NavLink to='/browse-products' className={({ isActive }) => `${isActive ? 'font-semibold text-primary' : 'text-muted-foreground hover:text-primary'}`}>Products</NavLink></li>
                         </ul>
                     </nav>
                 </div>
@@ -48,8 +48,8 @@ const Navbar = () => {
             {menuToggle && <div className="max-md:flex hidden flex-col items-center gap-5">
                 <nav className="mt-8 w-full">
                     <ul className="flex flex-col items-center gap-3">
-                        <li><NavLink to='/' className={({ isActive }) => ``}>Home</NavLink></li>
-                        <li><NavLink to='/products' className={({ isActive }) => ``}>Products</NavLink></li>
+                        <li className="w-full"><NavLink to='/' className={({ isActive }) => `${isActive ? 'bg-black/90 text-white dark:bg-accent' : 'hover:bg-black/80 hover:text-white hover:dark:bg-accent/80'} block rounded-md p-2 text-center`}>Home</NavLink></li>
+                        <li className="w-full"><NavLink to='/browse-products' className={({ isActive }) => `${isActive ? 'bg-black/90 text-white dark:bg-accent' : 'hover:bg-black/80 hover:text-white hover:dark:bg-accent/80'} block rounded-md p-2 text-center`}>Products</NavLink></li>
                     </ul>
                 </nav>
                 <hr className="w-full" />
