@@ -19,7 +19,7 @@ const BrowseProducts = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
 
     return (
-        <section className="max-w-7xl mx-auto px-10">
+        <section className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between gap-4 flex-wrap">
                 <div>
                     <h5 className="text-2xl font-bold">Explore Products</h5>

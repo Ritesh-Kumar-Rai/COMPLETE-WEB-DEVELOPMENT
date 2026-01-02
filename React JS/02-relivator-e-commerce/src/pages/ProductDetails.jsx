@@ -14,7 +14,7 @@ const ProductDetails = () => {
                 <Link to="/browse-products"><Button variant="ghost"> <HiOutlineArrowNarrowLeft /> Back to Products </Button></Link>
             </div>
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="relative bg-amber-600 aspect-square rounded-md overflow-hidden">
+                <div className="relative  bg-linear-to-r from-accent to-muted/50 aspect-square rounded-md overflow-hidden">
                     <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2R1Y3RzfGVufDB8fDB8fHww" alt="product" className="object-cover w-full" />
                     <Badge className="absolute top-2 left-2 z-10 bg-green-600/90 text-white">
                         {15}% OFF

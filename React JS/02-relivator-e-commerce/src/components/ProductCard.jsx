@@ -2,6 +2,7 @@ import { Heart, ShoppingCart, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
     title = "Macbook Pro and Sony PS4 Controller",
@@ -37,7 +38,7 @@ const ProductCard = ({
 
                 {/* product image */}
                 <div className="relative rounded-md p-0 pb-0 m-0 bg-linear-30 to-gray-700 w-full overflow-hidden shadow-2xs">
-                    <img src={imgSrc} alt={title} title={title} className="object-cover aspect-square group-hover:scale-110 transition-transform duration-200 ease-in" />
+                    <Link to="/browse-products/2"><img src={imgSrc} alt={title} title={title} className="object-cover aspect-square group-hover:scale-110 transition-transform duration-200 ease-in" /></Link>
                     {stocks <= 0 && <div className="absolute inset-0 backdrop-blur-sm rounded-[inherit] flex items-center justify-center">
                         {/* inset: in a place of top:0, left:0, w-full and h-full */}
                         <Badge variant='destructive' disabled={true} className="mx-auto rounded-md select-none">Out of Stock</Badge>
@@ -49,7 +50,7 @@ const ProductCard = ({
                 <Badge variant={'secondary'} className="text-sm">
                     {category}
                 </Badge>
-                <h4 className="font-bold my-3 line-clamp-1">{title}</h4>
+                <Link to="/browse-products/8"><h4 className="font-bold my-3 line-clamp-1">{title}</h4></Link>
                 <div className="flex items-center text-yellow-500">
                     {[...Array(5)].map((_, i) => (
                         <Star
