@@ -6,6 +6,7 @@ import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
+import Cart from "./Cart";
 
 const Navbar = () => {
 
@@ -38,7 +39,9 @@ const Navbar = () => {
                     </nav>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button variant="outline" size="icon-sm" className="rounded-fulls relative"><BsCart2 /> <span className="bg-accent-foreground rounded-full text-xs text-white dark:text-black absolute -top-2 -right-1 w-4 h-4">3</span> </Button>
+                    {/* Cart will place here */}
+                    <Cart PassedBtn={<Button variant="outline" size="icon-sm" className="rounded-fulls relative"><BsCart2 /> <span className="bg-accent-foreground rounded-full text-xs text-white dark:text-black absolute -top-2 -right-1 w-4 h-4">3</span> </Button>} />
+                    {/* Cart will place here */}
                     <Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute -top-2 -right-1 h-4 w-4">2</span> </Button>
                     <div className="hidden md:flex items-center gap-2">
                         <Button variant="outline" size="sm">Log in</Button>

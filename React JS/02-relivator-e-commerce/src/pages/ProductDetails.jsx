@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star } from "lucide-react";
+import { Heart, ShoppingCart, Star } from "lucide-react";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { Badge } from "@/components/ui/badge";
@@ -38,13 +38,16 @@ const ProductDetails = () => {
                     </div>
                     <p className="text-muted-foreground">Work in comfort with our ergonomic office chair designed for all-day support. Features adjustable height, lumbar support, and breathable mesh back.</p>
                     <span className="text-green-500 font-semibold inline-block my-4">In Stock</span>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 flex-wrap">
                         <div className="flex items-center">
                             <Button variant="outline" size="sm" className="active:scale-95" disabled><FaMinus /></Button>
                             <span className="select-none w-12 inline-block text-center">1</span>
                             <Button variant="outline" size="sm" className="active:scale-95"><FaPlus /></Button>
                         </div>
                         <Button className="flex-1 gap-2 font-semibold active:scale-95"><ShoppingCart className="h-4 w-4" /> Add to Cart</Button>
+                        <Button variant="outline" size="icon" className="shrink-0">
+                            <Heart className="h-4 w-4 fill-red-500 text-red-500" />
+                        </Button>
                     </div>
                 </article>
             </div>
