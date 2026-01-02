@@ -7,6 +7,7 @@ export const homeData = [
     category: "Audio",
     rating: 4.8,
     reviews: 1240,
+    stocks: 3,
     imgSrc:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop",
   },
@@ -18,6 +19,7 @@ export const homeData = [
     category: "Gaming-Desk",
     rating: 4.9,
     reviews: 850,
+    stocks: 2,
     imgSrc:
       "https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1957&auto=format&fit=crop",
   },
@@ -29,6 +31,7 @@ export const homeData = [
     category: "Consoles",
     rating: 4.7,
     reviews: 2100,
+    stocks: 0,
     imgSrc:
       "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=2070&auto=format&fit=crop",
   },
@@ -40,6 +43,7 @@ export const homeData = [
     category: "Consoles",
     rating: 4.6,
     reviews: 1560,
+    stocks: 1,
     imgSrc:
       "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?q=80&w=2070&auto=format&fit=crop",
   },

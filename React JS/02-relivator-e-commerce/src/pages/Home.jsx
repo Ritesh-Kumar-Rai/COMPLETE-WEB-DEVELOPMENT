@@ -130,7 +130,7 @@ const Home = () => {
                     <p className="text-muted-foreground text-center my-4">Check out our latest and most popular tech items</p>
                     <div className="py-3 max-md:px-10 flex items-center justify-center gap-8 flex-wrap">
                         {homeData.map(product => {
-                            return <ProductCard key={product.id} title={product.title} category={product.category} price={product.price} discountPrice={product.discountPrice} rating={product.rating} imgSrc={product.imgSrc} />;
+                            return <ProductCard key={product.id} title={product.title} category={product.category} price={product.price} discountPrice={product.discountPrice} rating={product.rating} stocks={product.stocks} imgSrc={product.imgSrc} />;
                         })}
                     </div>
                 </div>

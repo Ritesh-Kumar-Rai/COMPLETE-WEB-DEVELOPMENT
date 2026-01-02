@@ -9,7 +9,7 @@ import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
 
-    const [darkTheme, setDarkTheme] = useState(false);
+    const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem("relivator-theme-state") || false);
     const [menuToggle, setMenuToggle] = useState(false);
 
     useEffect(() => {
@@ -19,6 +19,7 @@ const Navbar = () => {
         } else {
             htmlBody.classList.add('dark')
         }
+        sessionStorage.setItem("relivator-theme-state", darkTheme);
     }, [darkTheme]);
 
     return (
