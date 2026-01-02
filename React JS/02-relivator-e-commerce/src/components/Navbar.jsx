@@ -9,17 +9,20 @@ import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
 
-    const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem("relivator-theme-state") || false);
+    const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem("relivator-theme-state") !== 'light');
     const [menuToggle, setMenuToggle] = useState(false);
 
     useEffect(() => {
         const htmlBody = document.body;
+        let themeMode = '';
         if (!darkTheme) {
             htmlBody.classList.remove('dark');
+            themeMode = 'light';
         } else {
-            htmlBody.classList.add('dark')
+            htmlBody.classList.add('dark');
+            themeMode = 'dark';
         }
-        sessionStorage.setItem("relivator-theme-state", darkTheme);
+        sessionStorage.setItem("relivator-theme-state", themeMode);
     }, [darkTheme]);
 
     return (
