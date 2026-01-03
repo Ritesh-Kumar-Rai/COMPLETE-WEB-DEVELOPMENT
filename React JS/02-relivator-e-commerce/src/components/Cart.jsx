@@ -10,6 +10,16 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer";
 import { Button } from "./ui/button";
 import { IoClose } from "react-icons/io5";
 import { Badge } from "./ui/badge";
@@ -82,7 +92,7 @@ const Cart = ({ PassedBtn }) => {
 
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
-    const cartDummy = [...Array(8)];
+    const cartDummy = [...Array(5)];
 
     if (isDesktop) {
         return (<Sheet>
@@ -118,7 +128,7 @@ const Cart = ({ PassedBtn }) => {
                 ) : (
                     <>
                         <div className="px-3 m-0 shrink">
-                            <Alert className={'text-green-500'}><PiTruckDuotone /> <AlertDescription className={'text-green-500'}>You've unlocked free shipping!</AlertDescription> </Alert>
+                            <Alert className={'text-green-500 border-green-500/20 bg-green-500/5'}><PiTruckDuotone /> <AlertDescription className={'text-green-500'}>You've unlocked free shipping!</AlertDescription> </Alert>
                         </div>
                         <ScrollArea className="flex-1 min-h-0">
                             <div className="p-3 space-y-2">
@@ -157,7 +167,84 @@ const Cart = ({ PassedBtn }) => {
     }
 
     return (
-        <aside>Drawer</aside>
+        <Drawer>
+            <DrawerTrigger asChild>{PassedBtn}</DrawerTrigger>
+            {/* 1. Added h-[90vh] and flex-col here */}
+            <DrawerContent className="h-[90vh] flex flex-col">
+                <DrawerHeader className="shrink-0">
+                    <DrawerTitle>Shopping Cart</DrawerTitle>
+                    <DrawerDescription>
+                        Your Cart has <span className="font-medium">{cartDummy.length}</span> items
+                    </DrawerDescription>
+                </DrawerHeader>
+
+                {cartDummy.length === 0 ? (
+                    <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center px-6">
+                        {/* ... your empty state ... */}
+                        <div className="bg-muted rounded-full p-6">
+                            <ShoppingCart className="h-12 w-12 text-muted-foreground opacity-50" />
+                        </div>
+
+                        <div className="space-y-1">
+                            <h3 className="text-lg font-semibold tracking-tight">Your cart is empty</h3>
+                            <p className="text-sm text-muted-foreground max-w-[200px]">
+                                Looks like you haven't added anything to your cart yet.
+                            </p>
+                        </div>
+
+                        {/* CTA to get them back to products */}
+                        <DrawerClose asChild>
+                            <Button className="mt-4 px-8">
+                                Continue Shopping
+                            </Button>
+                        </DrawerClose>
+                    </div>
+                ) : (
+                    // 2. Wrap the active state in a flex-1 div to manage the internal layout
+                    <div className="flex-1 flex flex-col min-h-0">
+                        <div className="px-3 shrink-0">
+                            <Alert className="text-green-500 border-green-500/20 bg-green-500/5">
+                                <PiTruckDuotone />
+                                <AlertDescription>You've unlocked free shipping!</AlertDescription>
+                            </Alert>
+                        </div>
+
+                        {/* 3. The ScrollArea now has a bounded parent to tell it when to scroll */}
+                        <ScrollArea className="flex-1 min-h-0 mt-2">
+                            <div className="p-3 space-y-2">
+                                {cartDummy.map((_, i) => <CardItem key={i} />)}
+                            </div>
+                        </ScrollArea>
+
+                        <DrawerFooter className="shrink-0 border-t bg-background">
+                            <div className="flex flex-col gap-3 mb-2">
+                                {/* ... price summary ... */}
+                                <div className="flex items-center justify-between text-xs">
+                                    <span className="text-muted-foreground">Subtotal</span>
+                                    <span className="font-semibold">₹5700</span>
+                                </div>
+                                <div className="flex items-center justify-between text-xs">
+                                    <span className="text-muted-foreground">Shipping</span>
+                                    <span className="font-semibold">Calculated at checkout</span>
+                                </div>
+                                <hr />
+                                <div className="flex items-center justify-between text-sm">
+                                    <span className="font-semibold">Total</span>
+                                    <span className="font-semibold">₹5978</span>
+                                </div>
+                            </div>
+                            <Button size="sm" className="w-full mb-2">Checkout</Button>
+                            <div className="flex items-center justify-between gap-4">
+                                <DrawerClose asChild>
+                                    <Button size="sm" variant="outline" className="flex-1">Continue Shopping</Button>
+                                </DrawerClose>
+                                <Button size="sm" variant="outline" className="flex-1 active:text-red-500">Clear Cart</Button>
+                            </div>
+                        </DrawerFooter>
+                    </div>
+                )}
+            </DrawerContent>
+        </Drawer>
     )
 }
 
