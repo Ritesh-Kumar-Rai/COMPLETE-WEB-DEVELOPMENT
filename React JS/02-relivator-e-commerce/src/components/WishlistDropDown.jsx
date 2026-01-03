@@ -68,7 +68,7 @@ export function WishlistDropdown({ wishlistItems = [], PassedBtn }) {
                     <>
                         <ScrollArea className="h-[350px]">
                             <div className="flex flex-col">
-                                {wishlistItems.map((item) => <WishlistCard item={item} />)}
+                                {wishlistItems.map((item) => <WishlistCard key={item.id} item={item} />)}
                             </div>
                         </ScrollArea>
 

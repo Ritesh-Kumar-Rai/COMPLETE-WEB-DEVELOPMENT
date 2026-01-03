@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import BrowseProducts from './pages/BrowseProducts'
 import ProductDetails from './pages/ProductDetails'
+import SignIn from './pages/SignIn'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,13 @@ const router = createBrowserRouter([
     {
       path: '/browse-products/:id',
       element: <ProductDetails />
+    },
+    {
+      path: "auth",
+      children: [{
+        path: 'sign-in',
+        element: <SignIn />
+      }]
     }]
   }
 ]);
