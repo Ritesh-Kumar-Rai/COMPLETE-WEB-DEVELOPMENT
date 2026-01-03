@@ -107,3 +107,46 @@ export const userFeedbacks = [
       "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop",
   },
 ];
+
+export const wishlistDummy = [
+  {
+    id: "1",
+    name: "PS5 DualSense Wireless Controller - Midnight Black",
+    price: "5990",
+    image:
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=200&auto=format&fit=crop",
+    category: "Accessories",
+  },
+  {
+    id: "2",
+    name: "Sony WH-1000XM5 Noise Canceling Headphones",
+    price: "29990",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=200&auto=format&fit=crop",
+    category: "Audio",
+  },
+  {
+    id: "3",
+    name: "Mechanical Gaming Keyboard RGB",
+    price: "8500",
+    image:
+      "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=200&auto=format&fit=crop",
+    category: "Peripherals",
+  },
+  {
+    id: "4",
+    name: "Logitech G Pro X Superlight Mouse",
+    price: "12500",
+    image:
+      "https://images.unsplash.com/photo-1527814050087-3793815479db?q=80&w=200&auto=format&fit=crop",
+    category: "Accessories",
+  },
+  {
+    id: "5",
+    name: "Samsung Odyssey G7 27-inch Curved Monitor",
+    price: "45000",
+    image:
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=200&auto=format&fit=crop",
+    category: "Monitors",
+  },
+];

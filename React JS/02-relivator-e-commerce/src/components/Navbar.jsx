@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 import Cart from "./Cart";
+import { WishlistDropdown } from "./WishlistDropDown";
+import { wishlistDummy } from "@/constants/dummyproductsData";
 
 const Navbar = () => {
 
@@ -42,7 +44,9 @@ const Navbar = () => {
                     {/* Cart will place here */}
                     <Cart PassedBtn={<Button variant="outline" size="icon-sm" className="rounded-fulls relative"><BsCart2 /> <span className="bg-accent-foreground rounded-full text-xs text-white dark:text-black absolute -top-2 -right-1 w-4 h-4">3</span> </Button>} />
                     {/* Cart will place here */}
-                    <Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute -top-2 -right-1 h-4 w-4">2</span> </Button>
+                    {/* Wishlist DropDownMenu will place here */}
+                    <WishlistDropdown wishlistItems={wishlistDummy} PassedBtn={<Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute -top-2 -right-1 h-4 w-4">2</span> </Button>} />
+                    {/* Wishlist DropDownMenu will place here */}
                     <div className="hidden md:flex items-center gap-2">
                         <Button variant="outline" size="sm">Log in</Button>
                         <Button variant="default" size="sm">Sign up</Button>
