@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import BrowseProducts from './pages/BrowseProducts'
 import ProductDetails from './pages/ProductDetails'
 import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
       children: [{
         path: 'sign-in',
         element: <SignIn />
-      }]
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp />
+      }
+      ]
     }]
   }
 ]);

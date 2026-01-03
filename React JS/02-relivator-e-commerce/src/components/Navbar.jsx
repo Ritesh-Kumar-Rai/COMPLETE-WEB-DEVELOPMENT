@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { BsCart2 } from "react-icons/bs";
 import { GrFavorite } from "react-icons/gr";
@@ -12,21 +12,25 @@ import { wishlistDummy } from "@/constants/dummyproductsData";
 
 const Navbar = () => {
 
-    const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem("relivator-theme-state") !== 'light');
+    const [isDark, setIsDark] = useState(() => {
+        return sessionStorage.getItem("relivator-theme-state") === 'dark';
+    });
     const [menuToggle, setMenuToggle] = useState(false);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        const htmlBody = document.body;
-        let themeMode = '';
-        if (!darkTheme) {
-            htmlBody.classList.remove('dark');
-            themeMode = 'light';
+        // 2. Use documentElement (html tag) instead of body
+        const root = window.document.documentElement;
+
+        if (isDark) {
+            root.classList.add('dark');
+            sessionStorage.setItem("relivator-theme-state", 'dark');
         } else {
-            htmlBody.classList.add('dark');
-            themeMode = 'dark';
+            root.classList.remove('dark');
+            sessionStorage.setItem("relivator-theme-state", 'light');
         }
-        sessionStorage.setItem("relivator-theme-state", themeMode);
-    }, [darkTheme]);
+    }, [isDark]);
 
     return (
         <header className="w-full py-2.5 px-2 shadow-2xs sticky top-0 backdrop-blur-md bg-white/50 dark:bg-black/50 border-b z-50">
@@ -48,10 +52,10 @@ const Navbar = () => {
                     <WishlistDropdown wishlistItems={wishlistDummy} PassedBtn={<Button variant="outline" size="icon-sm" className="relative"><GrFavorite /> <span className="bg-destructive rounded-full text-xs text-white absolute -top-2 -right-1 h-4 w-4">2</span> </Button>} />
                     {/* Wishlist DropDownMenu will place here */}
                     <div className="hidden md:flex items-center gap-2">
-                        <Button variant="outline" size="sm">Log in</Button>
-                        <Button variant="default" size="sm">Sign up</Button>
+                        <Button variant="outline" size="sm" onClick={() => navigate("/auth/sign-in")}>Log in</Button>
+                        <Button variant="default" size="sm" onClick={() => navigate("/auth/sign-up")}>Sign up</Button>
                     </div>
-                    <Button variant="outline" size="icon-sm" className="rounded-full" onClick={() => setDarkTheme(prev => !prev)}>{darkTheme ? <MdDarkMode /> : <MdLightMode />}</Button>
+                    <Button variant="outline" size="icon-sm" className="rounded-full" onClick={() => setIsDark(prev => !prev)}>{isDark ? <MdDarkMode /> : <MdLightMode />}</Button>
 
                     <Button variant="outline" size="icon" onClick={() => setMenuToggle(prev => !prev)} className='md:hidden'>{menuToggle ? <IoMdClose size={20} /> : <CgMenuRightAlt size={20} />}</Button>
                 </div>
@@ -65,8 +69,8 @@ const Navbar = () => {
                 </nav>
                 <hr className="w-full" />
                 <div className="w-full mt-4">
-                    <Button variant="outline" className="w-full mb-4">Log in</Button>
-                    <Button variant="default" size="sm" className="w-full">Sign up</Button>
+                    <Button variant="outline" className="w-full mb-4" onClick={() => navigate("/auth/sign-in")}>Log in</Button>
+                    <Button variant="default" size="sm" className="w-full" onClick={() => navigate("/auth/sign-up")}>Sign up</Button>
                 </div>
             </div>}
         </header>

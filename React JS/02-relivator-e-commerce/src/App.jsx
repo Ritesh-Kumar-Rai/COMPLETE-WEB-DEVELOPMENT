@@ -6,13 +6,15 @@ import ScrollToTop from './components/ScrollToTop'
 
 function App() {
 
-  const path = useLocation();
+  const path = useLocation()
+
+  const isAuth = path?.pathname === "/auth/sign-in" || path?.pathname === "/auth/sign-up";
 
   return (
     <>
       <ScrollToTop />
       <Navbar />
-      <main className={`${path.pathname !== "/auth/sign-in" ? 'py-8' : ''}`}>
+      <main className={`${!isAuth ? 'py-8' : ''}`}>
         <Outlet />
       </main>
       <Footer />
