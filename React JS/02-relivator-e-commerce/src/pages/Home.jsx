@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { homeData, userFeedbacks } from "@/constants/dummyproductsData";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import ProductCard from "@/components/ProductCard";
 
@@ -62,6 +62,13 @@ const FeedbackCard = ({ imgSrc = "https://images.unsplash.com/photo-153452874177
 
 
 const Home = () => {
+
+    const navigate = useNavigate();
+
+    function goToRoute(route_path = '/browse-products') {
+        navigate(route_path);
+    }
+
     return (
         <>
             <section className="max-w-7xl mx-auto py-10 px-4 flex flex-col lg:flex-row items-center justify-between gap-10">
@@ -84,7 +91,7 @@ const Home = () => {
                     </p>
 
                     <div className="mb-6">
-                        <Button size="lg" className="w-full sm:w-auto">
+                        <Button size="lg" className="w-full sm:w-auto" onClick={() => goToRoute()}>
                             Shop Now <FaArrowRightLong className="ml-2" />
                         </Button>
                     </div>
@@ -135,7 +142,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="my-5 flex items-center justify-center">
-                    <Link className="flex mx-auto items-center gap-2 bg-white hover:bg-gray-200 dark:bg-black/10 hover:shadow-xl hover:gap-4 transition-all duration-300 ease-in-out p-2 border border-zinc-300 dark:border-black/20 rounded-sm font-semibold">View All Products <FaArrowRight /> </Link>
+                    <Link to={'/browse-products'} className="flex mx-auto items-center gap-2 bg-white hover:bg-gray-200 dark:bg-black/10 hover:shadow-xl hover:gap-4 transition-all duration-300 ease-in-out p-2 border border-zinc-300 dark:border-black/20 rounded-sm font-semibold">View All Products <FaArrowRight /> </Link>
                 </div>
             </section>
 
@@ -145,7 +152,7 @@ const Home = () => {
 
                     <h2 className="custom-heading text-3xl font-bold text-center">Why Choose Us</h2>
                     <p className="text-muted-foreground text-center my-4">We offer the best shopping experience with premium features</p>
-                    <div className="my-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4 justify-center">
+                    <div className="my-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4 justify-items-center">
                         <BenefitCard icon={<PiTruckDuotone size={25} />} label="Free Shipping" content="Free shipping on all orders over ₹5000. Fast and reliable delivery to your doorstep." />
                         <BenefitCard icon={<RiShoppingBag3Line size={25} />} label="Secure Checkout" content="Your payment information is always safe and secure with us. We use industry-leading encryption." />
                         <BenefitCard icon={<FiClock size={25} />} label="24/7 Support" content="Our customer support team is always available to help with any questions or concerns." />
@@ -179,8 +186,8 @@ const Home = () => {
                     <h4 className="text-4xl font-bold">Ready to Upgrade Your Tech?</h4>
                     <p className="text-muted-foreground my-5 text-lg">Join thousands of satisfied customers and experience the best tech products on the market. Sign up today for exclusive deals and offers.</p>
                     <div className="flex items-center justify-center flex-wrap gap-3">
-                        <Link to='/auth'><Button size="lg">Sign Up Now</Button></Link>
-                        <Link to='/products'><Button variant="outline" size="lg">Browse Products</Button></Link>
+                        <Link to='/auth/sign-up'><Button size="lg">Sign Up Now</Button></Link>
+                        <Link to='/browse-products'><Button variant="outline" size="lg">Browse Products</Button></Link>
                     </div>
                 </div>
             </section>

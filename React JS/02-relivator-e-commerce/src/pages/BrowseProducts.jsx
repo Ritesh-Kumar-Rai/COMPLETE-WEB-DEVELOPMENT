@@ -31,7 +31,7 @@ const BrowseProducts = () => {
             </div>
             <div className="my-10">
                 {/* All product Cards will be render below: */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 justify-items-center gap-y-8">
                     {homeData.map(product => <ProductCard key={product.id} imgSrc={product.imgSrc} title={product.title} category={product.category} rating={product.rating} stocks={product.stocks} price={product.price} discountPrice={product.discountPrice} />)}
                 </div>
                 {/* Pagination will be placed below */}

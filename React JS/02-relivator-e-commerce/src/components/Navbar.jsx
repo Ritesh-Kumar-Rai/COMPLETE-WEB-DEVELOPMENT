@@ -21,7 +21,7 @@ const Navbar = () => {
 
     useEffect(() => {
         // 2. Use documentElement (html tag) instead of body
-        const root = window.document.documentElement;
+        const root = window.document.body;
 
         if (isDark) {
             root.classList.add('dark');

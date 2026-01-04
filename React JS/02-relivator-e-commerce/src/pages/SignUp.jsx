@@ -61,9 +61,9 @@ const SignUp = () => {
                                 </InputGroup>
                             </div>
                             <div className="flex flex-col gap-3">
-                                <Label htmlFor='password-input'>Confirm Password</Label>
+                                <Label htmlFor='passwordc-input'>Confirm Password</Label>
                                 <InputGroup>
-                                    <InputGroupInput type={showCPassword ? 'text' : 'password'} name='password-input' id='password-input' placeholder='••••••••' />
+                                    <InputGroupInput type={showCPassword ? 'text' : 'password'} name='passwordc-input' id='passwordc-input' placeholder='••••••••' />
                                     <InputGroupAddon> <TbLockPassword /> </InputGroupAddon>
                                     <InputGroupAddon align="inline-end" className="cursor-pointer" aria-label={showCPassword ? "Hide password" : "Show password"}
                                         aria-pressed={showCPassword}
