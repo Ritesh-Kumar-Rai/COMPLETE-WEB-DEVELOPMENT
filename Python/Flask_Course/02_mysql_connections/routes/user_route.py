@@ -57,4 +57,11 @@ def patchUserAccount(userid):
     
     return obj.patchUser(userid, request.form);
 
-    # return Response("It's working..PATCH", mimetype='text/plain', status=200);
+@user_route_bp.route('/getusers/limit/<int:limit>/page/<int:page>', methods=['GET'])
+def getUsersPaginatedData(limit=0, page=1):
+    if page < 1 : page = 1
+    if limit < 1 : limit = 10
+    limit = int(limit)
+    page = int(page)
+
+    return obj.fetchUserViaPagination(limit, page)

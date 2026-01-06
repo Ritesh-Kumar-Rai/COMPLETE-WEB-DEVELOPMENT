@@ -212,3 +212,50 @@ class UserModel:
                 "message": f'Error while patching user {user_id}!',
                 "error": str(err)
             }), 500;
+
+
+    def fetchUserViaPagination(self, limit, page):
+        try:
+            offset = (page * limit) - limit
+
+            query = "SELECT * FROM `users` LIMIT %s OFFSET %s"
+
+            self.cursor.execute(query, (limit, offset))
+
+            result = self.cursor.fetchall()
+
+            if len(result) > 0:
+                print("Records fetched successfully...getAllUsers()")
+                return jsonify({
+                    "success": True,
+                    "datasets": result,
+                    "size": len(result),
+                    "limit": limit,
+                    "page": page
+                }),200
+            return jsonify({
+                "success": False,
+                "message": "No records available!",
+                "dataset": None,
+                "limit": limit,
+                "page": page
+            }),200
+    
+        except Exception as err:
+            print("Some error occurred while fetching data...\n",err)
+            return jsonify({
+                "success": False,
+                "message": "Some error occurred while fetching data...",
+                "error": str(err),
+                "limit": limit,
+                "page": page
+            }), 500
+        
+        except mysql.connector.Error as err:
+            return jsonify({
+                "success": False,
+                "message": "Database error",
+                "error": str(err),
+                "limit": limit,
+                "page": page
+            }), 500
