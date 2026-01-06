@@ -46,3 +46,15 @@ def deleteUserAccount(userid):
         return jsonify({"success": False, "message": "No data provided"}), 400
     
     return obj.deleteUser(userid);
+
+@user_route_bp.route('/patchuserprofile/<int:userid>', methods=['PATCH'])
+def patchUserAccount(userid):
+    if not userid:
+        return jsonify({'success':False, 'message': "`user id` is missing!"}), 400
+    
+    if not request.form:
+        return jsonify({'success':False, 'message': "data field is missing!"}),400
+    
+    return obj.patchUser(userid, request.form);
+
+    # return Response("It's working..PATCH", mimetype='text/plain', status=200);

@@ -164,3 +164,51 @@ class UserModel:
                 "message": f'Error while deleting user account for id {user_id}!',
                 "error": str(err)
             }), 500;
+
+
+    def patchUser(self, user_id, form_data):
+        try:
+            # query = "UPDATE `users` SET name=%s, ph_no=%s WHERE id=%s";
+            # values = (data['username'], data['ph_no'], user_id)
+
+            # self.conn.commit();
+
+            query = "UPDATE `users` SET ";
+
+            for key in form_data:
+                query += f"{key}='{form_data[key]}', ";
+            
+            query = query[:-2] + f" WHERE id={user_id};";
+
+            self.cursor.execute(query)
+            self.conn.commit();
+
+            if self.cursor.rowcount > 0:
+                return jsonify({
+                    "success": True,
+                    "message": f"user profile updated using `PATCH` successfully for id[{user_id}].",
+                    "affected_rows": self.cursor.rowcount
+                }),200;
+        
+            return jsonify({
+                "success": False,
+                "message": "user not found or no changes made."
+            }),404;
+    
+        except mysql.connector.Error as err:
+            # If something goes wrong, undo any partial changes
+            self.conn.rollback() 
+            return jsonify({
+                "success": False,
+                "message": "Database error",
+                "error": str(err)
+            }), 500
+
+        except Exception as err:
+            print('Something went wrong while patching data into database!\n',err);
+            self.conn.rollback();
+            return jsonify({
+                "success": False,
+                "message": f'Error while patching user {user_id}!',
+                "error": str(err)
+            }), 500;
