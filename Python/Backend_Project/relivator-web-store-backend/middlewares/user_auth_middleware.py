@@ -11,11 +11,14 @@ def token_required(f):
     def decorated(*args, **kwargs):
         token = None
 
-        # Get token from Authorization header
-        if 'Authorization' in request.headers:
-            auth_header = request.headers['Authorization']
-            if auth_header.startswith("Bearer "):
-                token = auth_header.split(" ")[1]
+        token = request.cookies.get('access_token')
+
+        if not token:   
+            # Get token from Authorization header
+            if 'Authorization' in request.headers:
+                auth_header = request.headers['Authorization']
+                if auth_header.startswith("Bearer "):
+                    token = auth_header.split(" ")[1]
 
         if not token:
             return jsonify({"error": "Token is missing!"}), 401
