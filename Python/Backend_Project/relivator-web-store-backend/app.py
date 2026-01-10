@@ -3,6 +3,7 @@ from dotenv import load_dotenv;
 from flask import Flask, jsonify, request;
 from routes.user_routes import user_route_bp;
 from routes.product_routes import product_route_bp;
+from routes.cart_routes import cart_route_bp;
 import os; 
 
 load_dotenv()
@@ -32,6 +33,8 @@ BASE_URI = "/relivator-store" # of api
 # configuring the other routes with app.
 app.register_blueprint(user_route_bp, url_prefix=f"{BASE_URI}/api/v1/users") 
 app.register_blueprint(product_route_bp, url_prefix=f"{BASE_URI}/api/v1/products")
+app.register_blueprint(cart_route_bp, url_prefix=f"{BASE_URI}/api/v1/cart")
+
 
 # starting route
 @app.route(f'{BASE_URI}/api/v1', methods=['GET'])
