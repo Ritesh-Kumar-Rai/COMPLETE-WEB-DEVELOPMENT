@@ -24,13 +24,16 @@ class ProductModel:
             '''
             
             # Calculate total_pages formula: (total_items + limit - 1) / limit
-            total_pages = math.ceil((total_items + limit - 1) / 10)
+            # total_pages = math.ceil((total_items + limit - 1) / 10) # this has a bug if total_item is 22 then the total_pages expected is 3 but here it returns 4
+            total_pages = max(1, math.ceil(total_items / limit)) # worst case if total_products is 0 then total_page = 1
 
+            has_products = len(products) > 0
 
             return jsonify({
                 "success": True,
+                "has_data": has_products,
                 "current_page": page,
-                "message": "No products available." if not total_items else "Successfully fetched products.",
+                "message": "No products matched your filters." if not has_products else "Successfully fetched products.",
                 "limit": limit,
                 "payload": {
                     "products": products
@@ -246,12 +249,51 @@ class ProductModel:
         finally:
             if cursor : cursor.close()
             if conn : conn.close()
+
+    
+
+    def fetch_categories_count(self):
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(dictionary=True)
+            
+            sql_query = """SELECT 
+            c.name as category_name, 
+            COUNT(*) as total_count 
+            FROM `products` p
+            INNER JOIN `categories` c ON p.category = c.id
+            WHERE c.name IN ('audio', 'gaming desks', 'gaming consoles', 'gaming laptops')
+            GROUP BY c.name;"""   
+
+            cursor.execute(sql_query)
+            categories = cursor.fetchall()
+
+            return jsonify({
+                "success": True if categories else False,
+                "message": "categories count not available." if not categories else "Successfully fetched no. of products available per category.",
+                "payload": {
+                    "categories_count_data": categories
+                }
+            }),200
+
+            
+        except errors as mysqlerror:
+            return jsonify({"db_error": str(mysqlerror)}),500
+        except Exception as error:
+            print(f"Error occurred while fetching categories count: {error}")
+            return jsonify({"error": f"Error occurred while fetching categories count: {error}"}),500
+        finally:
+            if cursor : cursor.close()
+            if conn : conn.close()
+
+
+
         
     def insert_category(self, sql_query, params):
         try:
             conn = get_db_connection()
             cursor = conn.cursor(dictionary=True)
-            
+            print(sql_query, params)
 
             cursor.execute(sql_query, params)
             conn.commit()
